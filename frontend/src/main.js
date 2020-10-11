@@ -23,7 +23,7 @@ const env = {
   // eslint-disable-next-line no-undef
   url: `${__apiUrl}`,
   // eslint-disable-next-line no-undef
-  version: window.atob(`${__version}`)
+  version: `${__version}`
 };
 
 apiClient.setupClient(env.url);
@@ -50,3 +50,10 @@ new Vue({
   template: '<App/>',
   components: { App }
 });
+
+try {
+  navigator.serviceWorker.register('/service-worker.js');
+} catch (e) {
+  console.log(`Coudln't register Service Worker`);
+  console.log(e);
+}

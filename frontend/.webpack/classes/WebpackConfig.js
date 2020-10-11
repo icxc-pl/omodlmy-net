@@ -6,7 +6,17 @@ const dir = require('../dir');
 class WebpackConfig {
 
   constructor () {
-    this._entry = path.join(dir.src, 'main.js');
+    this._entry = {
+      main: path.join(dir.src, 'main.js'),
+      'service-worker': path.join(dir.src, 'service-worker/index.js')
+    };
+    this._output = {
+      path: dir.dist,
+      filename: '[name].js',
+      chunkFilename: '[name].[hash].chunk.js',
+      publicPath: '/'
+    };
+
     this._stats = true;
 
     this._resolve = {
