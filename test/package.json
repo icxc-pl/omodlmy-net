@@ -1,0 +1,22 @@
+{
+  "name": "@omodlmy-net/test",
+  "version": "0.1.0",
+  "description": "Testy dla Omódlmy.net",
+  "main": "test.js",
+  "author": "Marek Sierociński <mareksierocinski@gmail.com>",
+  "contributors": [],
+  "engines": {
+    "node": "12.x"
+  },
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.1.0",
+    "mocha": "^7.2.0"
+  }
+}

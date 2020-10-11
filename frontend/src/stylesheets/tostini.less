@@ -1,0 +1,39 @@
+@import 'colors';
+
+.tostini-plate {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto !important;
+
+  .tostini {
+    padding: 0.75rem;
+    width: calc(~'100vw - 3.5rem');
+    margin: 0.5rem auto;
+    max-width: 40rem;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+
+    &[data-type="default"] {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    &[data-type="success"] {
+      background: rgba(45, 148, 27, 0.95);
+    }
+
+    &[data-type="error"] {
+      background: rgba(212, 0, 0, 0.95)
+    }
+
+    &[data-type="warning"] {
+      background: rgba(216, 143, 9, 0.95);
+    }
+
+    &[data-type="info"] {
+      background: rgba(0, 147, 204, 0.95);
+    }
+  }
+}

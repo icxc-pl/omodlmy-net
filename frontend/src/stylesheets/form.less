@@ -1,0 +1,80 @@
+@import 'colors';
+@import 'mixins/background';
+@import 'mixins/input';
+
+*:focus {
+  outline: none;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  .input-base;
+  border: 1px solid @alto;
+
+  &:focus {
+    border-color: @purple-warm;
+  }
+
+  &.invalid {
+    border-color: @red;
+  }
+}
+
+span.invalid {
+  display: block;
+  color: @red;
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+  min-height: 10rem;
+}
+
+.btn {
+  .input-base;
+  .background-gradient;
+
+  width: 10rem;
+  padding: 0.5em;
+  border: none;
+  border-radius: 6rem;
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  i[class^="icon"] {
+    color: white;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &.working {
+    color: transparent;
+    position: relative;
+    pointer-events: none;
+
+    i[class^="icon"] {
+      color: transparent;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent url('~Img/loader-white.svg') center center no-repeat;
+      background-size: 25%;
+    }
+  }
+}

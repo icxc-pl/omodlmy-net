@@ -1,0 +1,23 @@
+{
+  "$id": "https://omodlmy.net/schema/intention.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Schema of Single Intention",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "minLength": 7,
+      "maxLength": 256
+    },
+    "author": {
+      "type": ["null", "string"],
+      "default": null
+    },
+    "captcha": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 200
+    }
+  },
+  "required": ["content", "captcha"]
+}

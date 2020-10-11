@@ -1,0 +1,98 @@
+{
+  "values":{
+    "CAPTCHA_TITLE": "Zagadka matematyczna",
+    "DATETIME": "%{date} o %{time}",
+    "DAY_BEFORE_YESTERDAY": "przedwczoraj",
+    "DAYS_N": [
+        [1, 1, "dzień"],
+        [2, null, "%n dni"]
+    ],
+    "ERROR_BAD_REQUEST": "Ups... Wystąpił błąd. Poczekaj chwilę i spróbuj ponownie.",
+    "ERROR_CHECK_FORM": "Błąd w formularzu. Sprawdź poprawność pól.",
+    "ERROR_COOLDOWN": "Poczekaj chwilę - intencje możesz dodawać co 10 sekund :)",
+    "ERROR_DAILY_LIMIT": "Limit 5 intencji dziennie został wykorzystany. Kolejną intencję spróbuj dodać: %{x}",
+    "ERROR_INVALID_FORM": "Popraw błędy zaznaczone na czerwono",
+    "ERROR_NETWORK_UNKNOWN": "Nieznany błąd. Sprawdź połączenie lub spróbuj ponownie później.",
+    "ERROR_UNKNOWN": "Nieznany błąd. Odśwież aplikację lub spróbuj ponownie.",
+    "SEND_INTENTION": "Nadaj intencję",
+    "HOME_SCREEN": "Start",
+    "HOURS_N": [
+        [1, 1, "godzinę"],
+        [2, 4, "%n godziny"],
+        [5, 21, "%n godzin"],
+        [22, null, "%n godziny"]
+    ],
+    "IAM_PRAYING": "Modlę się",
+    "INPUT_PLACEHOLDER_AUTHOR": "Tutaj wpisz autora intencji (opcjonalne)",
+    "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
+    "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od 7 do 300 znaków",
+    "INFORMATION": "Informacje i pomoc",
+    "INTENTION_SENT": "Twoja intencja została dodana",
+    "JOIN": "Dołączam",
+    "LIST_INTENTIONS": "Lista intencji",
+    "MENU": "Menu",
+    "MENU_CLOSE": "Zamknij menu",
+    "MINUTES_N": [
+        [1, 1, "minutę"],
+        [2, 4, "%n minuty"],
+        [5, 21, "%n minut"],
+        [22, 24, "%n minuty"],
+        [25, 31, "%n minut"],
+        [32, 34, "%n minuty"],
+        [35, 41, "%n minut"],
+        [42, 44, "%n minuty"],
+        [45, 51, "%n minut"],
+        [52, 54, "%n minuty"],
+        [55, null, "%n minut"]
+    ],
+    "MOMENT": "chwilę",
+    "MONTHS_N": [
+        [1, 1, "miesiąc"],
+        [2, 4, "%n miesiące"],
+        [5, null, "%n miesięcy"]
+    ],
+    "NEVER": "Nigdy",
+    "NO_COOKIES": "Nie ma ciasteczek :(",
+    "NO_COOKIES_INFO": "Niestety Twoja przeglądarka nie obsługuje i/lub ma wyłączone ciasteczka (pliki cookies).<br>Przykro nam, ale do prawidłowego działania i korzystania z tej aplikacji należy włączyć ich obsługę.<br><br>Dziękujemy za zrozumienie!",
+    "NO_INTENTIONS": "Nie ma żadnych intencji.",
+    "NO_MORE_INTENTIONS": "Nie ma więcej intencji.",
+    "NUMBERS": "%{intentions} intencji i %{praying} dołączeń",
+    "PRAYING":[
+      [0, 0, "Nikt jeszcze nie dołączył"],
+      [1, 1, "%n osoba modli się"],
+      [2, 4, "%n osoby modlą się"],
+      [5, null, "%n osób modli się"]
+    ],
+    "PRAYING_JOINED":[
+      [0, 0, "Aktualnie tylko Ty się modlisz"],
+      [1, 1, "Ty i jeszcze %n osoba modli się"],
+      [2, 4, "Ty i jeszcze %n osoby modlą się"],
+      [5, null, "Ty i jeszcze %n osób modli się"]
+    ],
+    "RULE_REQUIRED": "To pole jest wymagane",
+    "RULE_MIN_LENGTH": [
+      [1, 1, "Minimalna długość tekstu to %n znak"],
+      [2, 4, "Minimalna długość tekstu to %n znaki"],
+      [5, null, "Minimalna długość tekstu to %n znaków"]
+    ],
+    "RULE_MAX_LENGTH": [
+      [1, 1, "Maksymalna długość tekstu to %n znak"],
+      [2, 4, "Maksymalna długość tekstu to %n znaki"],
+      [5, null, "Maksymalna długość tekstu to %n znaków"]
+    ],
+    "SEND": "Wyślij",
+    "SLOGAN": "Twoja modlitwa się liczy!",
+    "TIME_AGO": "%{timeStr} temu",
+    "WEEKS_N": [
+        [1, 1, "tydzień"],
+        [2, 4, "%n tygodnie"],
+        [5, null, "%n tygodni"]
+    ],
+    "YEARS_N": [
+        [1, 1, "rok"],
+        [2, 4, "%n lata"],
+        [5, null, "%n lat"]
+    ],
+    "YESTERDAY": "wczoraj"
+  }
+}

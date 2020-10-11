@@ -1,0 +1,11 @@
+{
+    "name": "@icxc/omodlmy-net",
+    "private": true,
+    "workspaces": [
+        "backend",
+        "frontend",
+        "orchestration",
+        "test",
+        "www"
+    ]
+}

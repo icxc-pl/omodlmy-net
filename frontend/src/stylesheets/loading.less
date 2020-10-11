@@ -1,0 +1,15 @@
+.loading {
+  min-height: 20rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: calc(~'50% - 22px');
+    left: calc(~'50% - 22px');
+    background: transparent url('~Img/loader-purple.svg') center center no-repeat;
+  }
+}

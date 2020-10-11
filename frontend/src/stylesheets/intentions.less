@@ -1,0 +1,114 @@
+@import 'colors';
+@import 'mixins/responsiveness';
+@import 'mixins/transition';
+
+.intentions {
+  margin: 0;
+  padding: 0;
+
+  .intention {
+    display: block;
+    width: calc(100vw - 1.5rem);
+    text-align: left;
+    list-style: none;
+    margin: 1.25em auto;
+    max-width: 40rem;
+    background: @almowhite;
+    border: 1px solid @dandelion-milk;
+    border-radius: 4px;
+    font-size: 1.1rem;
+
+    &-container {
+      padding: 0 0.75rem;
+    }
+
+    &-content {
+      color: @cynical-black;
+      padding: 1.5rem 0;
+      text-align: justify;
+    }
+
+    &-details-block {
+      color: @sonic-silver;
+      font-size: 0.6em;
+
+      div {
+        width: 50%;
+        padding-bottom: 0.75rem;
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        clear: both;
+      }
+    }
+
+    &-author {
+      float: left;
+    }
+
+    &-date {
+      text-align: right;
+      float: right;
+    }
+
+    &-footer {
+      display: block;
+      font-size: 0.8em;
+      padding: 0 0.75em;
+      height: 2.5em;
+      line-height: 2.5em;
+      background: @bleach;
+      color: @mouse;
+      border-top: 1px solid @dandelion-milk;
+      position: relative;
+
+      .pray-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        height: 100%;
+        background: @almowhite;
+        padding: 0 0.75em;
+        color: @purple;
+        border-left: 1px solid @dandelion-milk;
+        cursor: pointer;
+
+        i {
+          display: inline-block;
+          margin-right: 0.2em;
+        }
+
+        &:hover {
+          color: @purple-warm;
+        }
+
+        &.joining {
+          pointer-events: none;
+
+          &::after {
+            position: absolute;
+            content: '';
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9) url('~Img/loader-purple.svg') center center no-repeat;
+            background-size: 33%;
+          }
+        }
+      }
+    }
+
+    .rwd-max-for-s({
+      margin: 0.5em auto;
+
+      &-footer {
+        font-size: 0.9em;
+      }
+    });
+  }
+}

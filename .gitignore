@@ -1,0 +1,9 @@
+# IDE
+.vscode
+.idea
+
+# npm
+node_modules
+
+# Local session secret
+.session-secret

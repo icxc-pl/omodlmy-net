@@ -1,0 +1,61 @@
+/**
+ * Lato
+ */
+ @font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Lato Light'), local('Lato-Light'),
+    url('~Fonts/Lato-Light.woff2') format('woff2'),
+    url('~Fonts/Lato-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lato Regular'), local('Lato-Regular'),
+    url('~Fonts/Lato-Regular.woff2') format('woff2'),
+    url('~Fonts/Lato-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lato Bold'), local('Lato-Bold'),
+    url('~Fonts/Lato-Bold.woff2') format('woff2'),
+    url('~Fonts/Lato-Bold.woff') format('woff');
+}
+
+/**
+ * Nunito
+ */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Nunito Light'), local('Nunito-Light'),
+    url('~Fonts/Nunito-Light.woff2') format('woff2'),
+    url('~Fonts/Nunito-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Nunito Regular'), local('Nunito-Regular'),
+    url('~Fonts/Nunito-Regular.woff2') format('woff2'),
+    url('~Fonts/Nunito-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Nunito Bold'), local('Nunito-Bold'),
+  url('~Fonts/Nunito-Bold.woff2') format('woff2'),
+  url('~Fonts/Nunito-Bold.woff') format('woff');
+}
