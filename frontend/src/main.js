@@ -1,6 +1,3 @@
-import 'core-js';
-import 'regenerator-runtime/runtime';
-
 import finka from '@bitbar/finka';
 
 import Vue from 'vue';

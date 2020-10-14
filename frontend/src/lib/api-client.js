@@ -23,12 +23,13 @@ function setupClient (url) {
  * @param params {Object}
  * @returns {Object[]}
  */
-async function setupSecurity () {
-  const res = await client.get('/meta');
-  // https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
-  const token = res.headers['x-csrf-token'];
-  client.defaults.headers.get['CSRF-Token'] = token;
-  client.defaults.headers.post['CSRF-Token'] = token;
+function setupSecurity () {
+  return client.get('/meta').then((res) => {
+    // https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+    const token = res.headers['x-csrf-token'];
+    client.defaults.headers.get['CSRF-Token'] = token;
+    client.defaults.headers.post['CSRF-Token'] = token;
+  });
 }
 
 /**

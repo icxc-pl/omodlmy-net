@@ -69,12 +69,13 @@
       }
     },
 
-    async created () {
+     created () {
       this.checking = true;
-      await this.apiClient.setupSecurity();
-      this.checking = false;
-
-      this._boundCheckPosition = this.checkPosition.bind(this);
+      this.apiClient.setupSecurity().then(() => {
+        this.checking = false;
+        this._boundCheckPosition = this.checkPosition.bind(this);
+        return;
+      });
     },
 
     mounted () {

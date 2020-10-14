@@ -83,25 +83,22 @@
        * Join prayer
        * @param intention
        */
-      async joinPrayer () {
+      joinPrayer () {
         if (this.joining) {
           return;
         }
 
         this.joining = true;
-
-        try {
-          this.joining = true;
-          const res = await this.apiClient.postJoinPrayer(this.intention._id);
+        return this.apiClient.postJoinPrayer(this.intention._id).then((res) => {
           this.$emit('joined-prayer', res.data);
-        } catch (err) {
+        }).catch((err) => {
           this.$tostini({
             message: this.apiClient.getXhrError(err),
             type: 'error'
           });
-        }
-
-        this.joining = false;
+        }).finally(() => {
+          this.joining = false;
+        });
       }
 
     }

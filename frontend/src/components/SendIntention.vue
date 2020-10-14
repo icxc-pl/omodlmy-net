@@ -76,7 +76,7 @@
       /**
        * Submit
        */
-      async submit () {
+      submit () {
         if (this.working) {
           return;
         }
@@ -93,13 +93,11 @@
         // Send POST
         this.working = true;
 
-        try {
-          const res = await this.apiClient.postIntention({
-            content: this.content,
-            author: this.author,
-            captcha: parseInt(this.captcha)
-          });
-
+        return this.apiClient.postIntention({
+          content: this.content,
+          author: this.author,
+          captcha: parseInt(this.captcha)
+        }).then((res) => {
           this.$tostini({
             message: this.i18n('INTENTION_SENT'),
             type: 'success'
@@ -108,9 +106,7 @@
           this.$router.push({
             name: 'list-intentions'
           });
-
-        } catch (err) {
-
+        }).catch((err) => {
           var errMsg = null;
           switch (err.status) {
             case 400 :
@@ -132,9 +128,9 @@
             message: errMsg,
             type: 'error'
           });
-        }
-
-        this.working = false;
+        }).finally(() => {
+          this.working = false;
+        });
       }
 
     }

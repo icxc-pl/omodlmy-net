@@ -3,19 +3,32 @@ import debug from './debug';
 // eslint-disable-next-line no-undef
 const CACHE_KEY = `omodlmy-net-v${__version}`;
 const CACHE_PRELOAD = [
-  'index.html', 'service-worker.js'
+  'index.html',
+  'service-worker.js',
+  'assets/fonts/Fontello.woff',
+  'assets/fonts/Lato-Bold.woff',
+  'assets/fonts/Lato-Bold.woff2',
+  'assets/fonts/Lato-Light.woff',
+  'assets/fonts/Lato-Light.woff2',
+  'assets/fonts/Lato-Regular.woff',
+  'assets/fonts/Lato-Regular.woff2',
+  'assets/fonts/Nunito-Bold.woff',
+  'assets/fonts/Nunito-Bold.woff2',
+  'assets/fonts/Nunito-Light.woff',
+  'assets/fonts/Nunito-Light.woff2',
+  'assets/fonts/Nunito-Regular.woff',
+  'assets/fonts/Nunito-Regular.woff2',
+  'assets/images/main-menu-banner.jpg'
 ];
 
 /**
  * Service Worker logic
- *
  * @type {Object}
  */
 const SW = {
 
   /**
    * Open cache
-   *
    * @type {Promise}
    */
   openCache: caches.open(CACHE_KEY),
@@ -24,90 +37,86 @@ const SW = {
    * Preload data
    * @returns {Promise}
    */
-  async preloadData () {
-    const cache = await this.openCache;
-    debug('Cache preload');
-    return cache.addAll(CACHE_PRELOAD);
+  preloadData () {
+    return this.openCache.then((cache) => {
+      debug('Cache preload');
+      return cache.addAll(CACHE_PRELOAD);
+    });
   },
 
   /**
    * Flush old data
    * @returns {Promise}
    */
-  async flushOldData () {
-    const keys = await caches.keys();
-    debug('Flush old data');
-
-    const promises = [];
-    for (let key of keys) {
-      if(key !== CACHE_KEY) { // && cacheKey.startsWith(CACHE_PREFIX)) {
-        debug(`Deleting ${key}`);
-        promises.push(caches.delete(key));
+  flushOldData () {
+    return caches.keys().then((keys) => {
+      debug('Flush old data');
+      const promises = [];
+      for (let key of keys) {
+        if(key !== CACHE_KEY) { // && cacheKey.startsWith(CACHE_PREFIX)) {
+          debug(`Deleting ${key}`);
+          promises.push(caches.delete(key));
+        }
       }
-    }
-
-    return Promise.all(promises);
+      return Promise.all(promises);
+    });
   },
 
   /**
    * Get from cache response matching to request
-   *
    * @param {Object} req Fetch request
    * @returns {Promise}
    */
-  async getFromCache (req) {
-    const cache = await this.openCache;
-    debug(`Get from cache ${req.url}`);
-    const res = await cache.match(req);
-    if (res == null) {
-      throw new Error(404);
-    }
-    return res;
+  getFromCache (req) {
+    return this.openCache.then((cache) => {
+      debug(`Get from cache ${req.url}`);
+      return cache.match(req).then((res) => {
+        if (res == null) {
+          throw new Error(404);
+        }
+        return res;
+      });
+    });
   },
 
   /**
    * Put to cache response of request
-   *
-   * @param {Object} request Fetch request
-   * @param {Object} [response] Fetch response
+   * @param {Object} req Fetch request
+   * @param {Object} res Fetch response
    * @returns {Promise}
    */
-  async putToCache (req, res) {
-    const cache = await this.openCache;
-
-    if(res != null) {
-      return cache.put(req, res);
-    }
-
-    try {
-      res = await fetch(req);
-      return cache.put(req, res);
-    } catch (e) {
-      debug('Fetch failed');
-      console.warn(e);
-    }
+  putToCache (req, res) {
+    return this.openCache.then((cache) => {
+      if (res != null) {
+        return cache.put(req, res.clone()).then(() => res);
+      }
+      return fetch(req).then((_res) => {
+        return cache.put(req, _res.clone()).then(() => _res);
+      });
+    });
   },
 
-  async fetch (req) {
-    var res;
-    try {
-      res = await this.getFromCache(req);
+  /**
+   * Fetch
+   * @param {Object} req
+   */
+  fetch (req) {
+    return this.getFromCache(req).then((res) => {
       debug('Using cached data');
       return res;
-    } catch (e) {
+    }).catch(() => {
       debug('Fetching from network');
-      res = await fetch(req);
-      if (res.status === 404) {
-        throw new Error(404);
-      }
-      await this.putToCache(req, res.clone());
-      return res;
-    }
+      return fetch(req).then((res) => {
+        if (res.status === 404) {
+          throw new Error(404);
+        }
+        return this.putToCache(req, res);
+      });
+    });
   },
 
   /**
    * Handle install event
-   *
    * @param {Object} event Event
    */
   handleInstall (event) {
@@ -121,7 +130,6 @@ const SW = {
 
   /**
    * Handle activate event
-   *
    * @param {Object} event Event
    */
   handleActivate (event) {
@@ -135,7 +143,6 @@ const SW = {
 
   /**
    * Handle fetch event
-   *
    * @param {Object} event Event
    */
   handleFetch (event) {
