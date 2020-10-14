@@ -35,7 +35,9 @@
 
     data () {
       return {
-        checking: false
+        checking: false,
+        error: null,
+        offline: false
       }
     },
 
@@ -75,6 +77,11 @@
         this.checking = false;
         this._boundCheckPosition = this.checkPosition.bind(this);
         return;
+      }).catch((err) => {
+        this.offline = true;
+        if (err.message !== 'Network Error') {
+          this.error = i18n('UNKNOWN_ERROR_REFRESH');
+        }
       });
     },
 

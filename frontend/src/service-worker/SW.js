@@ -3,22 +3,23 @@ import debug from './debug';
 // eslint-disable-next-line no-undef
 const CACHE_KEY = `omodlmy-net-v${__version}`;
 const CACHE_PRELOAD = [
-  'index.html',
-  'service-worker.js',
-  'assets/fonts/Fontello.woff',
-  'assets/fonts/Lato-Bold.woff',
-  'assets/fonts/Lato-Bold.woff2',
-  'assets/fonts/Lato-Light.woff',
-  'assets/fonts/Lato-Light.woff2',
-  'assets/fonts/Lato-Regular.woff',
-  'assets/fonts/Lato-Regular.woff2',
-  'assets/fonts/Nunito-Bold.woff',
-  'assets/fonts/Nunito-Bold.woff2',
-  'assets/fonts/Nunito-Light.woff',
-  'assets/fonts/Nunito-Light.woff2',
-  'assets/fonts/Nunito-Regular.woff',
-  'assets/fonts/Nunito-Regular.woff2',
-  'assets/images/main-menu-banner.jpg'
+  '/',
+  '/index.html',
+  '/main.js',
+  '/assets/fonts/Fontello.woff',
+  '/assets/fonts/Lato-Bold.woff',
+  '/assets/fonts/Lato-Bold.woff2',
+  '/assets/fonts/Lato-Light.woff',
+  '/assets/fonts/Lato-Light.woff2',
+  '/assets/fonts/Lato-Regular.woff',
+  '/assets/fonts/Lato-Regular.woff2',
+  '/assets/fonts/Nunito-Bold.woff',
+  '/assets/fonts/Nunito-Bold.woff2',
+  '/assets/fonts/Nunito-Light.woff',
+  '/assets/fonts/Nunito-Light.woff2',
+  '/assets/fonts/Nunito-Regular.woff',
+  '/assets/fonts/Nunito-Regular.woff2',
+  '/assets/images/main-menu-banner.jpg'
 ];
 
 /**
@@ -135,9 +136,15 @@ const SW = {
   handleActivate (event) {
     debug('Activate');
 
-    event.waitUntil(this.flushOldData().then(() => {
-      debug('Claim');
-      return self.clients.claim();
+    event.waitUntil(this.flushOldData().then((deleted) => {
+      debug('Claim', deleted.length);
+
+      self.clients.matchAll().then((clients) => {
+        for (let client of clients) {
+          client.postMessage({ msg: 'RELOAD' });
+        }
+        return self.clients.claim();
+      });
     }));
   },
 
@@ -147,11 +154,6 @@ const SW = {
    */
   handleFetch (event) {
     const req = event.request;
-
-    if(req.mode === 'navigate') {
-      debug('Fetch event cancelled - navigate');
-      return;
-    }
 
     if(/\/captcha|api|sockjs-node\//.test(req.url)) {
       debug('Fetch event cancelled - ignored url');

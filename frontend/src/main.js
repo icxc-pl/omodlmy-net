@@ -48,9 +48,14 @@ new Vue({
   components: { App }
 });
 
-try {
-  navigator.serviceWorker.register('/service-worker.js');
-} catch (e) {
-  console.log(`Coudln't register Service Worker`);
-  console.log(e);
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    if (event.data.msg === 'RELOAD') {
+      window.location.reload();
+    }
+  });
+} else {
+    // The current browser doesn't support service workers.
 }
