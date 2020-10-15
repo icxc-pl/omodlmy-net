@@ -4,6 +4,8 @@ const dir = require('../dir');
 const $package = require('../../package.json');
 
 module.exports = new FaviconsWebpackPlugin({
+  mode: 'webapp',
+  devMode: 'webapp',
   logo: path.join(dir.img, 'logo.png'),
   cache: true,
   prefix: 'assets/webapp/',
