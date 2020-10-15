@@ -1,10 +1,22 @@
 <template>
   <div id="app">
 
-    <div class="checking" v-if="checking"></div>
+    <!-- no cookies info -->
+    <info-block v-if="noCookies"
+      title="NO_COOKIES"
+      info="NO_COOKIES_INFO"></info-block>
+
+    <!-- checking screen -->
+    <div v-else-if="checking"
+      class="checking"></div>
+
+    <!-- offline info -->
+    <info-block v-else-if="offline"
+      title="OFFLINE"
+      info="OFFLINE_INFO"></info-block>
 
     <!-- show app -->
-    <template v-else-if="weHaveCookies">
+    <template v-else>
       <!-- menu -->
       <main-menu ref="mainMenu" />
 
@@ -15,35 +27,29 @@
       <tostini-plate />
     </template>
 
-    <!-- no cookies info -->
-    <template v-else>
-      <h1>{{ i18n('NO_COOKIES') }}</h1>
-      <p v-html="i18n('NO_COOKIES_INFO')"></p>
-    </template>
-
   </div>
 </template>
 
 <script>
   import MainMenu from 'Components/MainMenu';
+  import InfoBlock from 'Components/InfoBlock';
   import 'Stylesheets/index.less';
 
   export default {
     name: 'app',
 
-    components: { MainMenu },
+    components: {
+      MainMenu,
+      InfoBlock
+    },
 
     data () {
       return {
         checking: false,
-        error: null,
-        offline: false
-      }
-    },
 
-    computed: {
-      weHaveCookies () {
-        return navigator.cookieEnabled;
+        error: null,
+        offline: false,
+        noCookies: !navigator.cookieEnabled
       }
     },
 
@@ -74,15 +80,15 @@
      created () {
       this.checking = true;
       this.apiClient.setupSecurity().then(() => {
-        this.checking = false;
         this._boundCheckPosition = this.checkPosition.bind(this);
-        return;
       }).catch((err) => {
         this.offline = true;
         if (err.message !== 'Network Error') {
           this.error = i18n('UNKNOWN_ERROR_REFRESH');
         }
-      });
+      }).finally(() => {
+        this.checking = false;
+      })
     },
 
     mounted () {
@@ -122,6 +128,10 @@
     font-weight: 300;
     text-align: center;
     color: @purple;
+  }
+
+  #app > .info-block > i {
+    margin-top: 22vh;
   }
 
   .checking {

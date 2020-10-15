@@ -53,10 +53,12 @@
     ],
     "NEVER": "Nigdy",
     "NO_COOKIES": "Nie ma ciasteczek :(",
-    "NO_COOKIES_INFO": "Niestety Twoja przeglądarka nie obsługuje i/lub ma wyłączone ciasteczka (pliki cookies).<br>Przykro nam, ale do prawidłowego działania i korzystania z tej aplikacji należy włączyć ich obsługę.<br><br>Dziękujemy za zrozumienie!",
+    "NO_COOKIES_INFO": "Niestety Twoja przeglądarka nie obsługuje i/lub ma wyłączone ciasteczka (pliki cookies). Przykro nam, ale do prawidłowego działania i korzystania z tej aplikacji należy włączyć ich obsługę. Dziękujemy za zrozumienie!",
     "NO_INTENTIONS": "Nie ma żadnych intencji.",
     "NO_MORE_INTENTIONS": "Nie ma więcej intencji.",
     "NUMBERS": "%{intentions} intencji i %{praying} dołączeń",
+    "OFFLINE": "Brak połączenia",
+    "OFFLINE_INFO": "Wygląda na to, że nie masz połączenia z Internetem. Przykro nam, ale ta aplikacja do prawidłowego działania wymaga takiego połączenia.",
     "PRAYING":[
       [0, 0, "Nikt jeszcze nie dołączył"],
       [1, 1, "%n osoba modli się"],
