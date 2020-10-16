@@ -155,6 +155,7 @@
 
   input {
     margin: 0;
+    max-width: calc(~'40rem - 132px - 2em');
   }
 }
 </style>
