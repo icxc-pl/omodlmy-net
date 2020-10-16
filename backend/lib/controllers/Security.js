@@ -12,13 +12,21 @@ const ApiError = require('../classes/ApiError');
  /**
   * Allowed Origins
   */
-const ALLOWED_ORIGINS = config.modeProduction ? [
-  'https://omodlmy.net'
-] : [
-  'https://local.omodlmy.net:8000',
-  'https://local.omodlmy.net:8001'
-];
-
+let ALLOWED_ORIGINS;
+if (config.modeDev) {
+  ALLOWED_ORIGINS = [
+    'https://local.omodlmy.net:8000',
+    'https://local.omodlmy.net:8001'
+  ];
+} else if (config.modeStaging) {
+  ALLOWED_ORIGINS = [
+    'https://staging.omodlmy.net'
+  ];
+} else {
+  ALLOWED_ORIGINS = [
+    'https://omodlmy.net'
+  ];
+}
 
 /**
  * Allowed HTTP Methods

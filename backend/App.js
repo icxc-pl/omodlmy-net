@@ -18,6 +18,7 @@ class App {
   constructor() {
     this.config = config;
     this.srv = express();
+    this.mongod = null;
 
     this.initControllers();
     this.setup();
@@ -105,6 +106,16 @@ class App {
    * Start
    */
   start() {
+    if (!this.config.modeDev) {
+      const { spawnSync } = require('child_process');
+      this.mongod = spawnSync('mongod', [
+        '--fork',
+        '--config', '../mongodb/mongod.conf'
+      ], {
+        stdio: 'inherit'
+      });
+    }
+
     this.controller.db.init().then(() => {
 
       if (config.serverHttps) {
@@ -135,11 +146,7 @@ class App {
    */
   setupSecurity() {
     const securityController = require('./lib/controllers/Security');
-
-    if (this.config.modeProduction) {
-      this.srv.set('trust proxy', 1);
-    }
-
+    this.srv.set('trust proxy', 1);
     this.srv.use(securityController.helmet);
     this.srv.use(securityController.allowedMethods);
     this.srv.use(securityController.cors);

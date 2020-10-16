@@ -14,6 +14,13 @@ const path = require('path');
 const modeProduction = process.env.NODE_ENV === 'production';
 
 /**
+ * Is staging server mode enabled?
+ * @type {boolean}
+ * @constant
+ */
+const modeStaging = process.env.NODE_ENV === 'staging';
+
+/**
  * Is dev server mode enabled?
  * @type {boolean}
  * @constant
@@ -32,14 +39,14 @@ const serverPort = 8001;
  * @type {string}
  * @constant
  */
-const serverAddr = modeProduction ? '127.0.0.1' : '0.0.0.0';
+const serverAddr = '0.0.0.0';
 
 /**
  * Service Https
  * @type {string}
  * @constant
  */
-const serverHttps = !modeProduction;
+const serverHttps = modeDev;
 
 /**
  * Service Home Path
@@ -115,6 +122,7 @@ const sessionDuration = 40 * Date.DAY;
 // Exports
 module.exports = {
   modeProduction,
+  modeStaging,
   modeDev,
 
   serverPort,

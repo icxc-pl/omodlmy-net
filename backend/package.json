@@ -12,9 +12,11 @@
   "main": "index.js",
   "scripts": {
     "server:dev": "NODE_ENV=dev node index.js",
+    "server:staging": "NODE_ENV=staging node index.js",
     "server:prod": "NODE_ENV=production node index.js"
   },
   "dependencies": {
+    "@bitbar/finka": "^2.1.0",
     "ajv": "^6.12.2",
     "connect-mongodb-session": "^2.3.2",
     "cookie-parser": "^1.4.5",

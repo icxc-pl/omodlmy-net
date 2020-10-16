@@ -53,7 +53,7 @@ class SessionController {
         //   proxy_set_header X-Forwarded-Proto https;
         //
         // https://github.com/expressjs/session/issues/281#issuecomment-191359194
-        secure: this.config.modeProduction
+        secure: !this.config.modeDev
       }
     });
   }

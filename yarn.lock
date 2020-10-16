@@ -854,7 +854,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@bitbar/finka@^2.0.2":
+"@bitbar/finka@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@bitbar/finka/-/finka-2.1.0.tgz#4d817bcae703a8637f0f808a5b81b027043e8b76"
   integrity sha512-8Coew5baBbUk+pjO38/B5qmAKdeqTYNU2cQl86hvTWrUwrFoxeTHchRIMIVTsbvN+2WlaKjiINNnKF4ovi6rFA==
@@ -9513,11 +9513,6 @@ vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
-
-vuex@^3.4.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.5.1.tgz#f1b8dcea649bc25254cf4f4358081dbf5da18b3d"
-  integrity sha512-w7oJzmHQs0FM9LXodfskhw9wgKBiaB+totOdb8sNzbTB2KDCEEwEs29NzBZFh/lmEK1t5tDmM1vtsO7ubG1DFw==
 
 watchpack-chokidar2@^2.0.0:
   version "2.0.0"

@@ -1,5 +1,0 @@
-use omodlmy-net
-db.createCollection('sessions');
-db.createCollection('intentions');
-db.images.createIndex({ 'deviceTypeId': 1 })
-exit
