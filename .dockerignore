@@ -1,11 +1,22 @@
+# dockerignore
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
 .idea
-dist
-node_modules
-*.md
-*.log
-*.wt
-*.lock
-*.bson
-*.turtle
-*.data
-.session-secret
+
+# Generic
+*/.git*
+*/node_modules*
+*/*.md
+*/*.log
+
+# backend
+backend/.session-secret
+
+# common
+common/cert*
+
+# frontend
+frontend/dist*
+
+# mongodb
+mongodb/data*

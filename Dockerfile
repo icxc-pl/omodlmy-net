@@ -17,7 +17,6 @@ LABEL vendor="ICXC.pl" \
       maintainer="Marek Sierociński <mareksierocinski@gmail.com>"
 
 COPY ./backend/. /app/
-RUN rm /app/.session-secret
 COPY --from=builder /app/dist /app/www
 
 COPY ./common/schema /common/schema
