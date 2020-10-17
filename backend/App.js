@@ -106,16 +106,6 @@ class App {
    * Start
    */
   start() {
-    if (!this.config.modeDev) {
-      const { spawnSync } = require('child_process');
-      this.mongod = spawnSync('mongod', [
-        // '--fork',
-        '--config', '../mongodb/mongod.conf'
-      ], {
-        stdio: 'inherit'
-      });
-    }
-
     this.controller.db.init().then(() => {
 
       if (config.serverHttps) {

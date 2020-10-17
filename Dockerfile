@@ -17,14 +17,15 @@ LABEL vendor="ICXC.pl" \
       maintainer="Marek Sierociński <mareksierocinski@gmail.com>"
 
 COPY ./backend/. /app/
+RUN rm /app/.session-secret
 COPY --from=builder /app/dist /app/www
 
 RUN mkdir -p /mongodb/data
-COPY ./mongodb/mongod.conf /mongodb/
-COPY ./mongodb/setup /mongodb/
-RUN mongod --fork --config /mongodb/mongod.conf; mongo < /mongodb/setup
+COPY ./mongodb/mongod.conf /etc/mongod.conf
 
 WORKDIR /app
 RUN npm install --only=production
+
+VOLUME [ "/mongodb/data", "/mongodb/mongod.log", "/app/.session-secret" ]
 
 CMD npm run server:$MODE

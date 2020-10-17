@@ -8,3 +8,4 @@ node_modules
 *.bson
 *.turtle
 *.data
+.session-secret
