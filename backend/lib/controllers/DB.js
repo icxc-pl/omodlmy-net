@@ -24,7 +24,8 @@ class DBController {
    * Init
    */
   init() {
-    return this.getDriver().whenReady;
+    const driver = this.getDriver();
+    return driver.connect();
   }
 
   /**

@@ -109,7 +109,7 @@ class App {
     if (!this.config.modeDev) {
       const { spawnSync } = require('child_process');
       this.mongod = spawnSync('mongod', [
-        '--fork',
+        // '--fork',
         '--config', '../mongodb/mongod.conf'
       ], {
         stdio: 'inherit'
