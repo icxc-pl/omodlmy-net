@@ -4,8 +4,6 @@
     "workspaces": [
         "backend",
         "frontend",
-        "orchestration",
-        "test",
-        "www"
+        "test"
     ]
 }
