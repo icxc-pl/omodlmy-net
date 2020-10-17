@@ -22,7 +22,7 @@
         <br>
         <span>
           <router-link to="nadaj-intencje">{{ i18n('SEND_INTENTION') }}</router-link>
-          - {{ i18n('SLOGAN').toLowerCase() }}.
+          - {{ i18n('SLOGAN').toLowerCase() }}
         </span>
       </p>
 
