@@ -13,6 +13,8 @@
     "lint": "eslint . && lesshint src/stylesheets"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.9.6",
@@ -25,12 +27,14 @@
     "core-js": "^3.6.5",
     "css-loader": "^5.0.0",
     "dompurify": "^2.0.11",
+    "eslint": "^7.1.0",
     "favicons-webpack-plugin": "^4.2.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "image-webpack-loader": "^7.0.1",
     "less": "^3.11.1",
     "less-loader": "^7.0.2",
+    "lesshint": "^6.3.7",
     "normalize.css": "^8.0.1",
     "regenerator-runtime": "^0.13.7",
     "roddeh-i18n": "^1.2.0",
@@ -45,11 +49,7 @@
     "vue-template-compiler": "^2.6.11",
     "vue-verify": "^0.6.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
-  },
-  "devDependencies": {
-    "eslint": "^7.1.0",
-    "lesshint": "^6.3.7",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
 }

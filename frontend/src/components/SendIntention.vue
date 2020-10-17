@@ -47,7 +47,7 @@
         content: {
           required: true,
           minLength: 7,
-          maxLength: 300
+          maxLength: 250
         },
         captcha: {
           required: true

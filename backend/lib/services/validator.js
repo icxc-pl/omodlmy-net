@@ -10,7 +10,7 @@ const ajv = new Ajv({
   coerceTypes: true
 });
 
-const SCHEMA_DIR = path.resolve(__dirname, '../../www/schema');
+const SCHEMA_DIR = path.resolve(__dirname, '../../../common/schema');
 
 const VALID_FREE_TEXT = /^[\u0020-\u0022\u0028-\u003B\u003F\u0041-\u007A\u0100-\u017F]+$/;
 const VALID_ID = /^[0-9a-f]{24}$/;

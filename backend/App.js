@@ -236,7 +236,9 @@ class App {
    * Handle Static Files
    */
   handleStaticFiles() {
-    this.srv.use(express.static(path.resolve(__dirname, 'www')));
+    this.srv.use('/', express.static(path.resolve(__dirname, 'www'), {
+      index: 'index.html'
+    }));
   }
 
   /**

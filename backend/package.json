@@ -23,7 +23,7 @@
     "csurf": "^1.11.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "helmet": "4.1.1",
+    "helmet": "^3.23.3",
     "mongodb": "^3.5.7",
     "svg-captcha": "^1.4.0"
   }

@@ -4,7 +4,7 @@ ARG MODE=prod
 COPY ./frontend/. /app/
 WORKDIR /app
 
-RUN npm install --only=production
+RUN npm install
 RUN npm run build:$MODE
 
 
@@ -19,6 +19,8 @@ LABEL vendor="ICXC.pl" \
 COPY ./backend/. /app/
 RUN rm /app/.session-secret
 COPY --from=builder /app/dist /app/www
+
+COPY ./common/schema /common/schema
 
 RUN mkdir -p /mongodb/data
 COPY ./mongodb/mongod.conf /etc/mongod.conf
