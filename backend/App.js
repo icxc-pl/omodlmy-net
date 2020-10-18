@@ -231,7 +231,7 @@ class App {
         const captcha = svgCaptcha.createMathExpr({
           noise: 2,
           mathMin: 0,
-          mathMax: 20,
+          mathMax: 99,
           mathOperator: '+'
         });
         req.session.captcha = parseInt(captcha.text);

@@ -1,18 +1,24 @@
 <template>
   <div id="page-send-intention">
     <p>
-      <textarea :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT')"
-                :class="{ invalid: verify.content.$dirty && !verify.content.$valid }"
-                v-model="content"></textarea>
+      <textarea
+        :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT', {
+          min: verify.$rules.content.minLength,
+          max: verify.$rules.content.maxLength
+        })"
+        :class="{
+          invalid: verify.content.$dirty && !verify.content.$valid }"
+        v-model="content"></textarea>
       <span v-if="verify.content.$dirty && !verify.content.$valid" class="invalid">
         <span v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</span>
-        <span v-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', 7) }}</span>
-        <span v-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', 300) }}</span>
+        <span v-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</span>
+        <span v-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</span>
       </span>
     </p>
     <p>
       <input type="text"
              :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
+             :class="{ invalid: verify.author.$dirty && !verify.author.$valid }"
              v-model="author" />
     </p>
     <p class="captcha-test">
@@ -22,7 +28,7 @@
       <span>=</span>
       <input type="number"
              :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
-             :class="{ invalid: verify.content.$dirty && !verify.content.$valid }"
+             :class="{ invalid: verify.captcha.$dirty && !verify.captcha.$valid }"
              v-model="captcha" />
     </p>
     <p>
@@ -37,17 +43,22 @@
 
 <script>
   import VerifyMixin from 'Lib/mixins/Verify';
+  import validator from 'Lib/validator';
 
   export default {
     name: 'send-intention',
     mixins: [VerifyMixin],
 
     created () {
+      window.xxx = this;
       this.$verify({
         content: {
           required: true,
-          minLength: 7,
-          maxLength: 250
+          minLength: validator.schema.intention.properties.content.minLength,
+          maxLength: validator.schema.intention.properties.content.maxLength
+        },
+        author: {
+          required: false
         },
         captcha: {
           required: true
@@ -61,17 +72,47 @@
         error: null,
         content: '',
         author: '',
-        captcha: ''
+        captcha: '',
+        captchaIdx: 0
       };
     },
 
     computed: {
       getCaptchaUrl () {
-        return `${this.env.url}/captcha?${Date.now()}`;
+        return `${this.env.url}/captcha?${this.captchaIdx}`;
       }
     },
 
     methods: {
+
+      _validate () {
+        if (!this.validate()) {
+          this.$tostini({
+            message: this.i18n('ERROR_INVALID_FORM'),
+            type: 'error'
+          });
+          return false;
+        }
+
+        validator.validateIntention({
+          content: this.content,
+          author: this.author || null,
+          captcha: this.captcha
+        });
+        if (validator.validateIntention.errors != null) {
+          for (let err of validator.validateIntention.errors) {
+            const property = err.dataPath.substr(1);
+            this.verify[property].$valid = false;
+            this.$tostini({
+              message: this.i18n(`ERROR_INVALID_${err.keyword.toUpperCase()}_${property.toUpperCase()}`),
+              type: 'error'
+            });
+          }
+          return false;
+        }
+
+        return true;
+      },
 
       /**
        * Submit
@@ -82,11 +123,7 @@
         }
 
         // Validate
-        if (!this.validate()) {
-          this.$tostini({
-            message: this.i18n('ERROR_INVALID_FORM'),
-            type: 'error'
-          });
+        if (!this._validate()) {
           return;
         }
 
@@ -107,25 +144,34 @@
             name: 'list-intentions'
           });
         }).catch((err) => {
-          var errMsg = null;
-          switch (err.status) {
+          const res = err.response;
+          let message = null;
+          switch (res.status) {
             case 400 :
-              errMsg = this.i18n('ERROR_CHECK_FORM');
+              message = this.i18n('ERROR_CHECK_FORM');
+              break;
+
+            case 401 :
+              if (res.data.message === 'ERROR_INVALID_CAPTCHA') {
+                this.captchaIdx++;
+              }
+
+              message = this.i18n(res.data.message);
               break;
 
             case 429 :
-              errMsg = this.i18n(err.body.message, {
-                x: new Date(err.body.createTime).toLocaleString()
+              message = this.i18n(res.data.message, {
+                x: new Date(res.data.createTime).toLocaleString()
               });
               break;
 
             default :
-              errMsg = this.i18n('ERROR_UNKNOWN');
+              message = this.i18n('ERROR_UNKNOWN');
               break;
           }
 
           this.$tostini({
-            message: errMsg,
+            message,
             type: 'error'
           });
         }).finally(() => {

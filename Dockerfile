@@ -20,6 +20,7 @@ COPY ./backend/. /app/
 COPY --from=builder /app/dist /app/www
 
 COPY ./common/schema /common/schema
+COPY ./common/schema /app/www/schema
 
 RUN mkdir -p /mongodb/data
 COPY ./mongodb/mongod.conf /etc/mongod.conf

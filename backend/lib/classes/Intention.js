@@ -14,8 +14,6 @@ class Intention {
     this.content = content.trim().replace(/\s{2,}/g, ' ');
     if (this.content.length == 0) {
       throw UsersError.EMPTY_CONTENT;
-    } else if (!validator.validateText(content)) {
-      throw UsersError.INVALID_SYNTAX_CONTENT;
     }
 
     // authorId (sessionId)
@@ -28,10 +26,6 @@ class Intention {
 
       if (this.author.length == 0) {
         this.author = null;
-      } else {
-        if (!validator.validateText(this.author)) {
-          throw UsersError.INVALID_SYNTAX_AUTHOR;
-        }
       }
     }
 

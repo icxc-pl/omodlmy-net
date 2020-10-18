@@ -8,7 +8,6 @@ class BuildConfig extends WebpackConfig {
   constructor () {
     super();
     this._mode = 'production';
-    this._stats = 'errors-warnings';
 
     this._performance = {
       maxEntrypointSize: 512 * 1024,

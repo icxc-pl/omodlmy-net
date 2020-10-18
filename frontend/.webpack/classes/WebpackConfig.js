@@ -28,6 +28,7 @@ class WebpackConfig {
 
       alias: {
         'Root': dir.root,
+        'Common': dir.common,
         'Src': dir.src,
 
         'Fonts': path.resolve(dir.assets, 'fonts'),

@@ -2,6 +2,8 @@ const path = require('path');
 
 const dir = {
   root: path.resolve(__dirname, '..'),
+  repo: undefined,
+  common: undefined,
   src: undefined,
   assets: undefined,
   img: undefined,
@@ -9,6 +11,8 @@ const dir = {
   dist: undefined
 };
 
+dir.repo = path.resolve(dir.root, '..');
+dir.common = path.resolve(dir.repo, 'common');
 dir.src = path.resolve(dir.root, 'src');
 dir.assets = path.resolve(dir.src, 'assets');
 dir.img = path.resolve(dir.assets, 'img');

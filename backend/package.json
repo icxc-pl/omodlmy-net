@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@bitbar/finka": "^2.1.0",
-    "ajv": "^6.12.2",
+    "ajv": "^6.12.6",
     "connect-mongodb-session": "^2.3.2",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",

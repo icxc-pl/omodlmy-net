@@ -12,17 +12,7 @@ const ajv = new Ajv({
 
 const SCHEMA_DIR = path.resolve(__dirname, '../../../common/schema');
 
-const VALID_FREE_TEXT = /^[\u0020-\u0022\u0028-\u003B\u003F\u0041-\u007A\u0100-\u017F]+$/;
 const VALID_ID = /^[0-9a-f]{24}$/;
-
-/**
- * Validate Text
- * @param {string} text Text to be tested
- * @returns {boolean} Verdict
- */
-function validateText(text) {
-  return VALID_FREE_TEXT.test(text);
-}
 
 /**
  * Validate Id
@@ -49,7 +39,6 @@ const validateQuery = ajv.compile(
 
 // Exports
 module.exports = {
-  validateText,
   validateId,
   validateIntention,
   validateQuery

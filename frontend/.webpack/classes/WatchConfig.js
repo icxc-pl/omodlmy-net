@@ -18,6 +18,11 @@ class WatchConfig extends WebpackConfig {
         key: fs.readFileSync(path.join(certDir, 'local.omodlmy.net.key')),
         cert: fs.readFileSync(path.join(certDir, 'local.omodlmy.net.cert'))
       },
+      proxy: [{
+        context: ['/api', '/captcha'],
+        target: 'https://local.omodlmy.net:8001',
+        secure: false
+      }],
       disableHostCheck: true,
       //contentBase: common.dir.dist,
       compress: false
