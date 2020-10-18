@@ -10,7 +10,6 @@ const MONGODB_CONNECT_PARAMS = {
 
 const REQUIRED_COLLECTIONS = [
   'intentions',
-  'sessions',
   'stats'
 ];
 
