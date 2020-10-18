@@ -2,6 +2,7 @@ FROM bitbar/ubuno:2.0.1 AS builder
 ARG MODE=prod
 
 COPY ./frontend/. /app/
+COPY ./common/schema /common/schema
 WORKDIR /app
 
 RUN npm install
