@@ -18,7 +18,7 @@ Vue.config.productionTip = false;
 
 const env = {
   // eslint-disable-next-line no-undef
-  url: `${__apiUrl}`,
+  url: `//${location.host}`,
   // eslint-disable-next-line no-undef
   version: `${__version}`
 };
