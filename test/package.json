@@ -1,22 +1,23 @@
 {
   "name": "@icxc/omodlmy-net-test",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Testy dla Omódlmy.net",
-  "main": "test.js",
+  "license": "AGPL-3.0-or-later",
+  "private": true,
   "author": "Marek Sierociński <mareksierocinski@gmail.com>",
   "contributors": [],
   "engines": {
     "node": "12.x"
   },
+  "main": "index.js",
   "scripts": {
-    "test": "npx mocha"
+    "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 npx mocha"
   },
-  "license": "MIT",
-  "private": false,
-  "devDependencies": {
+  "dependencies": {
+    "axios": "^0.20.0",
     "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
     "eslint": "^7.1.0",
-    "mocha": "^7.2.0"
+    "mocha": "^8.2.0",
+    "randomstring": "^1.1.5"
   }
 }

@@ -3,23 +3,12 @@ var chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 
-var $server = chai.request('http://127.0.0.1:8000');
+
 var $api = chai.request('http://127.0.0.1:8000/api');
 // var $server = chai.request('http://172.22.22.22:50001');
 // var $api = chai.request('http://172.22.22.22:50001/api');
 
-var expect = chai.expect;
 
-describe('HTTP Server', function () {
-  describe('GET /', function () {
-    it('zwróć 404', function (done) {
-      $server.get('/').end(function (err, res) {
-        expect(res).have.status(404);
-        done();
-      });
-    });
-  });
-});
 
 describe('API', function () {
   describe('GET /intentions', function () {

@@ -16,6 +16,15 @@ class ApiError extends UsersError {
   }
 
   /**
+   * Set details
+   * @param {*} details
+   */
+  setDetails (details) {
+    this.details = details;
+    return this;
+  }
+
+  /**
    * To Object
    * @returns {Object}
    */
@@ -36,7 +45,7 @@ class ApiError extends UsersError {
    * Response using given handler
    * @param {*} res
    */
-  reposne(res) {
+  response(res) {
     res.header('Content-Type', 'application/json; charset=utf-8');
     res.status(this.status).send(this.toObject());
   }

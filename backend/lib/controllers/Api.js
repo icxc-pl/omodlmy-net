@@ -85,7 +85,7 @@ class ApiController {
     } else {
       apiError = ApiError.INTERNAL;
     }
-    apiError.reposne(res);
+    apiError.response(res);
   }
 
   /**
@@ -94,7 +94,7 @@ class ApiController {
    * @param {Express.Response} res Response
    */
   handleOtherCases(req, res) {
-    ApiError.NOT_FOUND.reposne(res);
+    ApiError.NOT_FOUND.response(res);
   }
 
   /**
@@ -112,12 +112,18 @@ class ApiController {
    * @param {Express.Request} req Request
    * @param {Express.Response} res Response
    */
-  getHomeStats(req, res) {
-    this.statsController.getHomeStats().then((stats) => {
+  async getHomeStats(req, res) {
+    try {
+      const stats = await this.statsController.getHomeStats();
       res.status(200).send(stats);
-    }).catch(() => {
-      ApiError.BAD_REQUEST.response(res);
-    });
+    } catch(err) {
+      try {
+        ApiError.BAD_REQUEST.setDetails(err.message).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
+    }
   }
 
   /**
@@ -125,18 +131,24 @@ class ApiController {
    * @param {Express.Request} req Request
    * @param {Express.Response} res Response
    */
-  getIntentions(req, res) {
+  async getIntentions(req, res) {
     if (!validator.validateQuery(req.query)) {
-      //console.log(validator.validateQuery.errors);
+      console.warn(validator.validateQuery.errors);
       ApiError.BAD_REQUEST.response(res);
       return;
     }
 
-    this.intentionsController.getList(req.query, req.session).then((intentions) => {
+    try {
+      const intentions = await this.intentionsController.getList(req.query, req.session);
       res.status(200).send(intentions);
-    }).catch(() => {
-      ApiError.BAD_REQUEST.response(res);
-    });
+    } catch(err) {
+      try {
+        ApiError.BAD_REQUEST.setDetails(err.message).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
+    }
   }
 
   /**
@@ -144,18 +156,24 @@ class ApiController {
    * @param {Express.Request} req Request
    * @param {Express.Response} res Response
    */
-  getMyIntentions(req, res) {
+  async getMyIntentions(req, res) {
     if (!validator.validateQuery(req.query)) {
-      //console.log(validator.validateQuery.errors);
+      console.warn(validator.validateQuery.errors);
       ApiError.BAD_REQUEST.response(res);
       return;
     }
 
-    this.intentionsController.getList(req.query, req.session, true).then((intentions) => {
+    try {
+      const intentions = await this.intentionsController.getList(req.query, req.session, true);
       res.status(200).send(intentions);
-    }).catch(() => {
-      ApiError.BAD_REQUEST.response(res);
-    });
+    } catch(err) {
+      try {
+        ApiError.BAD_REQUEST.setDetails(err.message).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
+    }
   }
 
   /**
@@ -165,7 +183,12 @@ class ApiController {
    */
   async addIntention(req, res) {
     if(!this.sessionController.isValid(req.session)) {
-      ApiError.INVALID_SESSION.reposne(res);
+      try {
+        ApiError.INVALID_SESSION.response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
       return;
     }
 
@@ -174,14 +197,24 @@ class ApiController {
         throw UsersError.INVALID_CAPTCHA;
       }
     } catch (err) {
-      ApiError.fromUsersError(err, 401).reposne(res);
+      try {
+        ApiError.fromUsersError(err, 401).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
       return;
     }
 
     try {
       await this.intentionsController.validateUserLimit(req.session.id);
     } catch (err) {
-      ApiError.fromUsersError(err, 429).reposne(res);
+      try {
+        ApiError.fromUsersError(err, 429).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
       return;
     }
 
@@ -195,8 +228,12 @@ class ApiController {
         id: intention._id
       });
     } catch (err) {
-      ApiError.BAD_REQUEST.response(res);
-      return
+      try {
+        ApiError.BAD_REQUEST.setDetails(err.message).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
     }
   }
 
@@ -205,21 +242,27 @@ class ApiController {
    * @param {Express.Request} req Request
    * @param {Express.Response} res Response
    */
-  joinPrayer(req, res) {
+  async joinPrayer(req, res) {
     if(!this.sessionController.isValid(req.session)) {
-      ApiError.INVALID_SESSION.reposne(res);
+      ApiError.INVALID_SESSION.response(res);
       return;
     }
 
-    this.prayersController.join(req.params.id, req.session).then((intention) => {
+    try {
+      const intention = await this.prayersController.join(req.params.id, req.session);
       res.status(201).send(intention);
-    }).catch((err) => {
-      if(err == null) {
-        ApiError.BAD_REQUEST.response(res);
-      } else {
-        new ApiError(err.message, err.message.includes('NOT_FOUND') ? 404 : 400).reposne(res);
+    } catch (err) {
+      try {
+        if(err == null) {
+          ApiError.BAD_REQUEST.response(res);
+        } else {
+          new ApiError(err.message, err.message.includes('NOT_FOUND') ? 404 : 400).response(res);
+        }
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
       }
-    });
+    }
   }
 
   /**
@@ -227,12 +270,18 @@ class ApiController {
    * @param {Express.Request} req Request
    * @param {Express.Response} res Response
    */
-  joinedPrayers(req, res) {
-    this.prayersController.getList(req.session).then((intentions) => {
+  async joinedPrayers(req, res) {
+    try {
+      const intentions = await this.prayersController.getList(req.session);
       res.status(200).send(intentions);
-    }).catch(() => {
-      ApiError.BAD_REQUEST.response(res);
-    });
+    } catch(err) {
+      try {
+        ApiError.BAD_REQUEST.setDetails(err.message).response(res);
+      } catch (err) {
+        console.error(err);
+        ApiError.INTERNAL.response(res);
+      }
+    }
   }
 
 }

@@ -84,6 +84,7 @@ class App {
    * Setup
    */
   setup() {
+    this.enableLogging();
     this.enableCookiesSupport();
     this.enableSessionSupport();
     this.enableJsonSupport();
@@ -141,6 +142,14 @@ class App {
     this.srv.use(securityController.allowedMethods);
     this.srv.use(securityController.cors);
     this.srv.use(securityController.xsrf);
+  }
+
+  /**
+   * Enable logging
+   */
+  enableLogging() {
+    const morgan = require('morgan');
+    this.srv.use(morgan('combined'));
   }
 
   /**

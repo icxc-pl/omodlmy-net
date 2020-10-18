@@ -54,7 +54,7 @@ const SecurityController = {
     if (ALLOWED_HTTP_METHODS.includes(req.method.toUpperCase())) {
       next();
     } else {
-      ApiError.NOT_ALLOWED.reposne(res);
+      ApiError.NOT_ALLOWED.response(res);
     }
   },
 

@@ -54,6 +54,7 @@ class IntentionsController {
    */
   async add(intention, session) {
     if (!validator.validateIntention(intention)) {
+      console.log(intention);
       throw validator.validateIntention.errors;
     }
 

@@ -7,11 +7,14 @@
     "content": {
       "type": "string",
       "minLength": 7,
-      "maxLength": 256
+      "maxLength": 250,
+      "pattern": "^(?:[ !()*+,./0-9:;?A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż-]|\ud83c[\udf31-\udf43]|\ud83d[\ude00-\ude50])+$"
     },
     "author": {
       "type": ["null", "string"],
-      "default": null
+      "default": null,
+      "pattern": "^[ A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż]+$",
+      "maxLength": 20
     },
     "captcha": {
       "type": "integer",
@@ -19,5 +22,6 @@
       "maximum": 200
     }
   },
-  "required": ["content", "captcha"]
+  "required": ["content", "captcha"],
+  "additionalProperties": false
 }
