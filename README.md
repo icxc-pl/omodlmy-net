@@ -61,7 +61,7 @@ docker build \
 
 ```sh
 docker run \
-  -p 127.0.0.2:8001:8001 \
+  -p 127.0.0.1:8001:8001 \
   -v "$(pwd)/backend/.session-secret":"/app/.session-secret" \
   -v "$(pwd)/mongodb/mongod.log":"/mongodb/mongod.log" \
   -v "$(pwd)/mongodb/data":"/mongodb/data" \
