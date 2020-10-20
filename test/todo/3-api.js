@@ -1,7 +1,5 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-
-chai.use(chaiHttp);
+const chai = require('chai');
+const expect = chai.expect;
 
 
 var $api = chai.request('http://127.0.0.1:8000/api');
