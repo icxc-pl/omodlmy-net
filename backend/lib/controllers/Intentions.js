@@ -1,6 +1,5 @@
 'use strict';
 
-const validator = require('../services/validator');
 const Intention = require('../classes/Intention');
 const UsersError = require('../classes/UsersError');
 
@@ -53,10 +52,6 @@ class IntentionsController {
    * @returns {Promise}
    */
   async add(intention, session) {
-    if (!validator.validateIntention(intention)) {
-      throw validator.validateIntention.errors;
-    }
-
     const intentionToAdd = new Intention(intention.content, session.id, intention.author);
     const intentionAdded = await this.dbController.addIntention(intentionToAdd);
     this.dbController.incrementIntentionsCounter(); // we do not need to wait for this one

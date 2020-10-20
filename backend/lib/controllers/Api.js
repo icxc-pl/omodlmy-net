@@ -192,6 +192,14 @@ class ApiController {
       return;
     }
 
+    if (!validator.validateIntention(req.body.data)) {
+      const err = validator.validateIntention.errors[0];
+      const what = err.keyword.toUpperCase();
+      const where = err.dataPath.slice(1).toUpperCase();
+      ApiError.BAD_REQUEST.setDetails(`ERROR_INVALID_${what}_${where}`).response(res);
+      return;
+    }
+
     try {
       if (typeof req.session.captcha !== 'number' || req.session.captcha !== req.body.data.captcha) {
         throw UsersError.INVALID_CAPTCHA;

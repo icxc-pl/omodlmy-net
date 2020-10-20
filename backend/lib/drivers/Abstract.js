@@ -20,6 +20,7 @@ class AbstractDriver {
    *
    * @param {string} msg Debug message
    */
+  // eslint-disable-next-line no-unused-vars
   debug(msg) {
     throw new Error('Please overwrite this method!');
   }

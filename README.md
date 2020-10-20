@@ -1,71 +1,18 @@
+![Docker Cloud Automated Build](https://img.shields.io/docker/cloud/automated/icxc/omodlmy-net)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/icxc/omodlmy-net)
+
 # Omódlmy.net
 
 To monorepo zawiera wszystkie komponenty potrzebne do zbudowania i odpalenia Omódlmy.Net.
 
-## Development
+## Kontrybuowanie
 
-### Dependencje
+Co i jak jest opisane [w tym dokumencie](CONTRIBUTING.md).
 
-```sh
-npm i -g yarn
-yarn install
-```
+## Podziękowania
 
-### Konfiguracja
+Dziękuję Bogu Jedynemu i mojej Żonie. Za potrzebne wsparcie i otuchę.
 
-#### /etc/hosts
+## Licencja
 
-Skonfiguruj `local.omodlmy.net`, żeby wskazywał na `127.0.0.1`.
-
-#### Chrome/Chromium
-
-```sh
-chromium-browser \
-  --disable-web-security \
-  --ignore-certificate-errors \
-  --user-data-dir="/home/uzytkownik/.local/unsecure-chromium"
-```
-
-### Uruchamianie
-
-#### Backend
-
-```sh
-npm run server:dev
-```
-
-#### Frontend
-
-```sh
-npm run watch
-```
-
-Aplikacja będzie dostępna pod adresem `https://local.omodlmy.net:8000`.
-
-## Staging
-
-### Konfiguracja
-
-TODO
-
-### Budowanie
-
-```sh
-docker build \
-  --build-arg MODE=staging \
-  -t omodlmy-net:staging \
-  .
-```
-
-### Testowanie
-
-```sh
-docker run \
-  -p 127.0.0.1:8001:8001 \
-  -v "$(pwd)/backend/.session-secret":"/app/.session-secret" \
-  -v "$(pwd)/mongodb/mongod.log":"/mongodb/mongod.log" \
-  -v "$(pwd)/mongodb/data":"/mongodb/data" \
-  --name omodlmy-net-staging \
-  --rm \
-  omodlmy-net:staging
-```
+Cały projekt jest pod licencją [AGPL-3.0-or-later](LICENSE).
