@@ -1,6 +1,5 @@
 'use strict';
 
-const validator = require('../services/validator');
 const UsersError = require('./UsersError');
 
 /**
@@ -37,9 +36,6 @@ class Intention {
   }
 
 }
-
-// Alias
-Intention.isValid = validator.validateIntention;
 
 // Exports
 module.exports = Intention;

@@ -50,7 +50,6 @@
     mixins: [VerifyMixin],
 
     created () {
-      window.xxx = this;
       this.$verify({
         content: {
           required: true,
@@ -78,6 +77,27 @@
     },
 
     computed: {
+      getContent () {
+        return this.content.trim();
+      },
+
+      getAuthor () {
+        let author = this.author;
+        if (typeof author === 'string') {
+          author = author.trim();
+          if (author === '') {
+            author = null;
+          }
+        } else {
+          author = null;
+        }
+        return author;
+      },
+
+      getCaptcha () {
+        return parseInt(this.captcha);
+      },
+
       getCaptchaUrl () {
         return `${this.env.url}/captcha?${this.captchaIdx}`;
       }
@@ -95,9 +115,9 @@
         }
 
         validator.validateIntention({
-          content: this.content,
-          author: this.author || null,
-          captcha: this.captcha
+          content: this.getContent,
+          author: this.getAuthor,
+          captcha: this.getCaptcha
         });
         if (validator.validateIntention.errors != null) {
           for (let err of validator.validateIntention.errors) {
@@ -131,9 +151,9 @@
         this.working = true;
 
         return this.apiClient.postIntention({
-          content: this.content,
-          author: this.author,
-          captcha: parseInt(this.captcha)
+          content: this.getContent,
+          author: this.getAuthor,
+          captcha: this.getCaptcha
         }).then((res) => {
           this.$tostini({
             message: this.i18n('INTENTION_SENT'),
