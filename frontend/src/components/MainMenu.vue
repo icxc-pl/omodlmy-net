@@ -1,42 +1,61 @@
 <template>
-    <nav :class="[ 'main-menu', { opened: isOpened } ]">
+    <nav :class="[ 'main-menu', { opened: isOpened } ]"
+      role="navigation"
+      aria-label="Menu">
 
-      <template v-if="isOpened">
+      <div v-if="!isOpened"
+           :class="['main-menu-trigger', { shadow: triggerShadow }]"
+           tabindex="0"
+           role="button"
+           :aria-label="i18n('MENU_OPEN')"
+           aria-expanded="false"
+           @keypress="open"
+           @click="open">
+          <i class="icon-menu" aria-hidden="true"></i> {{ i18n('MENU') }}
+      </div>
+
+      <template v-else>
 
         <!-- main menu trigger -->
         <div v-if="isModeMobile"
             class="main-menu-trigger"
+            tabindex="0"
+            role="button"
+            :aria-label="i18n('MENU_CLOSE')"
+            aria-expanded="true"
+            @keypress="close"
             @click="close">
-            <i class="icon-cancel"></i> {{ i18n('MENU_CLOSE') }}
+            <i class="icon-cancel" aria-hidden="true"></i> {{ i18n('MENU_CLOSE') }}
         </div>
 
         <!-- main menu banner -->
-        <div class="main-menu-banner"></div>
+        <div class="main-menu-banner"
+          role="img"
+          aria-label="Obrazek przedstawiający złożone do modlitwy kobiece dłonie"></div>
 
         <!-- main menu container -->
         <div class="main-menu-container">
-          <ul>
+          <ul role="menu" aria-label="Elementy menu">
             <li v-for="item in items"
+                role="menuitem"
                 :key="item.title">
-              <router-link :to="item.link"
-                          @click.native="close">
-                <i :class="[ 'icon-' + item.icon ]"></i> {{ i18n(item.title) }}
+              <router-link
+                :to="item.link"
+                @keypress.native="close"
+                @click.native="close">
+                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
               </router-link>
             </li>
           </ul>
         </div>
 
-        <footer>
-          <a href="https://github.com/icxc-pl/omodlmy-net/" target="_blank">Omódlmy Net v{{ env.version }}</a>
+        <footer role="contentinfo" aria-label="Stopka">
+          <a href="https://github.com/icxc-pl/omodlmy-net/"
+            aria-label="Link do repozytorium na GitHub"
+            target="_blank">Omódlmy Net v{{ env.version }}</a>
         </footer>
 
       </template>
-
-      <div v-else
-           :class="['main-menu-trigger', { shadow: triggerShadow }]"
-           @click="open">
-          <i class="icon-menu"></i> {{ i18n('MENU') }}
-      </div>
 
     </nav>
 </template>
@@ -160,6 +179,7 @@
       cursor: pointer;
       background: white;
       .transition(box-shadow);
+      user-select: none;
 
       &.shadow {
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.125);
@@ -193,6 +213,7 @@
           text-decoration: none;
           display: block;
           padding: 1rem 0.5rem;
+          user-select: none;
         }
       }
     }

@@ -35,7 +35,7 @@
       <button type="button"
               :class="['btn', { working }]"
               @click="submit">
-        <i class="icon-mail"></i> {{ i18n('SEND') }}
+        <i class="icon-mail" aria-hidden="true"></i> {{ i18n('SEND') }}
       </button>
     </p>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" role="presentation">
 
     <!-- no cookies info -->
     <info-block v-if="noCookies"

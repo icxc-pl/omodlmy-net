@@ -35,6 +35,7 @@
     "LIST_INTENTIONS": "Lista intencji",
     "MENU": "Menu",
     "MENU_CLOSE": "Zamknij menu",
+    "MENU_OPEN": "Otwórz menu",
     "MINUTES_N": [
         [1, 1, "minutę"],
         [2, 4, "%n minuty"],
