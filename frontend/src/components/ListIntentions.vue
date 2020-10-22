@@ -1,5 +1,5 @@
 <template>
-  <div id="page-send-intention">
+  <div id="page-send-intention" ref="container">
     <!-- Error -->
     <p v-if="error">
       {{ error }}
@@ -30,6 +30,7 @@
       <mugen-scroll v-else
         :handler="fetchData"
         :should-handle="!loading"
+        scroll-container="container"
         class="loading"></mugen-scroll>
 
     </template>
@@ -105,8 +106,8 @@
        */
       _whenFetchDataFails (err) {
         this.error = this.apiClient.getXhrError(err)
-        this.loading = false
-        this.allLoaded = true
+        this.loading = false;
+        this.allLoaded = true;
       },
 
       /**

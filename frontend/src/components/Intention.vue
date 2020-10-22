@@ -18,7 +18,7 @@
         <span>{{ i18n('PRAYING', intention.praying) }}</span>
         <span :class="['pray-button', { joining }]"
              @click="joinPrayer">
-          {{ i18n('IAM_PRAYING') }} <i class="icon-heart-cross"></i>
+          {{ i18n('IAM_PRAYING') }} <i class="icon-heart-cross" aria-hidden="true"></i>
         </span>
       </template>
     </footer>

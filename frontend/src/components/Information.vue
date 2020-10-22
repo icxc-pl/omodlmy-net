@@ -1,7 +1,7 @@
 <template>
   <div id="page-information">
     <header class="header-bar">
-      <i class="icon-help-circled"></i> {{ i18n('INFORMATION') }}
+      <i class="icon-help-circled" aria-hidden="true"></i> {{ i18n('INFORMATION') }}
     </header>
 
     <!--
