@@ -93,7 +93,6 @@
         }
 
         if (items.length !== FETCH_LIMIT) {
-          console.log(2);
           this.allLoaded = true;
         }
 
