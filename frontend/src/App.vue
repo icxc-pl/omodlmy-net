@@ -17,14 +17,21 @@
 
     <!-- show app -->
     <template v-else>
+
       <!-- menu -->
-      <main-menu ref="mainMenu" />
+      <main-menu
+        ref="mainMenu"
+        role="navigation" />
 
       <!-- content slot -->
-      <router-view class="view-container" ref="container" />
+      <router-view
+        class="view-container"
+        ref="container"
+        role="main" />
 
       <!-- toast notification container -->
       <tostini-plate />
+
     </template>
 
   </div>

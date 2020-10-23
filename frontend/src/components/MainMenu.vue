@@ -1,7 +1,6 @@
 <template>
     <nav :class="[ 'main-menu', { opened: isOpened } ]"
-      role="navigation"
-      aria-label="Menu">
+      :aria-label="i18n('MENU')">
 
       <div v-if="!isOpened"
            :class="['main-menu-trigger', { shadow: triggerShadow }]"
@@ -31,11 +30,11 @@
         <!-- main menu banner -->
         <div class="main-menu-banner"
           role="img"
-          aria-label="Obrazek przedstawiający złożone do modlitwy kobiece dłonie"></div>
+          :aria-label="i18n('IMAGE_DESCRIPTION_PRAYING_WOMAN')"></div>
 
         <!-- main menu container -->
         <div class="main-menu-container">
-          <ul role="menu" aria-label="Elementy menu">
+          <ul role="menu" :aria-label="i18n('MENU_ELEMENTS')">
             <li v-for="item in items"
                 role="menuitem"
                 :key="item.title">
@@ -49,9 +48,9 @@
           </ul>
         </div>
 
-        <footer role="contentinfo" aria-label="Stopka">
+        <footer role="contentinfo" :aria-label="i18n('FOOTER')">
           <a href="https://github.com/icxc-pl/omodlmy-net/"
-            aria-label="Link do repozytorium na GitHub"
+            :aria-label="i18n('LINK_TO_REPO')"
             target="_blank">Omódlmy Net v{{ env.version }}</a>
         </footer>
 

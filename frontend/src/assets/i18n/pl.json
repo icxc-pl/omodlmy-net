@@ -17,6 +17,7 @@
     "ERROR_INVALID_PATTERN_CONTENT" : "W polu Treść możesz użyć tylko liter, znaków interpunkcyjnych i niektórych emoji",
     "ERROR_NETWORK_UNKNOWN": "Nieznany błąd. Sprawdź połączenie lub spróbuj ponownie później.",
     "ERROR_UNKNOWN": "Nieznany błąd. Odśwież aplikację lub spróbuj ponownie.",
+    "FOOTER": "Stopka",
     "SEND_INTENTION": "Nadaj intencję",
     "HOME_SCREEN": "Start",
     "HOURS_N": [
@@ -26,15 +27,19 @@
         [22, null, "%n godziny"]
     ],
     "IAM_PRAYING": "Modlę się",
+    "IMAGE_DESCRIPTION_PRAYING_WOMAN": "Obrazek przedstawiający złożone do modlitwy kobiece dłonie",
     "INPUT_PLACEHOLDER_AUTHOR": "Tutaj wpisz autora intencji (opcjonalne)",
     "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
     "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od %{min} do %{max} znaków",
     "INFORMATION": "Informacje i pomoc",
     "INTENTION_SENT": "Twoja intencja została dodana",
     "JOIN": "Dołączam",
+    "LINK_TO_REPO": "Link do repozytorium na GitHub",
     "LIST_INTENTIONS": "Lista intencji",
+    "MAIN_SCREEN": "Ekran główny",
     "MENU": "Menu",
     "MENU_CLOSE": "Zamknij menu",
+    "MENU_ELEMENTS": "Elementy menu",
     "MENU_OPEN": "Otwórz menu",
     "MINUTES_N": [
         [1, 1, "minutę"],

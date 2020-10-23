@@ -1,5 +1,6 @@
 <template>
   <div id="page-send-intention" ref="container">
+
     <!-- Error -->
     <p v-if="error">
       {{ error }}

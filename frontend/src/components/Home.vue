@@ -1,5 +1,6 @@
 <template>
-  <div id="page-home">
+  <div id="page-home"
+    :aria-label="i18n('MAIN_SCREEN')">
     <div>
 
       <!-- Licznik intencji -->
