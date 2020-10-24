@@ -178,18 +178,21 @@
         box-shadow 0.25s,
         outline-color 0.25s;
       border: none;
-      outline: 1px solid transparent;
+      outline: 1px dotted transparent;
       cursor: pointer;
       text-align: left;
 
       &.shadow {
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.125);
+        box-shadow: 0 0 4px @shadow;
       }
 
       &:hover,
       &:focus {
         color: @purple-warm !important;
-        background-color: rgba(255, 255, 255, 0.5) !important;
+        background-color: rgba(255, 255, 255, 0.25) !important;
+      }
+
+      &:focus {
         outline-color: @purple-warm;
       }
     }
@@ -229,7 +232,7 @@
           }
 
           &:focus {
-            outline-color: white;
+            outline-color: @half-white;
           }
         }
       }
@@ -252,7 +255,6 @@
         color: @purple;
         background-color: transparent;
 
-        &:hover,
         &:focus {
           outline-color: white;
         }
@@ -266,11 +268,11 @@
       width: calc(~'100% - 2rem');
       text-align: center;
       padding: 1rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: @half-white;
       font-size: 0.8em;
 
       a {
-        color: rgba(255, 255, 255, 0.5);
+        color: @half-white;
         text-decoration: none;
 
         &:hover,
@@ -279,7 +281,7 @@
         }
 
         &:focus {
-          outline: 1px dashed white;
+          outline: 1px dotted @half-white;
         }
       }
     }

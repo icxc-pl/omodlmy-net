@@ -49,7 +49,7 @@ new Vue({
 });
 
 
-if ('serviceWorker' in navigator) {
+if (false && 'serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
   navigator.serviceWorker.addEventListener('message', (event) => {
     if (event.data.msg === 'RELOAD') {
