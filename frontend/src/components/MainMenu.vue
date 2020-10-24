@@ -2,30 +2,24 @@
     <nav :class="[ 'main-menu', { opened: isOpened } ]"
       :aria-label="i18n('MENU')">
 
-      <div v-if="!isOpened"
+      <button v-if="!isOpened"
            :class="['main-menu-trigger', { shadow: triggerShadow }]"
-           tabindex="0"
-           role="button"
            :aria-label="i18n('MENU_OPEN')"
            aria-expanded="false"
-           @keypress="open"
            @click="open">
           <i class="icon-menu" aria-hidden="true"></i> {{ i18n('MENU') }}
-      </div>
+      </button>
 
       <template v-else>
 
         <!-- main menu trigger -->
-        <div v-if="isModeMobile"
+        <button v-if="isModeMobile"
             class="main-menu-trigger"
-            tabindex="0"
-            role="button"
             :aria-label="i18n('MENU_CLOSE')"
             aria-expanded="true"
-            @keypress="close"
             @click="close">
             <i class="icon-cancel" aria-hidden="true"></i> {{ i18n('MENU_CLOSE') }}
-        </div>
+        </button>
 
         <!-- main menu banner -->
         <div class="main-menu-banner"
@@ -78,7 +72,7 @@
       icon: 'home'
     },
     {
-      title: 'LIST_INTENTIONS',
+      title: 'LIST_OF_INTENTIONS',
       link: 'lista-intencji',
       icon: 'list'
     },
@@ -162,7 +156,6 @@
   @import '~Stylesheets/colors';
   @import '~Stylesheets/mixins/background';
   @import '~Stylesheets/mixins/responsiveness';
-  @import '~Stylesheets/mixins/transition';
 
   nav.main-menu {
     background: white;
@@ -173,15 +166,31 @@
     z-index: 1;
 
     .main-menu-trigger {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
       padding: 0.75rem;
       color: @purple;
+      background-color: white;
+      transition: color 0.25s,
+        background-color 0.25s,
+        box-shadow 0.25s,
+        outline-color 0.25s;
+      border: none;
+      outline: 1px solid transparent;
       cursor: pointer;
-      background: white;
-      .transition(box-shadow);
-      user-select: none;
+      text-align: left;
 
       &.shadow {
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.125);
+      }
+
+      &:hover,
+      &:focus {
+        color: @purple-warm !important;
+        background-color: rgba(255, 255, 255, 0.5) !important;
+        outline-color: @purple-warm;
       }
     }
 
@@ -203,16 +212,25 @@
         padding: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        &:hover {
-          background: rgba(255, 255, 255, 0.05);
-        }
-
         a {
           color: white;
           text-decoration: none;
           display: block;
           padding: 1rem 0.5rem;
           user-select: none;
+          background-color: transparent;
+          outline: 1px solid transparent;
+          transition: background-color 0.25s,
+            outline-color 0.25s;
+
+          &:hover,
+          &:focus {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+
+          &:focus {
+            outline-color: white;
+          }
         }
       }
     }
@@ -232,10 +250,11 @@
       .main-menu-trigger {
         margin-bottom: -2.5rem;
         color: @purple;
-        background: transparent;
+        background-color: transparent;
 
-        &:hover {
-          color: @purple-warm;
+        &:hover,
+        &:focus {
+          outline-color: white;
         }
       }
     }
@@ -253,6 +272,15 @@
       a {
         color: rgba(255, 255, 255, 0.5);
         text-decoration: none;
+
+        &:hover,
+        &:focus {
+          color: white;
+        }
+
+        &:focus {
+          outline: 1px dashed white;
+        }
       }
     }
   }

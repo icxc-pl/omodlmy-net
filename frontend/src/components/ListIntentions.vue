@@ -1,5 +1,7 @@
 <template>
-  <div id="page-send-intention" ref="container">
+  <div id="page-send-intention"
+    ref="container"
+    :aria-label="i18n('LIST_OF_INTENTIONS')">
 
     <!-- Error -->
     <p v-if="error">
