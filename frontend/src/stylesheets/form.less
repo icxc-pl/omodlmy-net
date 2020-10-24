@@ -40,6 +40,7 @@ textarea {
   padding: 0.5em;
   border: none;
   border-radius: 6rem;
+  outline: 1px dotted transparent;
 
   font-family: 'Nunito', sans-serif;
   font-weight: normal;
@@ -48,12 +49,23 @@ textarea {
   text-decoration: none;
   cursor: pointer;
 
+  transition: opacity 0.25s,
+    outline-color 0.25s;
+
   i[class^="icon"] {
     color: white;
   }
 
   &:hover {
     opacity: 0.9;
+  }
+
+  &:focus {
+    outline-color: @purple-warm;
+  }
+
+  &:active {
+    outline: none !important;
   }
 
   &.working {

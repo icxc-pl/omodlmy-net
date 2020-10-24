@@ -195,6 +195,10 @@
       &:focus {
         outline-color: @purple-warm;
       }
+
+      &:active {
+        outline: none !important;
+      }
     }
 
     .main-menu-banner {
@@ -233,6 +237,10 @@
 
           &:focus {
             outline-color: @half-white;
+          }
+
+          &:active {
+            outline: none !important;
           }
         }
       }
@@ -282,6 +290,10 @@
 
         &:focus {
           outline: 1px dotted @half-white;
+        }
+
+        &:active {
+          outline: none !important;
         }
       }
     }
