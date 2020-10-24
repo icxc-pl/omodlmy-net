@@ -1,9 +1,17 @@
 @import 'colors';
 @import 'mixins/background';
 @import 'mixins/input';
+@import 'mixins/transition';
 
 *:focus {
   outline: none;
+}
+
+label {
+  display: block;
+  color: @sonic-silver;
+  font-size: 0.6em;
+  padding: 0.75em 0;
 }
 
 input[type="text"],
@@ -38,6 +46,7 @@ textarea {
 
   width: 10rem;
   padding: 0.5em;
+  margin: 0.5rem auto;
   border: none;
   border-radius: 6rem;
   outline: 1px dotted transparent;
@@ -89,4 +98,13 @@ textarea {
       background-size: 25%;
     }
   }
+}
+
+.form-row {
+  max-width: 40rem;
+  margin: 1rem auto;
+
+  .rwd-max-for-s({
+    margin: 0.5rem;
+  });
 }

@@ -1,6 +1,7 @@
 {
   "values":{
     "AUTHOR": "Autor",
+    "CAPTCHA_DESCRIPTION": "Obrazek przedstawiający zagadkę matematyczną",
     "CAPTCHA_TITLE": "Zagadka matematyczna",
     "DATETIME": "%{date} o %{time}",
     "DAY_BEFORE_YESTERDAY": "przedwczoraj",
@@ -20,6 +21,7 @@
     "ERROR_UNKNOWN": "Nieznany błąd. Odśwież aplikację lub spróbuj ponownie.",
     "FOOTER": "Stopka",
     "SEND_INTENTION": "Nadaj intencję",
+    "SEND_INTENTION_FORM": "Formularz nadawania intencji",
     "HOME_SCREEN": "Start",
     "HOURS_N": [
         [1, 1, "godzinę"],
@@ -34,6 +36,7 @@
     "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od %{min} do %{max} znaków",
     "INFORMATION": "Informacje i pomoc",
     "INTENTION": "Intencja",
+    "INTENTION_AUTHOR": "Autor intencji (opcjonalne)",
     "INTENTION_CONTENT": "Treść intencji",
     "INTENTION_SENT": "Twoja intencja została dodana",
     "JOIN": "Dołączam",
