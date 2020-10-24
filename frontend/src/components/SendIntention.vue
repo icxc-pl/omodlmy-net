@@ -1,44 +1,67 @@
 <template>
-  <div id="page-send-intention">
-    <p>
+  <form id="page-send-intention"
+    :aria-label="i18n('SEND_INTENTION_FORM')">
+
+    <!-- Content -->
+    <div class="form-row">
+      <label for="form-intention-content">{{ i18n('INTENTION_CONTENT') }}</label>
       <textarea
+        id="form-intention-content"
         :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT', {
           min: verify.$rules.content.minLength,
           max: verify.$rules.content.maxLength
         })"
-        :class="{
-          invalid: verify.content.$dirty && !verify.content.$valid }"
+        aria-required="true"
+        :aria-invalid="isContentInvalid"
+        aria-errormessage="error-message-intention-content"
         v-model="content"></textarea>
-      <span v-if="verify.content.$dirty && !verify.content.$valid" class="invalid">
-        <span v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</span>
-        <span v-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</span>
-        <span v-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</span>
-      </span>
-    </p>
-    <p>
-      <input type="text"
-             :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
-             :class="{ invalid: verify.author.$dirty && !verify.author.$valid }"
-             v-model="author" />
-    </p>
-    <p class="captcha-test">
-      <img :src="getCaptchaUrl"
-           :alt="i18n('CAPTCHA_TITLE')"
-           :title="i18n('CAPTCHA_TITLE')">
-      <span>=</span>
-      <input type="number"
-             :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
-             :class="{ invalid: verify.captcha.$dirty && !verify.captcha.$valid }"
-             v-model="captcha" />
-    </p>
-    <p>
-      <button type="button"
+      <p v-if="isContentInvalid"
+        id="error-message-intention-content">
+        <template v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</template>
+        <template v-else-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</template>
+        <template v-else-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</template>
+      </p>
+    </div>
+
+    <!-- Author -->
+    <div class="form-row">
+      <label for="form-intention-author">{{ i18n('INTENTION_AUTHOR') }}</label>
+      <input
+        id="form-intention-author"
+        type="text"
+        :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
+        :aria-invalid="isAuthorInvalid"
+        v-model="author" />
+    </div>
+
+    <!-- Captcha -->
+    <div class="form-row">
+      <label for="form-intention-captcha">{{ i18n('CAPTCHA_TITLE') }}</label>
+      <div class="captcha-test">
+        <img :src="getCaptchaUrl"
+            :alt="i18n('CAPTCHA_DESCRIPTION')"
+            :title="i18n('CAPTCHA_TITLE')">
+        <span>=</span>
+        <input
+          id="form-intention-captcha"
+          type="number"
+          :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
+          aria-required="true"
+          :aria-invalid="isCaptchaInvalid"
+          v-model="captcha" />
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <div class="form-row" style="margin-top: 1.5rem;">
+      <button type="submit"
               :class="['btn', { working }]"
-              @click="submit">
+              @submit.stop.prevent="submit"
+              @click.stop.prevent="submit">
         <i class="icon-mail" aria-hidden="true"></i> {{ i18n('SEND') }}
       </button>
-    </p>
-  </div>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -77,6 +100,18 @@
     },
 
     computed: {
+      isContentInvalid () {
+        return this.verify.content.$dirty && !this.verify.content.$valid;
+      },
+
+      isAuthorInvalid () {
+        return this.verify.author.$dirty && !this.verify.author.$valid;
+      },
+
+      isCaptchaInvalid () {
+        return this.verify.captcha.$dirty && !this.verify.captcha.$valid;
+      },
+
       getContent () {
         return this.content.trim();
       },
@@ -208,7 +243,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
 
   img {
     height: 44px;
@@ -220,7 +254,7 @@
   }
 
   input {
-    margin: 0;
+    min-width: 0;
     max-width: calc(~'40rem - 132px - 2em');
   }
 }

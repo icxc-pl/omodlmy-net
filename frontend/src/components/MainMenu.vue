@@ -1,57 +1,56 @@
 <template>
     <nav :class="[ 'main-menu', { opened: isOpened } ]"
-      role="navigation"
-      aria-label="Menu">
+      :aria-label="i18n('MENU')">
 
-      <div v-if="!isOpened"
+      <button v-if="!isOpened"
            :class="['main-menu-trigger', { shadow: triggerShadow }]"
-           tabindex="0"
-           role="button"
            :aria-label="i18n('MENU_OPEN')"
            aria-expanded="false"
-           @keypress="open"
            @click="open">
           <i class="icon-menu" aria-hidden="true"></i> {{ i18n('MENU') }}
-      </div>
+      </button>
 
       <template v-else>
 
         <!-- main menu trigger -->
-        <div v-if="isModeMobile"
+        <button v-if="isModeMobile"
             class="main-menu-trigger"
-            tabindex="0"
-            role="button"
             :aria-label="i18n('MENU_CLOSE')"
             aria-expanded="true"
-            @keypress="close"
             @click="close">
             <i class="icon-cancel" aria-hidden="true"></i> {{ i18n('MENU_CLOSE') }}
-        </div>
+        </button>
 
         <!-- main menu banner -->
         <div class="main-menu-banner"
           role="img"
-          aria-label="Obrazek przedstawiający złożone do modlitwy kobiece dłonie"></div>
+          :aria-label="i18n('IMAGE_DESCRIPTION_PRAYING_WOMAN')"></div>
 
         <!-- main menu container -->
         <div class="main-menu-container">
-          <ul role="menu" aria-label="Elementy menu">
+          <ul role="menu" :aria-label="i18n('MENU_ELEMENTS')">
             <li v-for="item in items"
                 role="menuitem"
                 :key="item.title">
-              <router-link
+              <router-link v-if="item.link"
                 :to="item.link"
                 @keypress.native="close"
                 @click.native="close">
                 <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
               </router-link>
+              <a v-else
+                :href="item.href"
+                rel="nooopener"
+                target="_blank">
+                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+              </a>
             </li>
           </ul>
         </div>
 
-        <footer role="contentinfo" aria-label="Stopka">
+        <footer role="contentinfo" :aria-label="i18n('FOOTER')">
           <a href="https://github.com/icxc-pl/omodlmy-net/"
-            aria-label="Link do repozytorium na GitHub"
+            :aria-label="i18n('LINK_TO_REPO')"
             target="_blank">Omódlmy Net v{{ env.version }}</a>
         </footer>
 
@@ -75,18 +74,25 @@
   const ITEMS = [
     {
       title: 'HOME_SCREEN',
-      link: '/',
-      icon: 'home'
+      icon: 'home',
+      link: '/'
     },
     {
-      title: 'LIST_INTENTIONS',
-      link: 'lista-intencji',
-      icon: 'list'
+      title: 'LIST_OF_INTENTIONS',
+      icon: 'list',
+      link: 'lista-intencji'
+
     },
     {
       title: 'SEND_INTENTION',
-      link: 'nadaj-intencje',
-      icon: 'feather'
+      icon: 'feather',
+      link: 'nadaj-intencje'
+
+    },
+    {
+      title: 'CONTACT',
+      icon: 'mail',
+      href: 'mailto:kontakt@icxc.pl?subject=' + window.encodeURIComponent('Kontakt z aplikacji Omódlmy.net')
     }
     // {
     //   title: 'INFORMATION',
@@ -163,7 +169,6 @@
   @import '~Stylesheets/colors';
   @import '~Stylesheets/mixins/background';
   @import '~Stylesheets/mixins/responsiveness';
-  @import '~Stylesheets/mixins/transition';
 
   nav.main-menu {
     background: white;
@@ -174,15 +179,38 @@
     z-index: 1;
 
     .main-menu-trigger {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
       padding: 0.75rem;
       color: @purple;
+      background-color: white;
+      transition: color 0.25s,
+        background-color 0.25s,
+        box-shadow 0.25s,
+        outline-color 0.25s;
+      border: none;
+      outline: 1px dotted transparent;
       cursor: pointer;
-      background: white;
-      .transition(box-shadow);
-      user-select: none;
+      text-align: left;
 
       &.shadow {
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.125);
+        box-shadow: 0 0 4px @shadow;
+      }
+
+      &:hover,
+      &:focus {
+        color: @purple-warm !important;
+        background-color: rgba(255, 255, 255, 0.25) !important;
+      }
+
+      &:focus {
+        outline-color: @purple-warm;
+      }
+
+      &:active {
+        outline: none !important;
       }
     }
 
@@ -204,16 +232,29 @@
         padding: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-        &:hover {
-          background: rgba(255, 255, 255, 0.05);
-        }
-
         a {
           color: white;
           text-decoration: none;
           display: block;
           padding: 1rem 0.5rem;
           user-select: none;
+          background-color: transparent;
+          outline: 1px solid transparent;
+          transition: background-color 0.25s,
+            outline-color 0.25s;
+
+          &:hover,
+          &:focus {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+
+          &:focus {
+            outline-color: @half-white;
+          }
+
+          &:active {
+            outline: none !important;
+          }
         }
       }
     }
@@ -233,10 +274,10 @@
       .main-menu-trigger {
         margin-bottom: -2.5rem;
         color: @purple;
-        background: transparent;
+        background-color: transparent;
 
-        &:hover {
-          color: @purple-warm;
+        &:focus {
+          outline-color: white;
         }
       }
     }
@@ -248,12 +289,25 @@
       width: calc(~'100% - 2rem');
       text-align: center;
       padding: 1rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: @half-white;
       font-size: 0.8em;
 
       a {
-        color: rgba(255, 255, 255, 0.5);
+        color: @half-white;
         text-decoration: none;
+
+        &:hover,
+        &:focus {
+          color: white;
+        }
+
+        &:focus {
+          outline: 1px dotted @half-white;
+        }
+
+        &:active {
+          outline: none !important;
+        }
       }
     }
   }
