@@ -1,5 +1,8 @@
 <template>
-  <div id="page-send-intention" ref="container">
+  <div id="page-send-intention"
+    ref="container"
+    :aria-label="i18n('LIST_OF_INTENTIONS')">
+
     <!-- Error -->
     <p v-if="error">
       {{ error }}
@@ -8,12 +11,12 @@
     <template v-else>
 
       <!-- Intentions -->
-      <section class="intentions">
+      <div class="intentions">
         <intention v-for="item in items"
           :intention="item"
           :key="item._id"
           @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
-      </section>
+      </div>
 
       <!-- Info that everything loaded -->
       <p v-if="allLoaded">
@@ -27,11 +30,16 @@
       </p>
 
       <!-- Infinity loading -->
-      <mugen-scroll v-else
-        :handler="fetchData"
-        :should-handle="!loading"
-        scroll-container="container"
-        class="loading"></mugen-scroll>
+      <div v-else
+        :tabindex="0"
+        :aria-label="i18n('LOADING_CONTENT')"
+        @focus="loadingFocus">
+        <mugen-scroll
+          :handler="fetchData"
+          :should-handle="!loading"
+          scroll-container="container"
+          class="loading"></mugen-scroll>
+      </div>
 
     </template>
 
@@ -57,7 +65,8 @@
         error: null,
         loading: false,
         allLoaded: false,
-        items: []
+        items: [],
+        focusOn: null
       };
     },
 
@@ -97,6 +106,17 @@
         }
 
         this.loading = false;
+
+        // Mechanism to move back user's focus cursor in case one is using only keyboard
+        if (this.focusOn !== null) {
+          this.$nextTick(() => {
+            const el = document.querySelector(`article.intention:nth-of-type(${this.focusOn}) button`);
+            if (el) {
+              el.focus();
+            }
+            this.focusOn = null;
+          });
+        }
       },
 
       /**
@@ -123,6 +143,10 @@
         } else {
           location.reload(true);
         }
+      },
+
+      loadingFocus () {
+        this.focusOn = this.items.length;
       }
 
     }

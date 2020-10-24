@@ -1,6 +1,9 @@
 {
   "values":{
+    "AUTHOR": "Autor",
+    "CAPTCHA_DESCRIPTION": "Obrazek przedstawiający zagadkę matematyczną",
     "CAPTCHA_TITLE": "Zagadka matematyczna",
+    "CONTACT": "Kontakt",
     "DATETIME": "%{date} o %{time}",
     "DAY_BEFORE_YESTERDAY": "przedwczoraj",
     "DAYS_N": [
@@ -17,7 +20,9 @@
     "ERROR_INVALID_PATTERN_CONTENT" : "W polu Treść możesz użyć tylko liter, znaków interpunkcyjnych i niektórych emoji",
     "ERROR_NETWORK_UNKNOWN": "Nieznany błąd. Sprawdź połączenie lub spróbuj ponownie później.",
     "ERROR_UNKNOWN": "Nieznany błąd. Odśwież aplikację lub spróbuj ponownie.",
+    "FOOTER": "Stopka",
     "SEND_INTENTION": "Nadaj intencję",
+    "SEND_INTENTION_FORM": "Formularz nadawania intencji",
     "HOME_SCREEN": "Start",
     "HOURS_N": [
         [1, 1, "godzinę"],
@@ -26,15 +31,24 @@
         [22, null, "%n godziny"]
     ],
     "IAM_PRAYING": "Modlę się",
+    "IMAGE_DESCRIPTION_PRAYING_WOMAN": "Obrazek przedstawiający złożone do modlitwy kobiece dłonie",
     "INPUT_PLACEHOLDER_AUTHOR": "Tutaj wpisz autora intencji (opcjonalne)",
     "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
     "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od %{min} do %{max} znaków",
     "INFORMATION": "Informacje i pomoc",
+    "INTENTION": "Intencja",
+    "INTENTION_AUTHOR": "Autor intencji (opcjonalne)",
+    "INTENTION_CONTENT": "Treść intencji",
     "INTENTION_SENT": "Twoja intencja została dodana",
     "JOIN": "Dołączam",
-    "LIST_INTENTIONS": "Lista intencji",
+    "JOIN_PRAYER_BUTTON": "Kliknij tutaj, aby dołączyć do modlitwy w tej intencji",
+    "LINK_TO_REPO": "Link do repozytorium na GitHub",
+    "LIST_OF_INTENTIONS": "Lista intencji",
+    "LOADING_CONTENT": "Ładowanie treści, proszę czekać...",
+    "MAIN_SCREEN": "Ekran główny",
     "MENU": "Menu",
     "MENU_CLOSE": "Zamknij menu",
+    "MENU_ELEMENTS": "Elementy menu",
     "MENU_OPEN": "Otwórz menu",
     "MINUTES_N": [
         [1, 1, "minutę"],
@@ -63,6 +77,7 @@
     "NUMBERS": "%{intentions} intencji i %{praying} dołączeń",
     "OFFLINE": "Brak połączenia",
     "OFFLINE_INFO": "Wygląda na to, że nie masz połączenia z Internetem. Przykro nam, ale ta aplikacja do prawidłowego działania wymaga takiego połączenia.",
+    "POST_DATE": "Data nadesłania",
     "PRAYING":[
       [0, 0, "Nikt jeszcze nie dołączył"],
       [1, 1, "%n osoba modli się"],
@@ -94,6 +109,7 @@
         [2, 4, "%n tygodnie"],
         [5, null, "%n tygodni"]
     ],
+    "WHO_JOINED": "Kto dołączył",
     "YEARS_N": [
         [1, 1, "rok"],
         [2, 4, "%n lata"],
