@@ -7,19 +7,20 @@
       <label for="form-intention-content">{{ i18n('INTENTION_CONTENT') }}</label>
       <textarea
         id="form-intention-content"
-        aria-required="true"
         :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT', {
           min: verify.$rules.content.minLength,
           max: verify.$rules.content.maxLength
         })"
-        :class="{
-          invalid: verify.content.$dirty && !verify.content.$valid }"
+        aria-required="true"
+        :aria-invalid="isContentInvalid"
+        aria-errormessage="error-message-intention-content"
         v-model="content"></textarea>
-      <span v-if="verify.content.$dirty && !verify.content.$valid" class="invalid">
-        <span v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</span>
-        <span v-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</span>
-        <span v-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</span>
-      </span>
+      <p v-if="isContentInvalid"
+        id="error-message-intention-content">
+        <template v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</template>
+        <template v-else-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</template>
+        <template v-else-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</template>
+      </p>
     </div>
 
     <!-- Author -->
@@ -29,7 +30,7 @@
         id="form-intention-author"
         type="text"
         :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
-        :class="{ invalid: verify.author.$dirty && !verify.author.$valid }"
+        :aria-invalid="isAuthorInvalid"
         v-model="author" />
     </div>
 
@@ -44,9 +45,9 @@
         <input
           id="form-intention-captcha"
           type="number"
-          aria-required="true"
           :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
-          :class="{ invalid: verify.captcha.$dirty && !verify.captcha.$valid }"
+          aria-required="true"
+          :aria-invalid="isCaptchaInvalid"
           v-model="captcha" />
       </div>
     </div>
@@ -99,6 +100,18 @@
     },
 
     computed: {
+      isContentInvalid () {
+        return this.verify.content.$dirty && !this.verify.content.$valid;
+      },
+
+      isAuthorInvalid () {
+        return this.verify.author.$dirty && !this.verify.author.$valid;
+      },
+
+      isCaptchaInvalid () {
+        return this.verify.captcha.$dirty && !this.verify.captcha.$valid;
+      },
+
       getContent () {
         return this.content.trim();
       },
