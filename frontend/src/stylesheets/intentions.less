@@ -9,6 +9,7 @@
   .intention {
     display: block;
     width: calc(100vw - 1.5rem);
+    padding-top: 0.75rem;
     text-align: left;
     list-style: none;
     margin: 1.25em auto;
@@ -18,23 +19,27 @@
     border-radius: 4px;
     font-size: 1.1rem;
 
-    &-container {
-      padding: 0 0.75rem;
+    & > * {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
     }
 
     &-content {
       color: @cynical-black;
-      padding: 1.5rem 0;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      margin: 0;
       text-align: justify;
     }
 
-    &-details-block {
+    &-details {
       color: @sonic-silver;
       font-size: 0.6em;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
 
-      div {
+      & > * {
         width: 50%;
-        padding-bottom: 0.75rem;
       }
 
       &::after {
@@ -42,15 +47,15 @@
         content: "";
         clear: both;
       }
-    }
 
-    &-author {
-      float: left;
-    }
+      &-author {
+        float: left;
+      }
 
-    &-date {
-      text-align: right;
-      float: right;
+      &-date {
+        text-align: right;
+        float: right;
+      }
     }
 
     &-footer {
@@ -70,10 +75,16 @@
         right: 0;
         display: block;
         height: 100%;
-        background: @almowhite;
         padding: 0 0.75em;
+
+        background: @almowhite;
         color: @purple;
+        border: none;
         border-left: 1px solid @dandelion-milk;
+        outline: 1px dotted transparent;
+
+        transition: color 0.25s,
+          outline-color 0.25s;
         cursor: pointer;
 
         i {
@@ -83,6 +94,14 @@
 
         &:hover {
           color: @purple-warm;
+        }
+
+        &:focus {
+          outline-color: @purple-warm;
+        }
+
+        &:active {
+          outline: none !important;
         }
 
         &.joining {

@@ -1,29 +1,43 @@
 <template>
-  <div class="intention">
-    <!-- Container -->
-    <div class="intention-container">
-      <div class="intention-content">{{ intention.content }}</div>
-      <div class="intention-details-block">
-        <div class="intention-author">{{ getAuthor }}</div>
-        <div class="intention-date">{{ getDateTime }}</div>
-      </div>
+  <article class="intention"
+    :aria-label="i18n('INTENTION')">
+
+    <!-- Content -->
+    <p class="intention-content"
+      :aria-label="i18n('INTENTION_CONTENT')">{{ intention.content }}</p>
+
+    <!-- Details -->
+    <div class="intention-details">
+      <span class="intention-details-author"
+        :aria-label="i18n('AUTHOR')">{{ getAuthor }}</span>
+      <time class="intention-details-date"
+        :aria-label="i18n('POST_DATE')"
+        :datetime="getDateTime">{{ getDateTimeText }}</time>
     </div>
 
     <!-- Footer -->
-    <footer class="intention-footer">
-      <template v-if="intention.joined">
-        <span>{{ i18n('PRAYING_JOINED', intention.praying - 1) }}</span>
-      </template>
-      <template v-else>
-        <span>{{ i18n('PRAYING', intention.praying) }}</span>
-        <span :class="['pray-button', { joining }]"
-             @click="joinPrayer">
-          {{ i18n('IAM_PRAYING') }} <i class="icon-heart-cross" aria-hidden="true"></i>
-        </span>
-      </template>
-    </footer>
+    <div class="intention-footer" role="presentation">
 
-  </div>
+      <!-- When user already joined -->
+      <template v-if="intention.joined">
+        <span :aria-label="i18n('WHO_JOINED')">{{ i18n('PRAYING_JOINED', intention.praying - 1) }}</span>
+      </template>
+
+      <!-- otherwise -->
+      <template v-else>
+        <span :aria-label="i18n('WHO_JOINED')">{{ i18n('PRAYING', intention.praying) }}</span>
+
+        <!-- Join button -->
+        <button :class="['pray-button', { joining }]"
+            :aria-label="i18n('JOIN_PRAYER_BUTTON')"
+            @click="joinPrayer">
+          {{ i18n('IAM_PRAYING') }} <i class="icon-heart-cross" aria-hidden="true"></i>
+        </button>
+      </template>
+
+    </div>
+
+  </article>
 </template>
 
 <script>
@@ -59,6 +73,14 @@
        * @returns {string}
        */
       getDateTime() {
+        return new Date(this.intention.createTime).toLocaleString();
+      },
+
+      /**
+       * Get author & date time text
+       * @returns {string}
+       */
+      getDateTimeText() {
         return getTimeAgoText(this.intention.createTime);
       }
 

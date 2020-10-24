@@ -1,5 +1,6 @@
 {
   "values":{
+    "AUTHOR": "Autor",
     "CAPTCHA_TITLE": "Zagadka matematyczna",
     "DATETIME": "%{date} o %{time}",
     "DAY_BEFORE_YESTERDAY": "przedwczoraj",
@@ -32,10 +33,14 @@
     "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
     "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od %{min} do %{max} znaków",
     "INFORMATION": "Informacje i pomoc",
+    "INTENTION": "Intencja",
+    "INTENTION_CONTENT": "Treść intencji",
     "INTENTION_SENT": "Twoja intencja została dodana",
     "JOIN": "Dołączam",
+    "JOIN_PRAYER_BUTTON": "Kliknij tutaj, aby dołączyć do modlitwy w tej intencji",
     "LINK_TO_REPO": "Link do repozytorium na GitHub",
     "LIST_OF_INTENTIONS": "Lista intencji",
+    "LOADING_CONTENT": "Ładowanie treści, proszę czekać...",
     "MAIN_SCREEN": "Ekran główny",
     "MENU": "Menu",
     "MENU_CLOSE": "Zamknij menu",
@@ -68,6 +73,7 @@
     "NUMBERS": "%{intentions} intencji i %{praying} dołączeń",
     "OFFLINE": "Brak połączenia",
     "OFFLINE_INFO": "Wygląda na to, że nie masz połączenia z Internetem. Przykro nam, ale ta aplikacja do prawidłowego działania wymaga takiego połączenia.",
+    "POST_DATE": "Data nadesłania",
     "PRAYING":[
       [0, 0, "Nikt jeszcze nie dołączył"],
       [1, 1, "%n osoba modli się"],
@@ -99,6 +105,7 @@
         [2, 4, "%n tygodnie"],
         [5, null, "%n tygodni"]
     ],
+    "WHO_JOINED": "Kto dołączył",
     "YEARS_N": [
         [1, 1, "rok"],
         [2, 4, "%n lata"],

@@ -11,12 +11,12 @@
     <template v-else>
 
       <!-- Intentions -->
-      <section class="intentions">
+      <div class="intentions">
         <intention v-for="item in items"
           :intention="item"
           :key="item._id"
           @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
-      </section>
+      </div>
 
       <!-- Info that everything loaded -->
       <p v-if="allLoaded">
@@ -30,11 +30,16 @@
       </p>
 
       <!-- Infinity loading -->
-      <mugen-scroll v-else
-        :handler="fetchData"
-        :should-handle="!loading"
-        scroll-container="container"
-        class="loading"></mugen-scroll>
+      <div v-else
+        :tabindex="0"
+        :aria-label="i18n('LOADING_CONTENT')"
+        @focus="loadingFocus">
+        <mugen-scroll
+          :handler="fetchData"
+          :should-handle="!loading"
+          scroll-container="container"
+          class="loading"></mugen-scroll>
+      </div>
 
     </template>
 
@@ -60,7 +65,8 @@
         error: null,
         loading: false,
         allLoaded: false,
-        items: []
+        items: [],
+        focusOn: null
       };
     },
 
@@ -100,6 +106,13 @@
         }
 
         this.loading = false;
+
+        if (this.focusOn !== null) {
+          this.$nextTick(() => {
+            const el = document.querySelector(`article.intention:nth-of-type(${this.focusOn}) button`);
+            el.focus();
+          });
+        }
       },
 
       /**
@@ -126,6 +139,10 @@
         } else {
           location.reload(true);
         }
+      },
+
+      loadingFocus () {
+        this.focusOn = this.items.length;
       }
 
     }
