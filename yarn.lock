@@ -9360,12 +9360,12 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-v-tostini@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/v-tostini/-/v-tostini-1.3.1.tgz#0a84a0acbed695a8a723e69ee839ded134bd0030"
-  integrity sha512-xK1C8bstUBWYDPYzUXNifhjMrgQCNDeAmnaQ/z2WEygLTkRvuQ7s2zSrNvB7fKfM4syvGDmzaB4ZI5/E7//v2Q==
+v-tostini@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/v-tostini/-/v-tostini-1.4.0.tgz#ad5ba015cab6387a4ed6da4679b10148204f3d81"
+  integrity sha512-R5NE45eo5GgTdM1fxcrsEXOsZcYY3MfrK01EmAqoJZ/e9dtCEzBkfc36unzCgDkXp4kuPcn5SrB+dG6BXjfsIw==
   dependencies:
-    vue "^2.6.11"
+    vue "^2.6.12"
 
 v8-compile-cache@^2.0.3, v8-compile-cache@^2.1.1:
   version "2.1.1"
@@ -9468,7 +9468,7 @@ vue-verify@^0.6.1:
   dependencies:
     es6-promise "^4.0.5"
 
-vue@^2.6.11:
+vue@^2.6.11, vue@^2.6.12:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
