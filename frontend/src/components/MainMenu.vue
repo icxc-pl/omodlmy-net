@@ -32,12 +32,18 @@
             <li v-for="item in items"
                 role="menuitem"
                 :key="item.title">
-              <router-link
+              <router-link v-if="item.link"
                 :to="item.link"
                 @keypress.native="close"
                 @click.native="close">
                 <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
               </router-link>
+              <a v-else
+                :href="item.href"
+                rel="nooopener"
+                target="_blank">
+                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+              </a>
             </li>
           </ul>
         </div>
@@ -68,18 +74,25 @@
   const ITEMS = [
     {
       title: 'HOME_SCREEN',
-      link: '/',
-      icon: 'home'
+      icon: 'home',
+      link: '/'
     },
     {
       title: 'LIST_OF_INTENTIONS',
-      link: 'lista-intencji',
-      icon: 'list'
+      icon: 'list',
+      link: 'lista-intencji'
+
     },
     {
       title: 'SEND_INTENTION',
-      link: 'nadaj-intencje',
-      icon: 'feather'
+      icon: 'feather',
+      link: 'nadaj-intencje'
+
+    },
+    {
+      title: 'CONTACT',
+      icon: 'mail',
+      href: 'mailto:kontakt@icxc.pl?subject=' + window.encodeURIComponent('Kontakt z aplikacji Omódlmy.net')
     }
     // {
     //   title: 'INFORMATION',

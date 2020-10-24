@@ -3,6 +3,7 @@
     "AUTHOR": "Autor",
     "CAPTCHA_DESCRIPTION": "Obrazek przedstawiający zagadkę matematyczną",
     "CAPTCHA_TITLE": "Zagadka matematyczna",
+    "CONTACT": "Kontakt",
     "DATETIME": "%{date} o %{time}",
     "DAY_BEFORE_YESTERDAY": "przedwczoraj",
     "DAYS_N": [
