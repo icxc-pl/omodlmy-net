@@ -107,10 +107,14 @@
 
         this.loading = false;
 
+        // Mechanism to move back user's focus cursor in case one is using only keyboard
         if (this.focusOn !== null) {
           this.$nextTick(() => {
             const el = document.querySelector(`article.intention:nth-of-type(${this.focusOn}) button`);
-            el.focus();
+            if (el) {
+              el.focus();
+            }
+            this.focusOn = null;
           });
         }
       },
