@@ -102,6 +102,8 @@
       [5, null, "Maksymalna długość tekstu to %n znaków"]
     ],
     "SEND": "Wyślij",
+    "SHARE": "Podaj dalej",
+    "SHARE_THANK_YOU": "Dziękujemy za podanie dalej! :)",
     "SLOGAN": "Twoja modlitwa się liczy!",
     "TIME_AGO": "%{timeStr} temu",
     "WEEKS_N": [
