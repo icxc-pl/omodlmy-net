@@ -26,6 +26,15 @@ export default new Router({
       path: '/lista-intencji',
       name: 'list-intentions',
       component: ListIntentions
+    },
+    {
+      path: '/moje-intencje',
+      name: 'my-intentions',
+      component: ListIntentions,
+      props: {
+        apiMethod: 'getMyIntentions',
+        ariaLabel: 'LIST_OF_MY_INTENTIONS'
+      }
     }
     // {
     //   path: '/informacje',

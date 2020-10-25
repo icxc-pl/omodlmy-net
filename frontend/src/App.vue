@@ -25,6 +25,7 @@
 
       <!-- content slot -->
       <router-view
+        :key="$route.path"
         class="view-container"
         ref="container"
         role="main" />
