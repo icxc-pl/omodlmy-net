@@ -96,6 +96,11 @@
       icon: 'feather',
       link: 'nadaj-intencje'
     },
+    listOfMyIntentions: {
+      title: 'LIST_OF_MY_INTENTIONS',
+      icon: 'folder',
+      link: 'moje-intencje'
+    },
     contact: {
       title: 'CONTACT',
       icon: 'mail',
@@ -143,6 +148,7 @@
           ITEM.home,
           ITEM.listOfIntentions,
           ITEM.sendIntention,
+          ITEM.listOfMyIntentions
         ];
 
         if (this.isShareSupported) {

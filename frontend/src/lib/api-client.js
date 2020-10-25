@@ -53,6 +53,17 @@ function getIntentions (params) {
 }
 
 /**
+ * GET My Intentions
+ * @param params {Object}
+ * @returns {Object[]}
+ */
+function getMyIntentions (params) {
+  return client.get('/my-intentions', {
+    params
+  });
+}
+
+/**
  * POST Intention
  * @param data {(Object|null)}
  * @param params {Object}
@@ -103,6 +114,7 @@ export default {
 
   getHomeStats,
   getIntentions,
+  getMyIntentions,
   postIntention,
   postJoinPrayer,
   getXhrError
