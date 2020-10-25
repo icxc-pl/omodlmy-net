@@ -1,7 +1,7 @@
 <template>
   <div id="page-send-intention"
     ref="container"
-    :aria-label="i18n('LIST_OF_INTENTIONS')">
+    :aria-label="i18n(ariaLabel)">
 
     <!-- Error -->
     <p v-if="error">
@@ -60,6 +60,18 @@
       MugenScroll
     },
 
+    props: {
+      apiMethod: {
+        type: String,
+        default: 'getIntentions'
+      },
+
+      ariaLabel: {
+        type: String,
+        default: 'LIST_OF_INTENTIONS'
+      }
+    },
+
     data () {
       return {
         error: null,
@@ -83,7 +95,7 @@
         this.loading = true;
         var offset = this.items.length;
 
-        this.apiClient.getIntentions({
+        this.apiClient[this.apiMethod]({
           offset: offset,
           limit: FETCH_LIMIT
         }).then(this._whenFetchDataSuccess).catch(this._whenFetchDataFails);
