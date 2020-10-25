@@ -17,6 +17,7 @@ finka();
 Vue.config.productionTip = false;
 
 const env = {
+  dev: location.hostname === 'local.omodlmy.net',
   // eslint-disable-next-line no-undef
   url: `//${location.host}`,
   // eslint-disable-next-line no-undef
@@ -37,6 +38,14 @@ Vue.mixin({
       i18n,
       apiClient
     }
+  },
+
+  methods: {
+    log (...args) {
+      if (this.env.dev) {
+        console.log.apply(console, args);
+      }
+    }
   }
 });
 
@@ -49,7 +58,7 @@ new Vue({
 });
 
 
-if ('serviceWorker' in navigator) {
+if (!env.dev && typeof navigator.serviceWorker !== 'undefined') {
   navigator.serviceWorker.register('service-worker.js');
   navigator.serviceWorker.addEventListener('message', (event) => {
     if (event.data.msg === 'RELOAD') {

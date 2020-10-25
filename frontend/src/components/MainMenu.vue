@@ -32,18 +32,31 @@
             <li v-for="item in items"
                 role="menuitem"
                 :key="item.title">
+
+              <!-- normal link -->
               <router-link v-if="item.link"
                 :to="item.link"
                 @keypress.native="close"
                 @click.native="close">
                 <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
               </router-link>
-              <a v-else
+
+              <!-- href link -->
+              <a v-else-if="item.href"
                 :href="item.href"
                 rel="nooopener"
                 target="_blank">
                 <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
               </a>
+
+              <!-- method link -->
+              <a v-else-if="item.method"
+                href="#"
+                @keypress.stop.prevent="callMethod(item.method)"
+                @click.stop.prevent="callMethod(item.method)">
+                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+              </a>
+
             </li>
           </ul>
         </div>
@@ -67,39 +80,33 @@
    * @property {string} icon
    */
 
-  /**
-   * Items
-   * @type {MenuItem[]}
-   */
-  const ITEMS = [
-    {
+  const ITEM = {
+    home: {
       title: 'HOME_SCREEN',
       icon: 'home',
       link: '/'
     },
-    {
+    listOfIntentions: {
       title: 'LIST_OF_INTENTIONS',
       icon: 'list',
       link: 'lista-intencji'
-
     },
-    {
+    sendIntention: {
       title: 'SEND_INTENTION',
       icon: 'feather',
       link: 'nadaj-intencje'
-
     },
-    {
+    contact: {
       title: 'CONTACT',
       icon: 'mail',
       href: 'mailto:kontakt@icxc.pl?subject=' + window.encodeURIComponent('Kontakt z aplikacji Omódlmy.net')
+    },
+    share: {
+      title: 'SHARE',
+      icon: 'share',
+      method: 'share'
     }
-    // {
-    //   title: 'INFORMATION',
-    //   link: 'informacje',
-    //   icon: 'help-circled'
-    // }
-  ];
+  };
 
   export default {
     name: 'main-menu',
@@ -109,7 +116,8 @@
         mode: undefined,
         opened: false,
         triggerShadow: false,
-        items: ITEMS
+
+        isShareSupported: typeof navigator.share === 'function'
       };
     },
 
@@ -124,10 +132,38 @@
 
       isOpened () {
         return this.isModeDesktop || this.opened;
+      },
+
+      items () {
+        /**
+         * Items
+         * @type {MenuItem[]}
+         */
+        const items = [
+          ITEM.home,
+          ITEM.listOfIntentions,
+          ITEM.sendIntention,
+        ];
+
+        if (this.isShareSupported) {
+          items.push(ITEM.share);
+        }
+
+        items.push(ITEM.contact);
+
+        return items;
       }
     },
 
     methods: {
+
+      callMethod (method) {
+        if (typeof this[method] === 'function') {
+          this[method]();
+        } else {
+          this.log(`Method ${method} does not exist`);
+        }
+      },
 
       checkWindowSize () {
         this.mode = window.innerWidth < 1200 ? 'mobile' : 'desktop';
@@ -155,6 +191,21 @@
 
       enableShadow () {
         this.triggerShadow = true;
+      },
+
+      share () {
+        navigator.share({
+          title: document.title,
+          text: document.head.querySelector('meta[name="Description"]').getAttribute('content'),
+          url: location.origin
+        }).then(() => {
+          this.$tostini({
+            message: this.i18n('SHARE_THANK_YOU'),
+            type: 'success'
+          });
+        }).catch(() => {
+          this.log('Something went wrong with sharing');
+        });
       }
     },
 
