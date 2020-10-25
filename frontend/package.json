@@ -1,11 +1,10 @@
 {
   "name": "@icxc/omodlmy-net-frontend",
-  "version": "2.2.0",
   "description": "Frontend dla Omódlmy.net",
   "license": "AGPL-3.0-or-later",
   "private": true,
   "author": "Marek Sierociński <mareksierocinski@gmail.com>",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "build:prod": "NODE_ENV=production webpack --progress --config .webpack/build.config.js",
     "build:staging": "webpack --progress --config .webpack/build.config.js",
