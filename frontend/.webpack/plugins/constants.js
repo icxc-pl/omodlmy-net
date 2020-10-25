@@ -1,5 +1,5 @@
 const { DefinePlugin } = require('webpack');
-const $package = require('../../../package.json');
+const $package = require('../../package.json');
 
 // https://github.com/webpack/webpack/issues/237#issuecomment-40398916
 module.exports = new DefinePlugin({

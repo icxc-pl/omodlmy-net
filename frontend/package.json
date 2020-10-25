@@ -1,5 +1,6 @@
 {
   "name": "@icxc/omodlmy-net-frontend",
+  "version": "2.3.2",
   "description": "Frontend dla Omódlmy.net",
   "license": "AGPL-3.0-or-later",
   "private": true,
