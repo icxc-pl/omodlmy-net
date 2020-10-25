@@ -12,7 +12,7 @@ class WatchConfig extends WebpackConfig {
     this._devtool = 'cheap-source-map';
 
     this._devServer = {
-      host: 'local.omodlmy.net',
+      host: '0.0.0.0',
       port: 8000,
       https: {
         key: fs.readFileSync(path.join(certDir, 'local.omodlmy.net.key')),
