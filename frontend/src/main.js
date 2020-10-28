@@ -9,20 +9,13 @@ import App from './App';
 import router from './router';
 
 import apiClient from './lib/api-client';
+import env from './lib/env';
 import i18n from './lib/i18n';
 
 finka();
 
 // Config
 Vue.config.productionTip = false;
-
-const env = {
-  dev: location.hostname === 'local.omodlmy.net',
-  // eslint-disable-next-line no-undef
-  url: `//${location.host}`,
-  // eslint-disable-next-line no-undef
-  version: `${__version}`
-};
 
 apiClient.setupClient(env.url);
 

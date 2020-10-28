@@ -73,6 +73,8 @@
 </template>
 
 <script>
+  import { getTutorial } from 'Lib/platforms';
+
   /**
    * @typedef {Object} MenuItem
    * @property {string} title
@@ -110,8 +112,14 @@
       title: 'SHARE',
       icon: 'share',
       method: 'share'
+    },
+    install: {
+      title: 'INSTALL',
+      icon: 'install',
+      method: 'install'
     }
   };
+
 
   export default {
     name: 'main-menu',
@@ -120,9 +128,7 @@
       return {
         mode: undefined,
         opened: false,
-        triggerShadow: false,
-
-        isShareSupported: typeof navigator.share === 'function'
+        triggerShadow: false
       };
     },
 
@@ -151,7 +157,11 @@
           ITEM.listOfMyIntentions
         ];
 
-        if (this.isShareSupported) {
+        if (this.env.isPlatformSupported && !this.env.isAppInstalled) {
+          items.push(ITEM.install);
+        }
+
+        if (this.env.isShareSupported) {
           items.push(ITEM.share);
         }
 
@@ -212,6 +222,11 @@
         }).catch(() => {
           this.log('Something went wrong with sharing');
         });
+      },
+
+      install () {
+        const tutorialId = getTutorial();
+        window.open(`https://www.youtube.com/watch?v=${tutorialId}`, '_blank');
       }
     },
 

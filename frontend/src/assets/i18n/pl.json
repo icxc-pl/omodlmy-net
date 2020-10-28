@@ -35,6 +35,7 @@
     "INPUT_PLACEHOLDER_AUTHOR": "Tutaj wpisz autora intencji (opcjonalne)",
     "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
     "INPUT_PLACEHOLDER_CONTENT": "Tutaj wpisz intencję - treść powinna mieć od %{min} do %{max} znaków",
+    "INSTALL": "Zainstaluj",
     "INFORMATION": "Informacje i pomoc",
     "INTENTION": "Intencja",
     "INTENTION_AUTHOR": "Autor intencji (opcjonalne)",
