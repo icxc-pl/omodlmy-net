@@ -31,7 +31,10 @@
         <button :class="['pray-button', { joining }]"
             :aria-label="i18n('JOIN_PRAYER_BUTTON')"
             @click="joinPrayer">
-          {{ i18n('IAM_PRAYING') }} <i class="icon-heart-cross" aria-hidden="true"></i>
+          {{ i18n('IAM_PRAYING') }}
+          <i class="icon-heart-cross"
+              role="img"
+              :aria-label="i18n('ICON_LABEL_HEART_CROSS')"></i>
         </button>
       </template>
 

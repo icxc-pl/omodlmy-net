@@ -7,7 +7,10 @@
            :aria-label="i18n('MENU_OPEN')"
            aria-expanded="false"
            @click="open">
-          <i class="icon-menu" aria-hidden="true"></i> {{ i18n('MENU') }}
+          <i class="icon-menu"
+            role="img"
+            :aria-label="i18n('ICON_LABEL_MENU')"></i>
+          {{ i18n('MENU') }}
       </button>
 
       <template v-else>
@@ -18,7 +21,10 @@
             :aria-label="i18n('MENU_CLOSE')"
             aria-expanded="true"
             @click="close">
-            <i class="icon-cancel" aria-hidden="true"></i> {{ i18n('MENU_CLOSE') }}
+            <i class="icon-cancel"
+              role="img"
+              :aria-label="i18n('ICON_LABEL_CANCEL')"></i>
+            {{ i18n('MENU_CLOSE') }}
         </button>
 
         <!-- main menu banner -->
@@ -38,7 +44,10 @@
                 :to="item.link"
                 @keypress.native="close"
                 @click.native="close">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </router-link>
 
               <!-- href link -->
@@ -46,7 +55,10 @@
                 :href="item.href"
                 rel="nooopener"
                 target="_blank">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </a>
 
               <!-- method link -->
@@ -54,7 +66,10 @@
                 href="#"
                 @keypress.stop.prevent="callMethod(item.method)"
                 @click.stop.prevent="callMethod(item.method)">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </a>
 
             </li>
@@ -73,6 +88,8 @@
 </template>
 
 <script>
+  import { getTutorial } from 'Lib/platforms';
+
   /**
    * @typedef {Object} MenuItem
    * @property {string} title
@@ -110,8 +127,14 @@
       title: 'SHARE',
       icon: 'share',
       method: 'share'
+    },
+    install: {
+      title: 'INSTALL',
+      icon: 'install',
+      method: 'install'
     }
   };
+
 
   export default {
     name: 'main-menu',
@@ -120,9 +143,7 @@
       return {
         mode: undefined,
         opened: false,
-        triggerShadow: false,
-
-        isShareSupported: typeof navigator.share === 'function'
+        triggerShadow: false
       };
     },
 
@@ -151,11 +172,13 @@
           ITEM.listOfMyIntentions
         ];
 
-        if (this.isShareSupported) {
-          items.push(ITEM.share);
+        if (this.env.isPlatformSupported && !this.env.isAppInstalled) {
+          items.push(ITEM.install);
         }
 
-        items.push(ITEM.contact);
+        if (this.env.isShareSupported) {
+          items.push(ITEM.share);
+        }
 
         return items;
       }
@@ -199,6 +222,10 @@
         this.triggerShadow = true;
       },
 
+      getLabel (item) {
+        return i18n('ICON_LABEL_' + item.icon.toUpperCase().replace('-', '_'));
+      },
+
       share () {
         navigator.share({
           title: document.title,
@@ -212,6 +239,11 @@
         }).catch(() => {
           this.log('Something went wrong with sharing');
         });
+      },
+
+      install () {
+        const tutorialId = getTutorial();
+        window.open(`https://www.youtube.com/watch?v=${tutorialId}`, '_blank');
       }
     },
 
@@ -227,15 +259,15 @@
   @import '~Stylesheets/mixins/background';
   @import '~Stylesheets/mixins/responsiveness';
 
-  nav.main-menu {
+  .main-menu {
     background: white;
     height: 2.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
     position: relative;
     z-index: 1;
 
-    .main-menu-trigger {
+    &-trigger {
       position: relative;
       z-index: 1;
       display: block;
@@ -271,11 +303,11 @@
       }
     }
 
-    .main-menu-banner {
+    &-banner {
       background: white url('~Img/main-menu-banner.jpg') center center no-repeat;
       background-size: cover;
       text-align: center;
-      height: 10rem;
+      height: 25vh;
       border-bottom: 0.5rem solid white;
     }
 
@@ -293,7 +325,7 @@
           color: white;
           text-decoration: none;
           display: block;
-          padding: 1rem 0.5rem;
+          padding: 0.9rem 0.5rem;
           user-select: none;
           background-color: transparent;
           outline: 1px solid transparent;
@@ -345,7 +377,7 @@
       left: 0;
       width: calc(~'100% - 2rem');
       text-align: center;
-      padding: 1rem;
+      padding: 0.9rem;
       color: @half-white;
       font-size: 0.8em;
 

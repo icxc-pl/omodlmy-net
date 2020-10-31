@@ -2,9 +2,12 @@
   <div id="app" role="presentation">
 
     <!-- no cookies info -->
-    <info-block v-if="noCookies"
+    <info-block v-if="cookies.disabled"
       title="NO_COOKIES"
       info="NO_COOKIES_INFO"></info-block>
+
+    <!-- welcome page -->
+    <welcome v-else-if="!cookies.accepted"></welcome>
 
     <!-- checking screen -->
     <div v-else-if="checking"
@@ -39,7 +42,9 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie';
   import MainMenu from 'Components/MainMenu';
+  import Welcome from 'Components/Welcome';
   import InfoBlock from 'Components/InfoBlock';
   import 'Stylesheets/index.less';
 
@@ -48,6 +53,7 @@
 
     components: {
       MainMenu,
+      Welcome,
       InfoBlock
     },
 
@@ -57,7 +63,11 @@
 
         error: null,
         offline: false,
-        noCookies: !navigator.cookieEnabled
+
+        cookies: {
+          disabled: !navigator.cookieEnabled,
+          accepted: Cookies.get('accepted') === 'true'
+        }
       }
     },
 

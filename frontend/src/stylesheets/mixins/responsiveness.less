@@ -1,7 +1,28 @@
+@tier-xs: 320px;
 @tier-s: 768px;
 @tier-m: 992px;
 @tier-l: 1200px;
 @tier-xl: 1600px;
+
+// -xs
+
+.rwd-min-for-xs(@rules) {
+  @media (min-width: @tier-xs) {
+    @rules();
+  }
+}
+
+.rwd-max-for-xs(@rules) {
+  @media (max-width: calc(@tier-xs - 1px)) {
+    @rules();
+  }
+}
+
+.rwd-for-xs(@rules) {
+  @media (min-width: @tier-xs) and (max-width: calc(@tier-s - 1px)) {
+    @rules();
+  }
+}
 
 // -s
 

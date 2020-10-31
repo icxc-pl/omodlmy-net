@@ -16,14 +16,18 @@
       <!-- Dołączam! -->
       <router-link to="lista-intencji"
                    class="btn btn-round">
-        <i class="icon-heart-cross" aria-hidden="true"></i>
+        <i class="icon-heart-cross"
+          role="img"
+          :aria-label="i18n('ICON_LABEL_HEART_CROSS')"></i>
         <span>{{ i18n('IAM_PRAYING') }}</span>
       </router-link>
 
       <!-- Nadaj intencję -->
       <router-link to="nadaj-intencje"
                    class="btn">
-        <i class="icon-feather" aria-hidden="true"></i>
+        <i class="icon-feather"
+          role="img"
+          :aria-label="i18n('ICON_LABEL_FEATHER')"></i>
         <span>{{ i18n('SEND_INTENTION') }}</span>
       </router-link>
 
@@ -65,6 +69,7 @@
 </script>
 
 <style lang="less" scoped>
+  @import '~Stylesheets/mixins/responsiveness';
 
   #page-home {
 
@@ -125,6 +130,34 @@
         }
       }
     }
+
+    .rwd-max-for-xs({
+      .encourage {
+        font-size: 0.9em;
+      }
+
+      .btn {
+        &.btn-round {
+          width: 8rem;
+          height: 8rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          font-weight: bold;
+          font-size: 1rem;
+
+          i[class^="icon"] {
+            display: block;
+            margin-top: 1.8rem;
+            font-size: 3.5rem;
+
+            &::before {
+              width: 1.23em;
+              margin: 0;
+            }
+          }
+        }
+      }
+    });
 
   }
 </style>
