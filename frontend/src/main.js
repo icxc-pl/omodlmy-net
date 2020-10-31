@@ -50,7 +50,6 @@ new Vue({
   components: { App }
 });
 
-
 if (!env.dev && typeof navigator.serviceWorker !== 'undefined') {
   navigator.serviceWorker.register('service-worker.js');
   navigator.serviceWorker.addEventListener('message', (event) => {

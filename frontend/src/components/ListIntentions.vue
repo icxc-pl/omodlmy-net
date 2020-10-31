@@ -167,7 +167,7 @@
 
 <style lang="less" scoped>
   p {
-    margin: 1rem;
+    margin: 0.9rem;
     text-align: center;
   }
 </style>

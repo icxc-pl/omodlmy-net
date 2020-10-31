@@ -165,8 +165,6 @@
           items.push(ITEM.share);
         }
 
-        items.push(ITEM.contact);
-
         return items;
       }
     },
@@ -242,15 +240,15 @@
   @import '~Stylesheets/mixins/background';
   @import '~Stylesheets/mixins/responsiveness';
 
-  nav.main-menu {
+  .main-menu {
     background: white;
     height: 2.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
     position: relative;
     z-index: 1;
 
-    .main-menu-trigger {
+    &-trigger {
       position: relative;
       z-index: 1;
       display: block;
@@ -286,11 +284,11 @@
       }
     }
 
-    .main-menu-banner {
+    &-banner {
       background: white url('~Img/main-menu-banner.jpg') center center no-repeat;
       background-size: cover;
       text-align: center;
-      height: 10rem;
+      height: 25vh;
       border-bottom: 0.5rem solid white;
     }
 
@@ -308,7 +306,7 @@
           color: white;
           text-decoration: none;
           display: block;
-          padding: 1rem 0.5rem;
+          padding: 0.9rem 0.5rem;
           user-select: none;
           background-color: transparent;
           outline: 1px solid transparent;
@@ -360,7 +358,7 @@
       left: 0;
       width: calc(~'100% - 2rem');
       text-align: center;
-      padding: 1rem;
+      padding: 0.9rem;
       color: @half-white;
       font-size: 0.8em;
 

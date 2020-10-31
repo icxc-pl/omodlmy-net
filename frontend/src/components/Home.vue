@@ -65,6 +65,7 @@
 </script>
 
 <style lang="less" scoped>
+  @import '~Stylesheets/mixins/responsiveness';
 
   #page-home {
 
@@ -125,6 +126,34 @@
         }
       }
     }
+
+    .rwd-max-for-xs({
+      .encourage {
+        font-size: 0.9em;
+      }
+
+      .btn {
+        &.btn-round {
+          width: 8rem;
+          height: 8rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+          font-weight: bold;
+          font-size: 1rem;
+
+          i[class^="icon"] {
+            display: block;
+            margin-top: 1.8rem;
+            font-size: 3.5rem;
+
+            &::before {
+              width: 1.23em;
+              margin: 0;
+            }
+          }
+        }
+      }
+    });
 
   }
 </style>
