@@ -20,7 +20,7 @@ module.exports = new FaviconsWebpackPlugin({
     theme_color: '#ffffff',
     display: 'standalone',
     orientation: 'portrait',
-    start_url: '/',
+    start_url: '/?pwa',
     version: $package.version
   }
 });
