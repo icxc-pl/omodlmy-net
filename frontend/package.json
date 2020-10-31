@@ -13,6 +13,7 @@
     "lint": "eslint . && lesshint src/stylesheets"
   },
   "dependencies": {
+    "js-cookie": "^2.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
