@@ -16,14 +16,18 @@
       <!-- Dołączam! -->
       <router-link to="lista-intencji"
                    class="btn btn-round">
-        <i class="icon-heart-cross" aria-hidden="true"></i>
+        <i class="icon-heart-cross"
+          role="img"
+          :aria-label="i18n('ICON_LABEL_HEART_CROSS')"></i>
         <span>{{ i18n('IAM_PRAYING') }}</span>
       </router-link>
 
       <!-- Nadaj intencję -->
       <router-link to="nadaj-intencje"
                    class="btn">
-        <i class="icon-feather" aria-hidden="true"></i>
+        <i class="icon-feather"
+          role="img"
+          :aria-label="i18n('ICON_LABEL_FEATHER')"></i>
         <span>{{ i18n('SEND_INTENTION') }}</span>
       </router-link>
 

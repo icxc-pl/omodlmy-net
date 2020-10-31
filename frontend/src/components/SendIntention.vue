@@ -58,7 +58,9 @@
               :class="['btn', { working }]"
               @submit.stop.prevent="submit"
               @click.stop.prevent="submit">
-        <i class="icon-mail" aria-hidden="true"></i> {{ i18n('SEND') }}
+        <i class="icon-mail"
+          role="img"
+          :aria-label="i18n('ICON_LABEL_MAIL')"></i> {{ i18n('SEND') }}
       </button>
     </div>
   </form>

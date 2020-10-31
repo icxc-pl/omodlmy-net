@@ -7,7 +7,10 @@
            :aria-label="i18n('MENU_OPEN')"
            aria-expanded="false"
            @click="open">
-          <i class="icon-menu" aria-hidden="true"></i> {{ i18n('MENU') }}
+          <i class="icon-menu"
+            role="img"
+            :aria-label="i18n('ICON_LABEL_MENU')"></i>
+          {{ i18n('MENU') }}
       </button>
 
       <template v-else>
@@ -18,7 +21,10 @@
             :aria-label="i18n('MENU_CLOSE')"
             aria-expanded="true"
             @click="close">
-            <i class="icon-cancel" aria-hidden="true"></i> {{ i18n('MENU_CLOSE') }}
+            <i class="icon-cancel"
+              role="img"
+              :aria-label="i18n('ICON_LABEL_CANCEL')"></i>
+            {{ i18n('MENU_CLOSE') }}
         </button>
 
         <!-- main menu banner -->
@@ -38,7 +44,10 @@
                 :to="item.link"
                 @keypress.native="close"
                 @click.native="close">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </router-link>
 
               <!-- href link -->
@@ -46,7 +55,10 @@
                 :href="item.href"
                 rel="nooopener"
                 target="_blank">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </a>
 
               <!-- method link -->
@@ -54,7 +66,10 @@
                 href="#"
                 @keypress.stop.prevent="callMethod(item.method)"
                 @click.stop.prevent="callMethod(item.method)">
-                <i :class="[ 'icon-' + item.icon ]" aria-hidden="true"></i> {{ i18n(item.title) }}
+                <i :class="[ 'icon-' + item.icon ]"
+                  role="img"
+                  :aria-label="getLabel(item)"></i>
+                {{ i18n(item.title) }}
               </a>
 
             </li>
@@ -205,6 +220,10 @@
 
       enableShadow () {
         this.triggerShadow = true;
+      },
+
+      getLabel (item) {
+        return i18n('ICON_LABEL_' + item.icon.toUpperCase().replace('-', '_'));
       },
 
       share () {
