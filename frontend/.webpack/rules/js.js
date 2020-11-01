@@ -9,7 +9,7 @@ rule.use('babel-loader', {
     [
       require.resolve('@babel/preset-env'),
       {
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry',
         corejs: {
           version: 3
         },
