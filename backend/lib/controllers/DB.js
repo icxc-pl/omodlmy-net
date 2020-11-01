@@ -82,7 +82,11 @@ class DBController {
    * @returns {Promise}
    */
   getIntentions(offset, limit, findParams = undefined) {
-    return this.getCollectionIntentions().find(findParams).skip(offset).limit(limit).sort(SORT_PARAM).toArray();
+    return this.getCollectionIntentions().find(findParams, {
+      projection: {
+        authorId: false
+      }
+    }).skip(offset).limit(limit).sort(SORT_PARAM).toArray();
   }
 
   /**
