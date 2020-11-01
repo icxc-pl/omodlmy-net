@@ -123,6 +123,7 @@ class SessionController {
   markJoined(session, intentions) {
     for (const intention of intentions) {
       intention.joined = this.hasJoined(session, intention._id.toString());
+      delete intention._id;
     }
     return intentions;
   }
