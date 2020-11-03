@@ -1,6 +1,13 @@
 <template>
-  <article class="intention"
+  <article :class="['intention', { 'mine': intention.mine }]"
     :aria-label="i18n('INTENTION')">
+
+    <div v-if="intention.mine" class="intention-badge intention-badge-mine">
+      <i class="icon-folder"
+        role="img"
+        :aria-label="i18n('ICON_LABEL_FOLDER')"></i>
+      {{ i18n('MINE_INTENTION') }}
+    </div>
 
     <!-- Content -->
     <p class="intention-content"

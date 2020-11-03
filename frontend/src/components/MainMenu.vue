@@ -180,6 +180,8 @@
           items.push(ITEM.share);
         }
 
+        items.push(ITEM.contact);
+
         return items;
       }
     },
