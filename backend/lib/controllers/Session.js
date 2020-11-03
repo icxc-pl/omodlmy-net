@@ -59,6 +59,15 @@ class SessionController {
   }
 
   /**
+   * Get Intention Id
+   * @private
+   * @param {Intention} intention
+   */
+  _getIntentionId(intention) {
+    return this.dbController.getDriver().getDBRef(intention._id);
+  }
+
+  /**
    * Returns true if given session is valid
    *
    * @param {object} session Session from Express Request object
@@ -79,9 +88,20 @@ class SessionController {
       session.intentions = [];
     }
 
-    session.intentions.push(
-      this.dbController.getDriver().getDBRef(intention._id)
-    );
+    session.intentions.push(this._getIntentionId(intention));
+  }
+
+  /**
+   * Returns true if Intention with given intentionId is session's user
+   *
+   * @param {object} session Session from Express Request object
+   * @param {string} intentionId Intention Id
+   * @returns {boolean} Verdict
+   */
+  isMine(session, intentionId) {
+    return session != null
+      && Array.isArray(session.intentions)
+      && session.intentions.some((ref) => ref.oid.toString() === intentionId);
   }
 
   /**
@@ -95,9 +115,7 @@ class SessionController {
       session.joined = [];
     }
 
-    session.joined.push(
-      this.dbController.getDriver().getDBRef(intention._id)
-    );
+    session.joined.push(this._getIntentionId(intention));
   }
 
   /**
@@ -111,21 +129,6 @@ class SessionController {
     return session != null
       && Array.isArray(session.joined)
       && session.joined.some((ref) => ref.oid.toString() === intentionId);
-  }
-
-  /**
-   * Mark which intentions has been joined already
-   *
-   * @param {object} session Session from Express Request object
-   * @param {Array<Object>} intentions Array of intentions
-   * @returns {Array<Object>} Array of intentions
-   */
-  markJoined(session, intentions) {
-    for (const intention of intentions) {
-      intention.joined = this.hasJoined(session, intention._id.toString());
-      delete intention._id;
-    }
-    return intentions;
   }
 
 }

@@ -42,7 +42,14 @@ class IntentionsController {
     }
 
     const intentions = await this.dbController.getIntentions(query.offset, query.limit, findParams);
-    return await this.sessionController.markJoined(session, intentions);
+
+    for (const intention of intentions) {
+      const intentionId = intention._id.toString();
+      intention.joined = this.sessionController.hasJoined(session, intentionId);
+      intention.mine = this.sessionController.isMine(session, intentionId);
+    }
+
+    return intentions;
   }
 
   /**
