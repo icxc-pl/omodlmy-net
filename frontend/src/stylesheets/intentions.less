@@ -8,6 +8,7 @@
 
   .intention {
     display: block;
+    position: relative;
     width: calc(100vw - 1.5rem);
     padding-top: 0.75rem;
     text-align: left;
@@ -119,6 +120,19 @@
             background-size: 33%;
           }
         }
+      }
+    }
+
+    &-badge {
+      position: absolute;
+      right: 0;
+      font-size: 0.6em;
+      color: @old-gold;
+    }
+
+    &.mine {
+      .intention-footer {
+        background: @pearly-beige;
       }
     }
 

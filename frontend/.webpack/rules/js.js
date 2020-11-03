@@ -9,19 +9,10 @@ rule.use('babel-loader', {
     [
       require.resolve('@babel/preset-env'),
       {
-        useBuiltIns: 'entry',
+        useBuiltIns: 'usage',
         corejs: {
           version: 3
-        },
-        modules: 'cjs'
-      }
-    ]
-  ],
-  plugins: [
-    [
-      require.resolve('@babel/plugin-transform-runtime'),
-      {
-        corejs: 3
+        }
       }
     ]
   ]

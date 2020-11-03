@@ -1,6 +1,6 @@
 {
   "name": "@icxc/omodlmy-net-frontend",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "description": "Frontend dla Omódlmy.net",
   "license": "AGPL-3.0-or-later",
   "private": true,
@@ -12,14 +12,9 @@
     "watch": "webpack-dev-server --config .webpack/watch.config.js",
     "lint": "eslint . && lesshint src/stylesheets"
   },
-  "dependencies": {
-    "js-cookie": "^2.2.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.9.6",
-    "@babel/runtime-corejs3": "^7.11.2",
     "@bitbar/finka": "^2.1.0",
     "@smartbear/browser-info": "^1.4.1",
     "ajv": "^6.12.6",
@@ -35,11 +30,11 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "image-webpack-loader": "^7.0.1",
+    "js-cookie": "^2.2.1",
     "less": "^3.11.1",
     "less-loader": "^7.0.2",
     "lesshint": "^6.3.7",
     "normalize.css": "^8.0.1",
-    "regenerator-runtime": "^0.13.7",
     "roddeh-i18n": "^1.2.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.0",
