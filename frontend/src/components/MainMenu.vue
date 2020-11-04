@@ -35,13 +35,14 @@
         <!-- main menu container -->
         <div class="main-menu-container">
           <ul role="menu" :aria-label="i18n('MENU_ELEMENTS')">
-            <li v-for="item in items"
+            <li v-for="item in mainItems"
                 role="menuitem"
                 :key="item.title">
 
               <!-- normal link -->
               <router-link v-if="item.link"
                 :to="item.link"
+                :title="i18n(item.title)"
                 @keypress.native="close"
                 @click.native="close">
                 <i :class="[ 'icon-' + item.icon ]"
@@ -53,6 +54,7 @@
               <!-- href link -->
               <a v-else-if="item.href"
                 :href="item.href"
+                :title="i18n(item.title)"
                 rel="nooopener"
                 target="_blank">
                 <i :class="[ 'icon-' + item.icon ]"
@@ -64,6 +66,7 @@
               <!-- method link -->
               <a v-else-if="item.method"
                 href="#"
+                :title="i18n(item.title)"
                 @keypress.stop.prevent="callMethod(item.method)"
                 @click.stop.prevent="callMethod(item.method)">
                 <i :class="[ 'icon-' + item.icon ]"
@@ -77,9 +80,24 @@
         </div>
 
         <footer role="contentinfo" :aria-label="i18n('FOOTER')">
-          <a href="https://github.com/icxc-pl/omodlmy-net/"
-            :aria-label="i18n('LINK_TO_REPO')"
-            target="_blank">Omódlmy Net v{{ env.version }}</a>
+          <a v-for="item in footerItems"
+            :key="item.title"
+            :href="item.href"
+            :title="i18n(item.title)"
+            :aria-label="getLinkToLabel(item)"
+            rel="nooopener"
+            target="_blank">
+            <i :class="[ 'icon-' + item.icon ]"
+              role="img"
+              :aria-label="getLabel(item)"></i>
+          </a>
+
+          <!-- space -->
+          <div></div>
+
+          <!-- wersja -->
+          <span :title="i18n('VERSION_X', { x: env.version })"
+            :aria-label="i18n('VERSION_X', { x: env.version })">v{{ env.version }}</span>
         </footer>
 
       </template>
@@ -118,11 +136,6 @@
       icon: 'folder',
       link: 'moje-intencje'
     },
-    contact: {
-      title: 'CONTACT',
-      icon: 'mail',
-      href: 'mailto:kontakt@icxc.pl?subject=' + window.encodeURIComponent('Kontakt z aplikacji Omódlmy.net')
-    },
     share: {
       title: 'SHARE',
       icon: 'share',
@@ -132,6 +145,27 @@
       title: 'INSTALL',
       icon: 'install',
       method: 'install'
+    },
+
+    contact: {
+      title: 'CONTACT',
+      icon: 'mail',
+      href: 'mailto:kontakt@icxc.pl?subject=' + window.encodeURIComponent('Kontakt z aplikacji Omódlmy.net')
+    },
+    facebook: {
+      title: 'FACEBOOK_PAGE',
+      icon: 'facebook',
+      href: 'https://www.facebook.com/omodlmy.net/'
+    },
+    youtube: {
+      title: 'YOUTUBE_CHANNEL',
+      icon: 'youtube',
+      href: 'https://www.youtube.com/channel/UClNUVDh4x_SrUGPrpSGKrpw'
+    },
+    github: {
+      title: 'GITHUB_REPO',
+      icon: 'github',
+      href: 'https://github.com/icxc-pl/omodlmy-net/'
     }
   };
 
@@ -143,7 +177,14 @@
       return {
         mode: undefined,
         opened: false,
-        triggerShadow: false
+        triggerShadow: false,
+
+        footerItems: [
+          ITEM.contact,
+          ITEM.facebook,
+          ITEM.youtube,
+          ITEM.github
+        ]
       };
     },
 
@@ -160,7 +201,7 @@
         return this.isModeDesktop || this.opened;
       },
 
-      items () {
+      mainItems () {
         /**
          * Items
          * @type {MenuItem[]}
@@ -179,8 +220,6 @@
         if (this.env.isShareSupported) {
           items.push(ITEM.share);
         }
-
-        items.push(ITEM.contact);
 
         return items;
       }
@@ -226,6 +265,10 @@
 
       getLabel (item) {
         return i18n('ICON_LABEL_' + item.icon.toUpperCase().replace('-', '_'));
+      },
+
+      getLinkToLabel (item) {
+        return i18n('LINK_TO') + ' ' + i18n(item.title);
       },
 
       share () {
@@ -377,15 +420,20 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: calc(~'100% - 2rem');
+      width: 100%;
+      height: 40px;
+      display: flex;
       text-align: center;
-      padding: 0.9rem;
       color: @half-white;
-      font-size: 0.8em;
+      line-height: 40px;
+      background: @shadow;
+      box-shadow: 0 3px 6px @shadow inset;
 
       a {
         color: @half-white;
         text-decoration: none;
+        flex: 0 0 40px;
+        height: 40px;
 
         &:hover,
         &:focus {
@@ -399,6 +447,15 @@
         &:active {
           outline: none !important;
         }
+      }
+
+      span {
+        font-size: 0.8em;
+        padding: 0 0.9rem;
+      }
+
+      div {
+        flex: 1;
       }
     }
   }

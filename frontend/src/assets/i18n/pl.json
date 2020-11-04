@@ -20,7 +20,9 @@
     "ERROR_INVALID_PATTERN_CONTENT" : "W polu Treść możesz użyć tylko liter, znaków interpunkcyjnych i niektórych emoji",
     "ERROR_NETWORK_UNKNOWN": "Nieznany błąd. Sprawdź połączenie lub spróbuj ponownie później.",
     "ERROR_UNKNOWN": "Nieznany błąd. Odśwież aplikację lub spróbuj ponownie.",
+    "FACEBOOK_PAGE": "Strona Facebook",
     "FOOTER": "Stopka",
+    "GITHUB_REPO": "Repozytorium GitHub",
     "SEND_INTENTION": "Nadaj intencję",
     "SEND_INTENTION_FORM": "Formularz nadawania intencji",
     "HOME_SCREEN": "Start",
@@ -32,8 +34,10 @@
     ],
     "IAM_PRAYING": "Modlę się",
     "ICON_LABEL_CANCEL": "Ikonka przedstawiająca duży X",
+    "ICON_LABEL_FACEBOOK": "Ikonka przedstawiająca logo Facebook",
     "ICON_LABEL_FEATHER": "Ikonka przedstawiająca piszące gęsie pióro",
     "ICON_LABEL_FOLDER": "Ikonka przedstawiająca otwartą papierową teczkę",
+    "ICON_LABEL_GITHUB": "Ikonka przedstawiająca logo GitHub",
     "ICON_LABEL_HEART_CROSS": "Ikonka przedstawiająca krzyż na sercu",
     "ICON_LABEL_HOME": "Ikonka przedstawiająca domek",
     "ICON_LABEL_INSTALL": "Ikonka przedstawiająca prostopadłościan (dysk twardy) i skierowaną w dół strzałkę, symbolizującą ściąganie danych",
@@ -41,6 +45,7 @@
     "ICON_LABEL_MAIL": "Ikonka przedstawiająca list",
     "ICON_LABEL_MENU": "Ikonka przedstawiająca trzy poziome prostopadłe kreski",
     "ICON_LABEL_SHARE": "Ikonka przedstawiająca kropkę, która rozwidla się na dwie inne",
+    "ICON_LABEL_YOUTUBE": "Ikonka przedstawiająca logo YouTube",
     "IMAGE_DESCRIPTION_PRAYING_WOMAN": "Obrazek przedstawiający złożone do modlitwy kobiece dłonie",
     "INPUT_PLACEHOLDER_AUTHOR": "Tutaj wpisz autora intencji (opcjonalne)",
     "INPUT_PLACEHOLDER_CAPTCHA": "Wpisz wynik równania",
@@ -53,7 +58,7 @@
     "INTENTION_SENT": "Twoja intencja została dodana",
     "JOIN": "Dołączam",
     "JOIN_PRAYER_BUTTON": "Kliknij tutaj, aby dołączyć do modlitwy w tej intencji",
-    "LINK_TO_REPO": "Link do repozytorium na GitHub",
+    "LINK_TO": "Link do",
     "LIST_OF_INTENTIONS": "Lista intencji",
     "LIST_OF_MY_INTENTIONS": "Lista moich intencji",
     "LOADING_CONTENT": "Ładowanie treści, proszę czekać...",
@@ -125,11 +130,13 @@
         [5, null, "%n tygodni"]
     ],
     "WHO_JOINED": "Kto dołączył",
+    "VERSION_X": "Wersja %{x}",
     "YEARS_N": [
         [1, 1, "rok"],
         [2, 4, "%n lata"],
         [5, null, "%n lat"]
     ],
-    "YESTERDAY": "wczoraj"
+    "YESTERDAY": "wczoraj",
+    "YOUTUBE_CHANNEL": "Kanał YouTube"
   }
 }
