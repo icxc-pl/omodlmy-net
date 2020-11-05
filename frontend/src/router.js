@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Components
-import Home from './components/Home'
-import SendIntention from './components/SendIntention'
-import ListIntentions from './components/ListIntentions'
+import Home from './components/pages/Home'
+import SendIntention from './components/pages/SendIntention'
+import ListIntentions from './components/pages/ListIntentions'
+import HowToPray from './components/pages/HowToPray'
 //import Information from './components/Information'
 
 // Init
@@ -35,6 +36,11 @@ export default new Router({
         apiMethod: 'getMyIntentions',
         ariaLabel: 'LIST_OF_MY_INTENTIONS'
       }
+    },
+    {
+      path: '/jak-sie-modlic',
+      name: 'how-to-pray',
+      component: HowToPray
     }
     // {
     //   path: '/informacje',

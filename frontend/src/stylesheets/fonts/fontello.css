@@ -64,7 +64,10 @@
 .icon-forward:before { content: '\27a6'; } /* '➦' */
 .icon-ccw:before { content: '\27f2'; } /* '⟲' */
 .icon-cw:before { content: '\27f3'; } /* '⟳' */
+.icon-youtube:before { content: '\e002'; } /* '' */
 .icon-list:before { content: '\e005'; } /* '' */
+.icon-facebook:before { content: '\e09c'; } /* '' */
+.icon-github:before { content: '\e0b6'; } /* '' */
 .icon-help-circled:before { content: '\e704'; } /* '' */
 .icon-info-circled:before { content: '\e705'; } /* '' */
 .icon-eye:before { content: '\e70a'; } /* '' */
