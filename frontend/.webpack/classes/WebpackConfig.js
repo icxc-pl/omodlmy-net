@@ -31,6 +31,8 @@ class WebpackConfig {
         'Common': dir.common,
         'Src': dir.src,
 
+        'Assets': dir.assets,
+        'Docs': path.resolve(dir.assets, 'docs'),
         'Fonts': path.resolve(dir.assets, 'fonts'),
         'I18n': path.resolve(dir.assets, 'i18n'),
         'Img': dir.img,

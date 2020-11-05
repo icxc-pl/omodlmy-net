@@ -136,6 +136,11 @@
       icon: 'folder',
       link: 'moje-intencje'
     },
+    howToPray: {
+      title: 'HOW_TO_PRAY',
+      icon: 'book',
+      link: 'jak-sie-modlic'
+    },
     share: {
       title: 'SHARE',
       icon: 'share',
@@ -210,7 +215,8 @@
           ITEM.home,
           ITEM.listOfIntentions,
           ITEM.sendIntention,
-          ITEM.listOfMyIntentions
+          ITEM.listOfMyIntentions,
+          ITEM.howToPray
         ];
 
         if (this.env.isPlatformSupported && !this.env.isAppInstalled) {

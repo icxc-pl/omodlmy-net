@@ -23,8 +23,6 @@
     "FACEBOOK_PAGE": "Strona Facebook",
     "FOOTER": "Stopka",
     "GITHUB_REPO": "Repozytorium GitHub",
-    "SEND_INTENTION": "Nadaj intencję",
-    "SEND_INTENTION_FORM": "Formularz nadawania intencji",
     "HOME_SCREEN": "Start",
     "HOURS_N": [
         [1, 1, "godzinę"],
@@ -32,7 +30,9 @@
         [5, 21, "%n godzin"],
         [22, null, "%n godziny"]
     ],
+    "HOW_TO_PRAY": "Jak się modlić?",
     "IAM_PRAYING": "Modlę się",
+    "ICON_LABEL_BOOK": "Ikonka przedstawiająca zamkniętą książkę",
     "ICON_LABEL_CANCEL": "Ikonka przedstawiająca duży X",
     "ICON_LABEL_FACEBOOK": "Ikonka przedstawiająca logo Facebook",
     "ICON_LABEL_FEATHER": "Ikonka przedstawiająca piszące gęsie pióro",
@@ -120,6 +120,8 @@
       [5, null, "Maksymalna długość tekstu to %n znaków"]
     ],
     "SEND": "Wyślij",
+    "SEND_INTENTION": "Nadaj intencję",
+    "SEND_INTENTION_FORM": "Formularz nadawania intencji",
     "SHARE": "Podaj dalej",
     "SHARE_THANK_YOU": "Dziękujemy za podanie dalej! :)",
     "SLOGAN": "Twoja modlitwa się liczy!",

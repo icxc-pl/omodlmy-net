@@ -43,8 +43,8 @@
 
 <script>
   import Cookies from 'js-cookie';
-  import MainMenu from 'Components/MainMenu';
-  import Welcome from 'Components/Welcome';
+  import MainMenu from 'Components/pages/MainMenu';
+  import Welcome from 'Components/pages/Welcome';
   import InfoBlock from 'Components/InfoBlock';
   import 'Stylesheets/index.less';
 

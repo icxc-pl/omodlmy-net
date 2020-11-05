@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import Intention from './Intention';
+  import Intention from '../Intention';
   import MugenScroll from 'vue-mugen-scroll';
 
   const FETCH_LIMIT = 25;
