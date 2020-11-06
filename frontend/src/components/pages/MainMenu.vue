@@ -362,6 +362,11 @@
       border-bottom: 0.5rem solid white;
     }
 
+    &-container {
+      height: calc(~'75vh - 0.5rem - 42px');
+      overflow: auto;
+    }
+
     ul {
       margin: 0;
       padding: 0;
