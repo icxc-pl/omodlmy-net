@@ -141,6 +141,12 @@
       icon: 'book',
       link: 'jak-sie-modlic'
     },
+    about: {
+      title: 'ABOUT_APP',
+      icon: 'info',
+      link: 'o-aplikacji'
+    },
+
     share: {
       title: 'SHARE',
       icon: 'share',
@@ -216,7 +222,8 @@
           ITEM.listOfIntentions,
           ITEM.sendIntention,
           ITEM.listOfMyIntentions,
-          ITEM.howToPray
+          ITEM.howToPray,
+          ITEM.about
         ];
 
         if (this.env.isPlatformSupported && !this.env.isAppInstalled) {

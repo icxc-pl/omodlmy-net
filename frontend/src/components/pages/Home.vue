@@ -73,6 +73,10 @@
 
   #page-home {
 
+    h3, h4 {
+      text-align: center;
+    }
+
     &::before {
       content: '';
       display: inline-block;

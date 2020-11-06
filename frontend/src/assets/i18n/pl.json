@@ -1,5 +1,6 @@
 {
   "values":{
+    "ABOUT_APP": "O aplikacji",
     "AUTHOR": "Autor",
     "CAPTCHA_DESCRIPTION": "Obrazek przedstawiający zagadkę matematyczną",
     "CAPTCHA_TITLE": "Zagadka matematyczna",

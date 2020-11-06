@@ -4,6 +4,8 @@
     :aria-label="i18n(ariaLabel)">
     <div class="page-wrapper">
 
+      <h2>{{ i18n(ariaLabel) }}</h2>
+
       <!-- Error -->
       <p v-if="error">
         {{ error }}

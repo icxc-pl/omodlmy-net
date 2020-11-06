@@ -3,6 +3,8 @@
     :aria-label="i18n('SEND_INTENTION_FORM')">
     <form class="page-wrapper">
 
+      <h2>{{ i18n('SEND_INTENTION') }}</h2>
+
       <!-- Content -->
       <div class="form-row">
         <label for="form-intention-content">{{ i18n('INTENTION_CONTENT') }}</label>
