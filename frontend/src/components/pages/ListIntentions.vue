@@ -2,48 +2,50 @@
   <div id="page-send-intention"
     ref="container"
     :aria-label="i18n(ariaLabel)">
+    <div class="page-wrapper">
 
-    <!-- Error -->
-    <p v-if="error">
-      {{ error }}
-    </p>
-
-    <template v-else>
-
-      <!-- Intentions -->
-      <div class="intentions">
-        <intention v-for="item in items"
-          :intention="item"
-          :key="item._id"
-          :class="{ new: markAsNew(item) }"
-          @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
-      </div>
-
-      <!-- Info that everything loaded -->
-      <p v-if="allLoaded">
-        <span v-if="items.length > 0">{{ i18n('NO_MORE_INTENTIONS') }}</span>
-        <span v-else>{{ i18n('NO_INTENTIONS') }}</span>
-        <br>
-        <span>
-          <router-link to="nadaj-intencje">{{ i18n('SEND_INTENTION') }}</router-link>
-          - {{ i18n('SLOGAN').toLowerCase() }}
-        </span>
+      <!-- Error -->
+      <p v-if="error">
+        {{ error }}
       </p>
 
-      <!-- Infinity loading -->
-      <div v-else
-        :tabindex="0"
-        :aria-label="i18n('LOADING_CONTENT')"
-        @focus="loadingFocus">
-        <mugen-scroll
-          :handler="fetchData"
-          :should-handle="!loading"
-          scroll-container="container"
-          class="loading"></mugen-scroll>
-      </div>
+      <template v-else>
 
-    </template>
+        <!-- Intentions -->
+        <div class="intentions">
+          <intention v-for="item in items"
+            :intention="item"
+            :key="item._id"
+            :class="{ new: markAsNew(item) }"
+            @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
+        </div>
 
+        <!-- Info that everything loaded -->
+        <p v-if="allLoaded">
+          <span v-if="items.length > 0">{{ i18n('NO_MORE_INTENTIONS') }}</span>
+          <span v-else>{{ i18n('NO_INTENTIONS') }}</span>
+          <br>
+          <span>
+            <router-link to="nadaj-intencje">{{ i18n('SEND_INTENTION') }}</router-link>
+            - {{ i18n('SLOGAN').toLowerCase() }}
+          </span>
+        </p>
+
+        <!-- Infinity loading -->
+        <div v-else
+          :tabindex="0"
+          :aria-label="i18n('LOADING_CONTENT')"
+          @focus="loadingFocus">
+          <mugen-scroll
+            :handler="fetchData"
+            :should-handle="!loading"
+            scroll-container="container"
+            class="loading"></mugen-scroll>
+        </div>
+
+      </template>
+
+    </div>
   </div>
 </template>
 

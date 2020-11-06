@@ -1,6 +1,8 @@
 <template>
-  <div id="page-welcome" :aria-label="i18n('WELCOME_PAGE')">
-    <form>
+  <div id="page-welcome"
+    :aria-label="i18n('WELCOME_PAGE')">
+    <form class="page-wrapper">
+
       <div class="align-center">
         <img
           src="~Img/logo-purple.svg"
@@ -38,6 +40,7 @@
         <strong>Kontakt</strong> i zgłoś to. Mile widziane też wszelkie sugestie
         czy dobre słowo :)
       </p>
+
     </form>
   </div>
 </template>
@@ -56,14 +59,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~Stylesheets/mixins/responsiveness";
-
 #page-welcome {
-  max-width: 40rem;
-  padding: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-
   img {
     width: 20vh;
     height: auto;

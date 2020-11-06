@@ -21,6 +21,7 @@
         for (const item of items) {
           // options
           const options = {
+            class: 'text-header',
             attrs: {
               'tabindex': 0
             }

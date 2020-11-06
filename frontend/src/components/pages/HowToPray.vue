@@ -1,17 +1,18 @@
 <template>
   <div id="page-how-to-pray" :aria-label="i18n('HOW_TO_PRAY')">
-    <div>
+    <div class="page-wrapper">
 
       <template v-if="prayer">
-        <a href="#" class="header-back" @click.stop.prevent="back">
-          <i class="icon-left-open"></i> {{ prayer.title }}
+        <a href="#" class="header-back text-header" @click.stop.prevent="back">
+          <i class="icon-left-open"></i>
+          <span>{{ prayer.title }}</span>
         </a>
 
         <article v-html="getPrayer"></article>
       </template>
 
       <template v-else>
-        <p>
+        <p class="align-justify">
           Jeśli nie masz pomysłu, w jaki sposób omodlić daną intencję, możesz skorzystać z poniższych propozycji.
           Pamiętaj jednak, że najważniejsze jest, by Twoja modlitwa płynęła z serca, możesz modlić się własnymi słowami,
           tak jak podpowiada Ci serce. 😊
@@ -147,21 +148,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" scoped>
-@import "~Stylesheets/mixins/responsiveness";
-
-#page-how-to-pray {
-  & > div {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-
-    .rwd-max-for-s({
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-    });
-  }
-
-}
-</style>

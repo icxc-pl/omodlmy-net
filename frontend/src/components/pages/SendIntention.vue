@@ -1,69 +1,72 @@
 <template>
-  <form id="page-send-intention"
+  <div id="page-send-intention"
     :aria-label="i18n('SEND_INTENTION_FORM')">
+    <form class="page-wrapper">
 
-    <!-- Content -->
-    <div class="form-row">
-      <label for="form-intention-content">{{ i18n('INTENTION_CONTENT') }}</label>
-      <textarea
-        id="form-intention-content"
-        :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT', {
-          min: verify.$rules.content.minLength,
-          max: verify.$rules.content.maxLength
-        })"
-        aria-required="true"
-        :aria-invalid="isContentInvalid"
-        aria-errormessage="error-message-intention-content"
-        v-model="content"></textarea>
-      <p v-if="isContentInvalid"
-        id="error-message-intention-content">
-        <template v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</template>
-        <template v-else-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</template>
-        <template v-else-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</template>
-      </p>
-    </div>
-
-    <!-- Author -->
-    <div class="form-row">
-      <label for="form-intention-author">{{ i18n('INTENTION_AUTHOR') }}</label>
-      <input
-        id="form-intention-author"
-        type="text"
-        :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
-        :aria-invalid="isAuthorInvalid"
-        v-model="author" />
-    </div>
-
-    <!-- Captcha -->
-    <div class="form-row">
-      <label for="form-intention-captcha">{{ i18n('CAPTCHA_TITLE') }}</label>
-      <div class="captcha-test">
-        <img :src="getCaptchaUrl"
-            :alt="i18n('CAPTCHA_DESCRIPTION')"
-            :title="i18n('CAPTCHA_TITLE')">
-        <span>=</span>
-        <input
-          id="form-intention-captcha"
-          type="number"
-          :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
+      <!-- Content -->
+      <div class="form-row">
+        <label for="form-intention-content">{{ i18n('INTENTION_CONTENT') }}</label>
+        <textarea
+          id="form-intention-content"
+          :placeholder="i18n('INPUT_PLACEHOLDER_CONTENT', {
+            min: verify.$rules.content.minLength,
+            max: verify.$rules.content.maxLength
+          })"
           aria-required="true"
-          :aria-invalid="isCaptchaInvalid"
-          v-model="captcha" />
+          :aria-invalid="isContentInvalid"
+          aria-errormessage="error-message-intention-content"
+          v-model="content"></textarea>
+        <p v-if="isContentInvalid"
+          id="error-message-intention-content">
+          <template v-if="verify.content.required">{{ i18n('RULE_REQUIRED') }}</template>
+          <template v-else-if="verify.content.minLength">{{ i18n('RULE_MIN_LENGTH', verify.$rules.content.minLength) }}</template>
+          <template v-else-if="verify.content.maxLength">{{ i18n('RULE_MAX_LENGTH', verify.$rules.content.maxLength) }}</template>
+        </p>
       </div>
-    </div>
 
-    <!-- Submit button -->
-    <div class="form-row" style="margin-top: 1.5rem;">
-      <button type="submit"
-              :class="['btn', { working }]"
-              @submit.stop.prevent="submit"
-              @click.stop.prevent="submit">
-        <i class="icon-mail"
-          role="img"
-          :aria-label="i18n('ICON_LABEL_MAIL')"></i> {{ i18n('SEND') }}
-      </button>
-    </div>
-  </form>
+      <!-- Author -->
+      <div class="form-row">
+        <label for="form-intention-author">{{ i18n('INTENTION_AUTHOR') }}</label>
+        <input
+          id="form-intention-author"
+          type="text"
+          :placeholder="i18n('INPUT_PLACEHOLDER_AUTHOR')"
+          :aria-invalid="isAuthorInvalid"
+          v-model="author" />
+      </div>
+
+      <!-- Captcha -->
+      <div class="form-row">
+        <label for="form-intention-captcha">{{ i18n('CAPTCHA_TITLE') }}</label>
+        <div class="captcha-test">
+          <img :src="getCaptchaUrl"
+              :alt="i18n('CAPTCHA_DESCRIPTION')"
+              :title="i18n('CAPTCHA_TITLE')">
+          <span>=</span>
+          <input
+            id="form-intention-captcha"
+            type="number"
+            :placeholder="i18n('INPUT_PLACEHOLDER_CAPTCHA')"
+            aria-required="true"
+            :aria-invalid="isCaptchaInvalid"
+            v-model="captcha" />
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="form-row" style="margin-top: 1.5rem;">
+        <button type="submit"
+                :class="['btn', { working }]"
+                @submit.stop.prevent="submit"
+                @click.stop.prevent="submit">
+          <i class="icon-mail"
+            role="img"
+            :aria-label="i18n('ICON_LABEL_MAIL')"></i> {{ i18n('SEND') }}
+        </button>
+      </div>
+
+    </form>
+  </div>
 </template>
 
 <script>
