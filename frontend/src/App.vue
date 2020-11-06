@@ -42,7 +42,6 @@
 </template>
 
 <script>
-  import Cookies from 'js-cookie';
   import MainMenu from 'Components/pages/MainMenu';
   import Welcome from 'Components/pages/Welcome';
   import InfoBlock from 'Components/InfoBlock';
@@ -66,7 +65,7 @@
 
         cookies: {
           disabled: !navigator.cookieEnabled,
-          accepted: Cookies.get('accepted') === 'true'
+          accepted: localStorage.getItem('cookies-accepted') === 'true'
         }
       }
     },
@@ -124,29 +123,6 @@
 <style lang="less">
   @import '~Stylesheets/colors';
   @import '~Stylesheets/mixins/responsiveness';
-
-  html {
-    height: 100vh;
-    font-family: 'Lato', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  html, body {
-    margin: 0;
-    width: 100vw;
-  }
-
-  body {
-    min-height: 100vh;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    color: @purple;
-  }
 
   #app > .info-block > i {
     margin-top: 22vh;

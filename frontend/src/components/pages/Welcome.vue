@@ -1,6 +1,8 @@
 <template>
-  <div id="page-welcome" :aria-label="i18n('WELCOME_PAGE')">
-    <form>
+  <div id="page-welcome"
+    :aria-label="i18n('WELCOME_PAGE')">
+    <form class="page-wrapper">
+
       <div class="align-center">
         <img
           src="~Img/logo-purple.svg"
@@ -14,9 +16,8 @@
         Aplikacja <strong>Omódlmy Net</strong> to miejsce, w którym
         <strong>anonimowo</strong> możesz nadać swoją intencję i/lub wesprzeć
         innych modlitwą. Nie jest wymagana rejestracja, ale do poprawnego
-        działania aplikacji używane są <strong>ciasteczka</strong> (czyli takie
-        małe pliki trzymane przez przeglądarkę), tak więc korzystanie z niej oznacza
-        zgodę na ich wykorzystywanie.
+        działania aplikacji używana jest pamięć Twojej przeglądarki (m.in. <strong>ciasteczka</strong>),
+        tak więc korzystanie z niej oznacza zgodę na jej wykorzystywanie.
         <br />
         Równocześnie informujemy, że aplikacja w żaden sposób
         <strong>nie śledzi Ciebie</strong>
@@ -39,19 +40,18 @@
         <strong>Kontakt</strong> i zgłoś to. Mile widziane też wszelkie sugestie
         czy dobre słowo :)
       </p>
+
     </form>
   </div>
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-
 export default {
   name: "welcome",
 
   methods: {
     submit() {
-      Cookies.set('accepted', 'true', { expires: 3650 });
+      localStorage.setItem('cookies-accepted', 'true');
       this.$parent.cookies.accepted = true;
     },
   },
@@ -59,14 +59,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~Stylesheets/mixins/responsiveness";
-
 #page-welcome {
-  max-width: 40rem;
-  padding: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-
   img {
     width: 20vh;
     height: auto;

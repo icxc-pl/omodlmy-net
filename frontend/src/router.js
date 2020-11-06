@@ -6,7 +6,7 @@ import Home from './components/pages/Home'
 import SendIntention from './components/pages/SendIntention'
 import ListIntentions from './components/pages/ListIntentions'
 import HowToPray from './components/pages/HowToPray'
-//import Information from './components/Information'
+import About from './components/pages/About'
 
 // Init
 Vue.use(Router);
@@ -26,7 +26,10 @@ export default new Router({
     {
       path: '/lista-intencji',
       name: 'list-intentions',
-      component: ListIntentions
+      component: ListIntentions,
+      props: {
+        markNew: true
+      }
     },
     {
       path: '/moje-intencje',
@@ -41,11 +44,12 @@ export default new Router({
       path: '/jak-sie-modlic',
       name: 'how-to-pray',
       component: HowToPray
+    },
+    {
+      path: '/o-aplikacji',
+      alias: '/informacje',
+      name: 'about',
+      component: About
     }
-    // {
-    //   path: '/informacje',
-    //   name: 'information',
-    //   component: Information
-    // }
   ]
 })

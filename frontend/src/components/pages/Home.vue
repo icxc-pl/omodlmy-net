@@ -1,7 +1,7 @@
 <template>
   <div id="page-home"
     :aria-label="i18n('MAIN_SCREEN')">
-    <div>
+    <div class="page-wrapper">
 
       <!-- Licznik intencji -->
       <h3 class="encourage encourage-numbers">
@@ -73,6 +73,10 @@
 
   #page-home {
 
+    h3, h4 {
+      text-align: center;
+    }
+
     &::before {
       content: '';
       display: inline-block;
@@ -84,7 +88,9 @@
     & > div {
       display: inline-block;
       width: 100%;
+      max-width: unset;
       vertical-align: middle;
+      margin: 0 !important;
     }
 
     .encourage {

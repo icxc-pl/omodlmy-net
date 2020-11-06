@@ -1,7 +1,27 @@
 @import 'colors';
+@import 'mixins/responsiveness';
+
+html {
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+  width: 100vw;
+}
 
 body {
+  min-height: 100vh;
   color: @cynical-black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  color: @purple;
 }
 
 a {
@@ -19,8 +39,25 @@ a {
   }
 }
 
+.page-wrapper {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  .rwd-max-for-s({
+    &:not(form) {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  });
+}
+
 .align-center {
   text-align: center;
+}
+
+.align-justify {
+  text-align: justify;
 }
 
 .header-back {
@@ -34,5 +71,17 @@ a {
 
   & > i {
     margin-right: 0.45rem;
+  }
+}
+
+.text-header {
+  & > i,
+  & > span {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  & > i + span {
+    width: calc(~'100% - 0.45rem - 1.6em');
   }
 }

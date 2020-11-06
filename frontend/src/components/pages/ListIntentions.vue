@@ -2,47 +2,52 @@
   <div id="page-send-intention"
     ref="container"
     :aria-label="i18n(ariaLabel)">
+    <div class="page-wrapper">
 
-    <!-- Error -->
-    <p v-if="error">
-      {{ error }}
-    </p>
+      <h2>{{ i18n(ariaLabel) }}</h2>
 
-    <template v-else>
-
-      <!-- Intentions -->
-      <div class="intentions">
-        <intention v-for="item in items"
-          :intention="item"
-          :key="item._id"
-          @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
-      </div>
-
-      <!-- Info that everything loaded -->
-      <p v-if="allLoaded">
-        <span v-if="items.length > 0">{{ i18n('NO_MORE_INTENTIONS') }}</span>
-        <span v-else>{{ i18n('NO_INTENTIONS') }}</span>
-        <br>
-        <span>
-          <router-link to="nadaj-intencje">{{ i18n('SEND_INTENTION') }}</router-link>
-          - {{ i18n('SLOGAN').toLowerCase() }}
-        </span>
+      <!-- Error -->
+      <p v-if="error">
+        {{ error }}
       </p>
 
-      <!-- Infinity loading -->
-      <div v-else
-        :tabindex="0"
-        :aria-label="i18n('LOADING_CONTENT')"
-        @focus="loadingFocus">
-        <mugen-scroll
-          :handler="fetchData"
-          :should-handle="!loading"
-          scroll-container="container"
-          class="loading"></mugen-scroll>
-      </div>
+      <template v-else>
 
-    </template>
+        <!-- Intentions -->
+        <div class="intentions">
+          <intention v-for="item in items"
+            :intention="item"
+            :key="item._id"
+            :class="{ new: markAsNew(item) }"
+            @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
+        </div>
 
+        <!-- Info that everything loaded -->
+        <p v-if="allLoaded">
+          <span v-if="items.length > 0">{{ i18n('NO_MORE_INTENTIONS') }}</span>
+          <span v-else>{{ i18n('NO_INTENTIONS') }}</span>
+          <br>
+          <span>
+            <router-link to="nadaj-intencje">{{ i18n('SEND_INTENTION') }}</router-link>
+            - {{ i18n('SLOGAN').toLowerCase() }}
+          </span>
+        </p>
+
+        <!-- Infinity loading -->
+        <div v-else
+          :tabindex="0"
+          :aria-label="i18n('LOADING_CONTENT')"
+          @focus="loadingFocus">
+          <mugen-scroll
+            :handler="fetchData"
+            :should-handle="!loading"
+            scroll-container="container"
+            class="loading"></mugen-scroll>
+        </div>
+
+      </template>
+
+    </div>
   </div>
 </template>
 
@@ -69,6 +74,11 @@
       ariaLabel: {
         type: String,
         default: 'LIST_OF_INTENTIONS'
+      },
+
+      markNew: {
+        type: Boolean,
+        default: false
       }
     },
 
@@ -78,7 +88,9 @@
         loading: false,
         allLoaded: false,
         items: [],
-        focusOn: null
+
+        focusOn: null,
+        theNewestIntention: null
       };
     },
 
@@ -108,6 +120,10 @@
        */
       _whenFetchDataSuccess (res) {
         var items = res.data;
+
+        if (this.markNew && (this.theNewestIntention === null || this.theNewestIntention < items[0].createTime)) {
+          localStorage.setItem('the-newest-intention', items[0].createTime)
+        }
 
         if (items.length > 0) {
           this.items.absorb(items);
@@ -159,8 +175,26 @@
 
       loadingFocus () {
         this.focusOn = this.items.length;
+      },
+
+      markAsNew (item) {
+        return this.markNew && typeof this.theNewestIntention === 'number' && this.theNewestIntention < item.createTime;
       }
 
+    },
+
+    created () {
+      if (this.markNew) {
+        let theNewestIntention = localStorage.getItem('the-newest-intention');
+        if (theNewestIntention != null) {
+          theNewestIntention = parseInt(theNewestIntention);
+          if (isNaN(theNewestIntention)) {
+            theNewestIntention = null;
+          }
+
+          this.theNewestIntention = theNewestIntention;
+        }
+      }
     }
   }
 </script>
