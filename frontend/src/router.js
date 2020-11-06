@@ -26,7 +26,10 @@ export default new Router({
     {
       path: '/lista-intencji',
       name: 'list-intentions',
-      component: ListIntentions
+      component: ListIntentions,
+      props: {
+        markNew: true
+      }
     },
     {
       path: '/moje-intencje',

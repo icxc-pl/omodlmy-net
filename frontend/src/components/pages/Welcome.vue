@@ -14,9 +14,8 @@
         Aplikacja <strong>Omódlmy Net</strong> to miejsce, w którym
         <strong>anonimowo</strong> możesz nadać swoją intencję i/lub wesprzeć
         innych modlitwą. Nie jest wymagana rejestracja, ale do poprawnego
-        działania aplikacji używane są <strong>ciasteczka</strong> (czyli takie
-        małe pliki trzymane przez przeglądarkę), tak więc korzystanie z niej oznacza
-        zgodę na ich wykorzystywanie.
+        działania aplikacji używana jest pamięć Twojej przeglądarki (m.in. <strong>ciasteczka</strong>),
+        tak więc korzystanie z niej oznacza zgodę na jej wykorzystywanie.
         <br />
         Równocześnie informujemy, że aplikacja w żaden sposób
         <strong>nie śledzi Ciebie</strong>
@@ -44,14 +43,12 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-
 export default {
   name: "welcome",
 
   methods: {
     submit() {
-      Cookies.set('accepted', 'true', { expires: 3650 });
+      localStorage.setItem('cookies-accepted', 'true');
       this.$parent.cookies.accepted = true;
     },
   },

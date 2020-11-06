@@ -127,10 +127,20 @@
       position: absolute;
       right: 0;
       font-size: 0.6em;
-      color: @old-gold;
+      color: @mouse;
+    }
+
+    &.new {
+      border-color: @hulk-green;
+
+      .intention-footer {
+        background: @misty-green;
+      }
     }
 
     &.mine {
+      border-color: @gold;
+
       .intention-footer {
         background: @pearly-beige;
       }

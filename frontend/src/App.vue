@@ -42,7 +42,6 @@
 </template>
 
 <script>
-  import Cookies from 'js-cookie';
   import MainMenu from 'Components/pages/MainMenu';
   import Welcome from 'Components/pages/Welcome';
   import InfoBlock from 'Components/InfoBlock';
@@ -66,7 +65,7 @@
 
         cookies: {
           disabled: !navigator.cookieEnabled,
-          accepted: Cookies.get('accepted') === 'true'
+          accepted: localStorage.getItem('cookies-accepted') === 'true'
         }
       }
     },

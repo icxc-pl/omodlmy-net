@@ -15,6 +15,7 @@
         <intention v-for="item in items"
           :intention="item"
           :key="item._id"
+          :class="{ new: markAsNew(item) }"
           @joined-prayer="_whenJoinedPrayer($event, item)"></intention>
       </div>
 
@@ -69,6 +70,11 @@
       ariaLabel: {
         type: String,
         default: 'LIST_OF_INTENTIONS'
+      },
+
+      markNew: {
+        type: Boolean,
+        default: false
       }
     },
 
@@ -78,7 +84,9 @@
         loading: false,
         allLoaded: false,
         items: [],
-        focusOn: null
+
+        focusOn: null,
+        theNewestIntention: null
       };
     },
 
@@ -108,6 +116,10 @@
        */
       _whenFetchDataSuccess (res) {
         var items = res.data;
+
+        if (this.markNew && (this.theNewestIntention === null || this.theNewestIntention < items[0].createTime)) {
+          localStorage.setItem('the-newest-intention', items[0].createTime)
+        }
 
         if (items.length > 0) {
           this.items.absorb(items);
@@ -159,8 +171,26 @@
 
       loadingFocus () {
         this.focusOn = this.items.length;
+      },
+
+      markAsNew (item) {
+        return this.markNew && typeof this.theNewestIntention === 'number' && this.theNewestIntention < item.createTime;
       }
 
+    },
+
+    created () {
+      if (this.markNew) {
+        let theNewestIntention = localStorage.getItem('the-newest-intention');
+        if (theNewestIntention != null) {
+          theNewestIntention = parseInt(theNewestIntention);
+          if (isNaN(theNewestIntention)) {
+            theNewestIntention = null;
+          }
+
+          this.theNewestIntention = theNewestIntention;
+        }
+      }
     }
   }
 </script>
