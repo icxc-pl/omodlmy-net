@@ -5,8 +5,8 @@
 # npm
 node_modules
 
-# Local session secret
-.session-secret
+# Local config
+backend/config.json
 
 # Logs
 *.log

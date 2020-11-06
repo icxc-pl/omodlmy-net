@@ -1,143 +1,153 @@
 'use strict';
 
 const path = require('path');
+const localConfig = require('./config.json');
 
-/**
- * Config
- */
 
-/**
- * Is production server mode enabled?
- * @type {boolean}
- * @constant
- */
-const modeProduction = process.env.NODE_ENV === 'production';
+const mode = {
+  /**
+   * Is production server mode enabled?
+   * @type {boolean}
+   * @constant
+   */
+  production: process.env.NODE_ENV === 'production',
 
-/**
- * Is staging server mode enabled?
- * @type {boolean}
- * @constant
- */
-const modeStaging = process.env.NODE_ENV === 'staging';
+  /**
+   * Is staging server mode enabled?
+   * @type {boolean}
+   * @constant
+   */
+  staing: process.env.NODE_ENV === 'staging',
 
-/**
- * Is dev server mode enabled?
- * @type {boolean}
- * @constant
- */
-const modeDev = process.env.NODE_ENV === 'dev';
+  /**
+   * Is dev server mode enabled?
+   * @type {boolean}
+   * @constant
+   */
+  dev: process.env.NODE_ENV === 'dev'
+};
 
-/**
- * Service Port
- * @type {number}
- * @constant
- */
-const serverPort = 8001;
 
-/**
- * Service Address
- * @type {string}
- * @constant
- */
-const serverAddr = '0.0.0.0';
+const service = {
+  /**
+   * Service Port
+   * @type {number}
+   * @constant
+   */
+  port: 8001,
 
-/**
- * Service Https
- * @type {string}
- * @constant
- */
-const serverHttps = modeDev;
+  /**
+   * Service Listen Addr
+   * @type {string}
+   * @constant
+   */
+  listenAddr: '0.0.0.0',
 
-/**
- * Service Home Path
- * @type {string}
- * @constant
- */
-const serverHome = path.resolve(__dirname);
+  /**
+   * Service Https
+   * @type {string}
+   * @constant
+   */
+  https: mode.dev,
 
-/**
- * Database Name
- * @type {string}
- * @constant
- */
-const dbName = 'omodlmy-net';
+  /**
+   * Service Home Path
+   * @type {string}
+   * @constant
+   */
+  home: path.resolve(__dirname)
+};
 
-/**
- * Database Host
- * @type {string}
- * @constant
- */
-const dbHost = 'localhost';
 
-/**
- * Database Port
- * @type {number}
- * @constant
- */
-const dbPort = 27017;
+const db = {
+  /**
+   * Database Name
+   * @type {string}
+   * @constant
+   */
+  name: 'omodlmy-net',
 
-/**
- * Database Connection URI
- * @type {string}
- * @constant
- */
-const dbConnectionUri = `mongodb://${dbHost}:${dbPort}/${dbName}`;
+  /**
+   * Database Host
+   * @type {string}
+   * @constant
+   */
+  host: 'localhost',
 
-/**
- * Session Secret Path
- * @type {string}
- * @constant
- */
-const sessionSecretPath = path.join(serverHome, '.session-secret');
+  /**
+   * Database Port
+   * @type {number}
+   * @constant
+   */
+  port: 27017,
 
-/**
- * Session Secret (itself)
- * @type {string}
- * @constant
- */
-const sessionSecret = require('fs').readFileSync(sessionSecretPath, 'utf-8');
+  /**
+   * Database Connection URI
+   * @type {string}
+   * @constant
+   */
+  connectionUri: undefined
+};
+db.connectionUri = `mongodb://${db.host}:${db.port}/${db.name}`
 
-/**
- * Session Cookie Name
- * @type {string}
- * @constant
- */
-const sessionCookieName = 'prayerHash';
 
-/**
- * Session Database Collection
- * @type {string}
- * @constant
- */
-const sessionDbCollection = 'sessions';
+const session = {
+  /**
+   * Session Secret (itself)
+   * @type {string}
+   * @constant
+   */
+  secret: undefined,
 
-/**
- * Session Duration
- * @type {number}
- * @contstant
- */
-const sessionDuration = 40 * Date.DAY;
+  /**
+   * Session Cookie Name
+   * @type {string}
+   * @constant
+   */
+  cookieName: 'prayerHash',
+
+  /**
+   * Session Database Collection
+   * @type {string}
+   * @constant
+   */
+  dbCollection: 'sessions',
+
+  /**
+   * Session Duration
+   * @type {number}
+   * @contstant
+   */
+  duration: 40 * Date.DAY
+};
+
+
+const security = {
+
+  /**
+   * Allowed Origins
+   */
+  allowedOrigins: [
+    'https://omodlmy.net'
+  ],
+
+  /**
+   * Secure Cookie
+   */
+  secureCookie: !mode.dev
+
+};
+
+
+// Config
+const config = Object.deepAssign({
+  mode,
+  service,
+  db,
+  session,
+  security
+}, localConfig);
 
 
 // Exports
-module.exports = {
-  modeProduction,
-  modeStaging,
-  modeDev,
-
-  serverPort,
-  serverAddr,
-  serverHttps,
-  serverHome,
-
-  dbHost,
-  dbPort,
-  dbName,
-  dbConnectionUri,
-
-  sessionSecretPath,
-  sessionSecret,
-  sessionCookieName,
-  sessionDbCollection,
-  sessionDuration
-};
+module.exports = config;
