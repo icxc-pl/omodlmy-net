@@ -13,19 +13,13 @@ const ApiError = require('../classes/ApiError');
   * Allowed Origins
   */
 let ALLOWED_ORIGINS;
-if (config.modeDev) {
+if (config.mode.dev) {
   ALLOWED_ORIGINS = [
     'https://local.omodlmy.net:8000',
     'https://local.omodlmy.net:8001'
   ];
-} else if (config.modeStaging) {
-  ALLOWED_ORIGINS = [
-    'https://staging.omodlmy.net'
-  ];
 } else {
-  ALLOWED_ORIGINS = [
-    'https://omodlmy.net'
-  ];
+  ALLOWED_ORIGINS = config.security.allowedOrigins;
 }
 
 /**
@@ -34,7 +28,7 @@ if (config.modeDev) {
  * @constant
  */
 const ALLOWED_HTTP_METHODS = ['GET', 'POST'];
-if (config.modeDev) {
+if (config.mode.dev) {
   ALLOWED_HTTP_METHODS.push('OPTIONS');
 }
 
@@ -62,13 +56,28 @@ const SecurityController = {
    * CORS Middleware
    */
   cors(req, res, next) {
-    // Website you wish to allow to connect
-    const origin = req.headers.origin;
+    res.setHeader('Vary', 'Origin');
+
+    let origin = req.headers.origin;
+    if (origin == null) {
+      if (req.headers.referer != null) {
+        origin = req.headers.referer.replace(/\/$/, '');
+      }
+    }
+
+    if (origin == null) {
+      next();
+      return;
+    }
 
     if (ALLOWED_ORIGINS === '*') {
       res.setHeader('Access-Control-Allow-Origin', '*');
-    } else if (ALLOWED_ORIGINS.indexOf(origin) > -1) {
+    } else if (ALLOWED_ORIGINS.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+      res.setHeader('Access-Control-Allow-Origin', false);
+      res.sendStatus(400);
+      return;
     }
 
     // Request methods you wish to allow
@@ -97,10 +106,9 @@ const SecurityController = {
   xsrf: csurf({
     ignoreMethods: ['GET', 'OPTIONS'],
     cookie: {
-      key: '__Host-csrf-token',
       signed: false,
-      secure: true,
-      maxAge: config.sessionDuration / 1000,
+      secure: config.security.secureCookie,
+      maxAge: config.session.duration / 1000,
       httpOnly: true,
       sameSite: 'strict'
     }

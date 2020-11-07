@@ -49,10 +49,10 @@ class MongoDBDriver extends AbstractDriver {
    * @returns {Promise} Client promise
    */
   async _connect() {
-    this.debug(`Connecting to ${this.config.dbConnectionUri}`);
+    this.debug(`Connecting to ${this.config.db.connectionUri}`);
 
     try {
-      this._client = await MongoClient.connect(this.config.dbConnectionUri, MONGODB_CONNECT_PARAMS);
+      this._client = await MongoClient.connect(this.config.db.connectionUri, MONGODB_CONNECT_PARAMS);
       this.debug(`Connected!`);
       await this.validateStructure();
       return this._client;
@@ -197,7 +197,7 @@ class MongoDBDriver extends AbstractDriver {
    * @returns {MongoDB.MongoClient} Db
    */
   getDb() {
-    return this._client.db(this.config.dbName);
+    return this._client.db(this.config.db.name);
   }
 
   /**

@@ -21,9 +21,9 @@ class SessionController {
 
     // Setup store
     this.store = new MongoDBStore({
-      uri: config.dbConnectionUri,
-      databaseName: config.dbName,
-      collection: config.sessionDbCollection
+      uri: config.db.connectionUri,
+      databaseName: config.db.name,
+      collection: config.session.dbCollection
     });
   }
 
@@ -33,13 +33,13 @@ class SessionController {
   expressIntegration() {
     return session({
       store: this.store,
-      secret: this.config.sessionSecret,
-      name: this.config.sessionCookieName,
+      secret: this.config.session.secret,
+      name: this.config.session.cookieName,
       resave: false,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        maxAge: this.config.sessionDuration,
+        maxAge: this.config.session.duration,
         path: '/',
         sameSite: 'strict',
 
@@ -53,7 +53,7 @@ class SessionController {
         //   proxy_set_header X-Forwarded-Proto https;
         //
         // https://github.com/expressjs/session/issues/281#issuecomment-191359194
-        secure: !this.config.modeDev
+        secure: this.config.security.secureCookie
       }
     });
   }
