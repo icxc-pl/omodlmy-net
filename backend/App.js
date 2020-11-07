@@ -109,7 +109,7 @@ class App {
   start() {
     this.controller.db.init().then(() => {
 
-      if (config.serverHttps) {
+      if (config.service.https) {
         const https = require('https');
         const fs = require('fs');
         const certDir = path.resolve(__filename, '../../common/cert');
@@ -117,13 +117,13 @@ class App {
         https.createServer({
           key: fs.readFileSync(path.join(certDir, 'local.omodlmy.net.key')),
           cert: fs.readFileSync(path.join(certDir, 'local.omodlmy.net.cert'))
-        }, this.srv).listen(this.config.serverPort, () => {
-          console.log(`server [https]: Listening ${this.config.serverAddr}:${this.config.serverPort}`);
+        }, this.srv).listen(this.config.service.port, () => {
+          console.log(`server [https]: Listening ${this.config.service.listenAddr}:${this.config.service.port}`);
         });
 
       } else {
-        this.srv.listen(this.config.serverPort, this.config.serverAddr, () => {
-          console.log(`server: Listening ${this.config.serverAddr}:${this.config.serverPort}`);
+        this.srv.listen(this.config.service.port, this.config.service.listenAddr, () => {
+          console.log(`server: Listening ${this.config.service.listenAddr}:${this.config.service.port}`);
         });
       }
 

@@ -10,7 +10,7 @@
 */*.log
 
 # backend
-backend/.session-secret
+backend/config.json
 
 # common
 common/cert*

@@ -29,6 +29,6 @@ COPY ./mongodb/mongod.conf /etc/mongod.conf
 WORKDIR /app
 RUN npm install --only=production
 
-VOLUME [ "/mongodb/data", "/mongodb/mongod.log", "/app/.session-secret" ]
+VOLUME [ "/mongodb/data", "/mongodb/mongod.log", "/app/config.json" ]
 
 CMD npm run server:$MODE

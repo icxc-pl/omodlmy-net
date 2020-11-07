@@ -121,7 +121,7 @@
       _whenFetchDataSuccess (res) {
         var items = res.data;
 
-        if (this.markNew && (this.theNewestIntention === null || this.theNewestIntention < items[0].createTime)) {
+        if (this.markNew && items.length > 0 && (this.theNewestIntention === null || this.theNewestIntention < items[0].createTime)) {
           localStorage.setItem('the-newest-intention', items[0].createTime)
         }
 
