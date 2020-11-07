@@ -106,7 +106,6 @@ const SecurityController = {
   xsrf: csurf({
     ignoreMethods: ['GET', 'OPTIONS'],
     cookie: {
-      key: '__Host-csrf-token',
       signed: false,
       secure: config.security.secureCookie,
       maxAge: config.session.duration / 1000,
