@@ -1,7 +1,22 @@
 language: node_js
-node_js:
-  - "12"
+node_js: "12"
+services: docker
+
 install:
-  - yarn install
+  - npm install eslint
+  - cd test
+  - npm install
+  - cd ..
+
+before_script:
+  - mkdir -p "${TRAVIS_BUILD_DIR}/testenv/data"
+  - touch "${TRAVIS_BUILD_DIR}/testenv/mongod.log"
+  - echo '{"session":{"secret":"testenv"},"security":{"secureCookie":false,"allowedOrigins":["http://127.0.0.1:8001"]}}' > $TRAVIS_BUILD_DIR/testenv/config.json
+
 script:
   - npx eslint .
+  - docker build -t omodlmy-net:latest .
+  - docker run -d -p 127.0.0.1:8001:8001 -v "${TRAVIS_BUILD_DIR}/testenv/config.json":"/app/config.json" -v "${TRAVIS_BUILD_DIR}/testenv/mongod.log":"/mongodb/mongod.log" -v "${TRAVIS_BUILD_DIR}/testenv/data":"/mongodb/data" --name omodlmy-net --rm omodlmy-net:latest
+  - sleep 6
+  - cd test
+  - npm run test
