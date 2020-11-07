@@ -56,8 +56,19 @@ const SecurityController = {
    * CORS Middleware
    */
   cors(req, res, next) {
-    // Website you wish to allow to connect
-    const origin = req.headers.origin || req.headers.referer.replace(/\/$/, '');
+    res.setHeader('Vary', 'Origin');
+
+    let origin = req.headers.origin;
+    if (origin == null) {
+      if (req.headers.referer != null) {
+        origin = req.headers.referer.replace(/\/$/, '');
+      }
+    }
+
+    if (origin == null) {
+      next();
+      return;
+    }
 
     if (ALLOWED_ORIGINS === '*') {
       res.setHeader('Access-Control-Allow-Origin', '*');
