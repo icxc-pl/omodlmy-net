@@ -5,8 +5,9 @@
 # npm
 node_modules
 
-# Local config
+# Local files
 backend/config.json
+backend/www/*
 
 # Logs
 *.log
