@@ -160,12 +160,18 @@ class App {
     this.srv.use(cookieParser());
 
     this.srv.use((req, res, next) => {
+      console.log('~~~');
+      console.log(req.cookies);
+      console.log(req.headers);
+
       if (req.cookies['__Host-csrf-token']) {
+        console.log('~ 1');
         res.clearCookie('__Host-csrf-token');
         delete req.cookies['__Host-csrf-token'];
       }
 
       if (req.cookies['accepted']) {
+        console.log('~ 2');
         res.clearCookie('accepted');
         delete req.cookies['accepted'];
       }

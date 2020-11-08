@@ -70,11 +70,17 @@ const SecurityController = {
       return;
     }
 
+    console.log('---');
+    console.log(ALLOWED_ORIGINS, origin);
+
     if (ALLOWED_ORIGINS === '*') {
+      console.log('- 1');
       res.setHeader('Access-Control-Allow-Origin', '*');
     } else if (ALLOWED_ORIGINS.includes(origin)) {
+      console.log('- 2');
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
+      console.log('- 3');
       res.setHeader('Access-Control-Allow-Origin', false);
       res.sendStatus(400);
       return;
