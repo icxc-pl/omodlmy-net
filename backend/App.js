@@ -158,6 +158,20 @@ class App {
   enableCookiesSupport() {
     const cookieParser = require('cookie-parser');
     this.srv.use(cookieParser());
+
+    this.srv.use((req, res, next) => {
+      if (req.cookies['__Host-csrf-token']) {
+        res.clearCookie('__Host-csrf-token');
+        delete req.cookies['__Host-csrf-token'];
+      }
+
+      if (req.cookies['accepted']) {
+        res.clearCookie('accepted');
+        delete req.cookies['accepted'];
+      }
+
+      next();
+    });
   }
 
   /**
