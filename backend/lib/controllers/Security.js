@@ -60,8 +60,9 @@ const SecurityController = {
 
     let origin = req.headers.origin;
     if (origin == null) {
-      if (req.headers.referer != null) {
-        origin = req.headers.referer.replace(/\/$/, '');
+      if (typeof req.headers.referer === 'string') {
+        const url = new URL(req.headers.referer);
+        origin = url.origin;
       }
     }
 
