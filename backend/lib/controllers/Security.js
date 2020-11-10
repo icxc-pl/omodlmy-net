@@ -58,27 +58,16 @@ const SecurityController = {
   cors(req, res, next) {
     res.setHeader('Vary', 'Origin');
 
-    let origin = req.headers.origin;
-    if (origin == null) {
-      if (typeof req.headers.referer === 'string') {
-        const url = new URL(req.headers.referer);
-        origin = url.origin;
+    if (req.headers.origin != null) {
+      if (ALLOWED_ORIGINS === '*') {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+      } else if (ALLOWED_ORIGINS.includes(req.headers.origin)) {
+        res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+      } else {
+        res.setHeader('Access-Control-Allow-Origin', false);
+        res.sendStatus(400);
+        return;
       }
-    }
-
-    if (origin == null) {
-      next();
-      return;
-    }
-
-    if (ALLOWED_ORIGINS === '*') {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-    } else if (ALLOWED_ORIGINS.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-    } else {
-      res.setHeader('Access-Control-Allow-Origin', false);
-      res.sendStatus(400);
-      return;
     }
 
     // Request methods you wish to allow
