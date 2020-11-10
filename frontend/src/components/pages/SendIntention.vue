@@ -93,6 +93,7 @@
           required: true
         }
       });
+      this.resetCaptcha();
     },
 
     data () {
@@ -102,7 +103,7 @@
         content: '',
         author: '',
         captcha: '',
-        captchaIdx: 0
+        captchaIdx: null
       };
     },
 
@@ -215,7 +216,7 @@
 
             case 401 :
               if (res.data.message === 'ERROR_INVALID_CAPTCHA') {
-                this.captchaIdx++;
+                this.resetCaptcha();
               }
 
               message = this.i18n(res.data.message);
@@ -239,6 +240,10 @@
         }).finally(() => {
           this.working = false;
         });
+      },
+
+      resetCaptcha () {
+        this.captchaIdx = Date.now();
       }
 
     }
