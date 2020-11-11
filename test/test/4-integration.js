@@ -76,27 +76,33 @@ describe('Integracja', function () {
     const menuElements = [
       {
         title: 'Start',
-        to: 'Ekran główny'
+        to: 'Ekran główny',
+        id: 'page-home'
       },
       {
         title: 'Lista intencji',
-        to: 'Lista intencji'
+        to: 'Lista intencji',
+        id: 'page-list-of-intentions'
       },
       {
         title: 'Nadaj intencję',
-        to: 'Formularz nadawania intencji'
+        to: 'Formularz nadawania intencji',
+        id: 'page-send-intention'
       },
       {
         title: 'Lista moich intencji',
-        to: 'Lista moich intencji'
+        to: 'Lista moich intencji',
+        id: 'page-list-of-my-intentions'
       },
       {
         title: 'Jak się modlić?',
-        to: 'Jak się modlić?'
+        to: 'Jak się modlić?',
+        id: 'page-how-to-pray'
       },
       {
         title: 'O aplikacji',
-        to: 'O aplikacji'
+        to: 'O aplikacji',
+        id: 'page-about'
       }
     ];
 
@@ -151,8 +157,13 @@ describe('Integracja', function () {
         it(`lista: "${item.title}" przenosi poprawnie`, async () => {
           await page.click(`.main-menu-container > ul[role="menu"] > li:nth-child(${n})`);
           await sleep(100);
-          const val = await getAriaLabelOfCurrentPage();
+
+          let val = await getAriaLabelOfCurrentPage();
           expect(val).to.be.eq(item.to);
+
+          val = await getAttr('.view-container', 'id');
+          expect(val).to.be.eq(item.id);
+
           await page.click('.main-menu-trigger');
         });
       })(i + 1, menuElements[i]);
