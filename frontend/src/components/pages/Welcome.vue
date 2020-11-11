@@ -10,9 +10,9 @@
         />
       </div>
 
-      <h1>Pokój i dobro!</h1>
+      <h1 class="align-center">Pokój i dobro!</h1>
 
-      <p>
+      <p class="align-justify">
         Aplikacja <strong>Omódlmy Net</strong> to miejsce, w którym
         <strong>anonimowo</strong> możesz nadać swoją intencję i/lub wesprzeć
         innych modlitwą. Nie jest wymagana rejestracja, ale do poprawnego
@@ -25,7 +25,10 @@
         Aplikacja jest w 100% darmowa i bez reklam (co swoją drogą możesz
         sprawdzić w otwarym kodzie aplikacji!).
       </p>
-      <p>Pamiętaj, że <strong>Twoja modlitwa się liczy!</strong></p>
+
+      <p class="align-justify">
+        Pamiętaj, że <strong>Twoja modlitwa się liczy!</strong>
+      </p>
 
       <button
         type="submit"
@@ -35,7 +38,7 @@
         Rozumiem i akceptuję
       </button>
 
-      <p>
+      <p class="align-justify">
         P.S. Jeżli widzisz gdzieś błąd, to skorzystaj proszę z opcji
         <strong>Kontakt</strong> i zgłoś to. Mile widziane też wszelkie sugestie
         czy dobre słowo :)
@@ -60,6 +63,11 @@ export default {
 
 <style lang="less" scoped>
 #page-welcome {
+  .page-wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
   img {
     width: 20vh;
     height: auto;

@@ -251,6 +251,8 @@
 </script>
 
 <style lang="less" scoped>
+@import '~Stylesheets/mixins/responsiveness';
+
 .captcha-test {
   display: flex;
   justify-content: center;

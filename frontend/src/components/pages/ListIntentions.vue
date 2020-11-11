@@ -1,5 +1,5 @@
 <template>
-  <div id="page-send-intention"
+  <div :id="getId"
     ref="container"
     :aria-label="i18n(ariaLabel)">
     <div class="page-wrapper">
@@ -92,6 +92,12 @@
         focusOn: null,
         theNewestIntention: null
       };
+    },
+
+    computed: {
+      getId () {
+        return 'page-' + this.ariaLabel.toLowerCase().replace(/_/g, '-');
+      }
     },
 
     methods: {
