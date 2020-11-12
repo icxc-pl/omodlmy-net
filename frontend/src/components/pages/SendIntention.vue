@@ -77,9 +77,11 @@
 
   export default {
     name: 'send-intention',
-    mixins: [VerifyMixin],
+    mixins: [ VerifyMixin ],
 
     created () {
+      this.$emit('menu-title', i18n('SEND_INTENTION'));
+
       this.$verify({
         content: {
           required: true,

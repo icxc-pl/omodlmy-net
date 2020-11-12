@@ -190,6 +190,8 @@
     },
 
     created () {
+      this.$emit('menu-title', i18n(this.ariaLabel));
+
       if (this.markNew) {
         let theNewestIntention = localStorage.getItem('the-newest-intention');
         if (theNewestIntention != null) {

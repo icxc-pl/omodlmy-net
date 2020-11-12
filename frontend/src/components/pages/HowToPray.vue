@@ -12,7 +12,7 @@
       </template>
 
       <template v-else>
-        <h2>Jak się modlić?</h2>
+        <h2>{{ i18n('HOW_TO_PRAY') }}</h2>
 
         <h3>Chcę się pomodlić, ale nie wiem, czy muszę modlić się jakąś konkretną modlitwą?</h3>
         <p class="align-justify">
@@ -183,6 +183,10 @@ export default {
 
       prayer: null
     };
+  },
+
+  created () {
+    this.$emit('menu-title', i18n('HOW_TO_PRAY'));
   }
 };
 </script>

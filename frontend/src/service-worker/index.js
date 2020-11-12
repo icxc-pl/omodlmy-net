@@ -8,3 +8,5 @@ self.addEventListener('activate', SW.handleActivate.bind(SW));
 
 // Add fetch listener
 self.addEventListener('fetch', SW.handleFetch.bind(SW));
+
+console.log(5);
