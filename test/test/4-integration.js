@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 const sleep = require('../sleep');
 
 const { SERVER_ADDR } = require('../config');
+const { version } = require('../../package.json');
 
 describe('Integracja', function () {
 
@@ -174,6 +175,11 @@ describe('Integracja', function () {
       expect(el).to.be.not.null;
     });
 
+    it('stopka: widać poprawną wersję', async () => {
+      const text = await getText('nav > footer > span:last-child');
+      expect(text).to.be.eq(`v${version}`);
+    });
+
     it('przejdź na ekran główny (zamknij menu)', async () => {
       await page.click(`.main-menu-container > ul[role="menu"] > li:nth-child(1)`);
     });
@@ -223,5 +229,20 @@ describe('Integracja', function () {
     });
 
   });
+
+
+  describe('O aplikacji', () => {
+
+    before(async () => {
+      await page.goto(`${SERVER_ADDR}/#/o-aplikacji`);
+    });
+
+    it('wersja wyświetla się poprawnie', async () => {
+      const text = await getText('article > p:first-of-type');
+      expect(text).to.be.eq(`Wersja ${version}`);
+    });
+
+  });
+
 
 });
