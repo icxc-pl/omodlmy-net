@@ -29,6 +29,7 @@
       <!-- content slot -->
       <router-view
         :key="$route.path"
+        @menu-title="menuTitle"
         class="view-container"
         ref="container"
         role="main" />
@@ -91,6 +92,10 @@
         } else {
           this.$refs.mainMenu.enableShadow();
         }
+      },
+
+      menuTitle (title) {
+        this.$refs.mainMenu.setTitle(title);
       }
     },
 

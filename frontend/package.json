@@ -1,6 +1,6 @@
 {
   "name": "@icxc/omodlmy-net-frontend",
-  "version": "2.9.5",
+  "version": "2.10.0",
   "description": "Frontend dla Omódlmy.net",
   "license": "AGPL-3.0-or-later",
   "private": true,
@@ -23,7 +23,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.3.0",
     "core-js": "^3.6.5",
-    "css-loader": "^5.0.0",
+    "css-loader": "^5.0.1",
     "dompurify": "^2.2.0",
     "eslint": "^7.12.1",
     "favicons-webpack-plugin": "^4.2.0",

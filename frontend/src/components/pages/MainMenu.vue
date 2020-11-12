@@ -1,16 +1,19 @@
 <template>
     <nav :class="[ 'main-menu', { opened: isOpened } ]"
-      :aria-label="i18n('MENU')">
+      :aria-label="i18n('MENU')"
+      :data-mode="mode">
 
       <button v-if="!isOpened"
            :class="['main-menu-trigger', { shadow: triggerShadow }]"
+           role="heading"
+           aria-level="1"
            :aria-label="i18n('MENU_OPEN')"
            aria-expanded="false"
            @click="open">
           <i class="icon-menu"
             role="img"
             :aria-label="i18n('ICON_LABEL_MENU')"></i>
-          {{ i18n('MENU') }}
+          {{ title }}
       </button>
 
       <template v-else>
@@ -189,6 +192,7 @@
         mode: undefined,
         opened: false,
         triggerShadow: false,
+        title: i18n('MENU'),
 
         footerItems: [
           ITEM.contact,
@@ -282,6 +286,10 @@
 
       getLinkToLabel (item) {
         return i18n('LINK_TO') + ' ' + i18n(item.title);
+      },
+
+      setTitle (title) {
+        this.title = title;
       },
 
       share () {
