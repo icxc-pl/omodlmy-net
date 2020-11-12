@@ -64,8 +64,8 @@ export default {
 <style lang="less" scoped>
 #page-welcome {
   .page-wrapper {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   img {

@@ -1,7 +1,7 @@
 <template>
   <div id="page-about" :aria-label="i18n('ABOUT_APP')">
     <article class="page-wrapper">
-      <h2>O aplikacji</h2>
+      <h2>{{ i18n('ABOUT_APP') }}</h2>
 
       <p class="align-center">
         <img
@@ -104,6 +104,10 @@ export default {
       );
     },
   },
+
+  created () {
+    this.$emit('menu-title', i18n('ABOUT_APP'));
+  }
 };
 </script>
 

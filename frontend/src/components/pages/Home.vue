@@ -60,6 +60,8 @@
     },
 
     created () {
+      this.$emit('menu-title', i18n('MENU'));
+
       this.apiClient.getHomeStats().then((res) => {
         this.intentions = res.data.intentions;
         this.praying = res.data.praying;
