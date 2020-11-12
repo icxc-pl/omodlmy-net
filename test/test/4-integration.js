@@ -20,6 +20,10 @@ describe('Integracja', function () {
     return await page.waitForSelector(selector, { visible: true });
   };
 
+  const getHidden = async (selector) => {
+    return await page.waitForSelector(selector, { hidden: true });
+  };
+
   const getValueOfSomething = async (selector, callback, ...args) => {
     const el = typeof selector === 'string' ? await getVisible(selector) : selector;
     args.unshift(el);
@@ -227,6 +231,113 @@ describe('Integracja', function () {
       expect(val).to.be.eq('Formularz nadawania intencji');
       await page.goBack();
     });
+
+  });
+
+
+  describe('Jak się modlić?', () => {
+
+    const prayers = [
+      {
+        title: 'Gdy masz tylko chwilę',
+        items: [
+          'Ojcze nasz (Modlitwa Pańska)',
+          'Zdrowaś Maryjo (Pozdrowienie anielskie)',
+          'Pod Twoją obronę',
+          'Chwała Ojcu',
+          'Modlitwa św. Franciszka'
+        ]
+      },
+      {
+        title: 'Gdy chcesz poświęcić na modlitwę więcej czasu',
+        items: [
+          'Różaniec',
+          'Koronka do Bożego Miłosierdzia'
+        ]
+      },
+      {
+        title: 'Litanie',
+        items: [
+          'Litania do Najświętszej Maryi Panny (Loretańska)',
+          'Litania do Najświętszego Serca Pana Jezusa',
+          'Litania do Wszystkich Świętych'
+        ]
+      },
+      {
+        title: 'Modlitwy Maryjne',
+        items: [
+          'Zdrowaś Maryjo (Pozdrowienie anielskie)',
+          'Pod Twoją obronę',
+          'Litania do Najświętszej Maryi Panny (Loretańska)'
+        ]
+      }
+    ];
+
+    before(async () => {
+      await page.goto(`${SERVER_ADDR}/#/jak-sie-modlic`);
+    });
+
+    for (let i = 0; i < prayers.length; i++) {
+      ((n, category) => {
+
+        it(`widać kategorię "${category.title}"`, async () => {
+          const el = await getVisible(`ul.list > li:nth-child(${n}) > span`);
+          expect(el).to.be.not.null;
+
+          const text = await getText(el);
+          expect(text).to.be.eq(category.title);
+        });
+
+        it(`nie widać modlitw w kategorii "${category.title}"`, async () => {
+          const el = await getHidden(`ul.list > li:nth-child(${n}) > ul`);
+          expect(el).to.be.not.null;
+        });
+
+        it(`kliknięcie pokazuje modlitwy w kategorii "${category.title}"`, async () => {
+          await page.click(`ul.list > li:nth-child(${n}) > span`);
+          const el = await getVisible(`ul.list > li:nth-child(${n}) > ul.expanded`);
+          expect(el).to.be.not.null;
+        });
+
+        it(`zamknięcie kategorii "${category.title}"`, async () => {
+          await page.click(`ul.list > li:nth-child(${n}) > span`);
+          const el = await page.$(`ul.list > li:nth-child(${n}) > ul.expanded`);
+          expect(el).to.be.null;
+        });
+
+        for (let j = 0; j < category.items.length; j++) {
+          ((n, m, prayer) => {
+
+            it(`widać modlitwę "${prayer}"`, async () => {
+              await page.click(`ul.list > li:nth-child(${n}) > span`);
+
+              const el = await getVisible(`ul.list > li:nth-child(${n}) > ul > li:nth-child(${m}) > span`);
+              expect(el).to.be.not.null;
+
+              const text = await getText(el);
+              expect(text).to.be.eq(prayer);
+            });
+
+            it(`otworzenie modlitwy "${prayer}"`, async () => {
+              await page.click(`ul.list > li:nth-child(${n}) > ul > li:nth-child(${m}) > span`);
+
+              const hb = await getVisible(`a.header-back`);
+              expect(hb).to.be.not.null;
+
+              let text = await getText(hb);
+              expect(text).to.be.eq(prayer);
+
+              text = await getText('article');
+              expect(text).to.not.be.empty.and.not.to.be.eq('undefined');
+
+              await hb.click();
+            });
+
+          })(n, j + 1, category.items[j]);
+        }
+
+      })(i + 1, prayers[i]);
+    }
 
   });
 
