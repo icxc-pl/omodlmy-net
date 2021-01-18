@@ -14,7 +14,7 @@
     "test": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 npx mocha"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "chai": "^4.2.0",
     "eslint": "^7.17.0",
     "mocha": "^8.2.1",
