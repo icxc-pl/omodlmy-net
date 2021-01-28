@@ -32,7 +32,7 @@
     "html-webpack-plugin": "^4.5.1",
     "image-webpack-loader": "^7.0.1",
     "less": "^3.13.1",
-    "less-loader": "^7.2.1",
+    "less-loader": "^7.3.0",
     "lesshint": "^6.3.7",
     "markdown-loader": "^6.0.0",
     "normalize.css": "^8.0.1",
