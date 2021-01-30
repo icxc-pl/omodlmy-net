@@ -16,7 +16,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chai": "^4.2.0",
-    "eslint": "^7.17.0",
+    "eslint": "^7.18.0",
     "mocha": "^8.2.1",
     "puppeteer": "^5.5.0",
     "randomstring": "^1.1.5"
