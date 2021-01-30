@@ -5,13 +5,13 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/icxc-pl/omodlmy-net?color=%235b1adb)
 ![GitHub](https://img.shields.io/github/license/icxc-pl/omodlmy-net)
 
-# Omódlmy.net
+# Omódlmy.Net
 
 To monorepo zawiera wszystkie komponenty potrzebne do zbudowania i odpalenia Omódlmy.Net.
 
-## Stawianie własnej instancji Omódlmy Net (np. dla wspólnoty)
+## Stawianie własnej instancji (np. dla wspólnoty)
 
-Omódlmy Net 2.x zostało napisane tak, abyś mógł w _kilka minut_ postawić własną instancję aplikacji dla własnej
+Omódlmy.Net 2.x zostało napisane tak, abyś mógł w _kilka minut_ postawić własną instancję aplikacji dla własnej
 wspólnoty czy duszpasterstwa. Pamiętaj jednak, że projekt jest udostępniony na licencji [AGPL-3.0-or-later](LICENSE).
 
 1. Zainstaluj [Docker CE](https://docs.docker.com/engine/install/)
