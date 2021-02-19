@@ -15,7 +15,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
-    "@bitbar/finka": "^2.1.0",
+    "@bitbar/finka": "^2.3.0",
     "@smartbear/browser-info": "^1.4.1",
     "ajv": "^6.12.6",
     "axios": "^0.21.1",
