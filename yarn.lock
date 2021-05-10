@@ -9906,10 +9906,10 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-v-tostini@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/v-tostini/-/v-tostini-1.4.0.tgz#ad5ba015cab6387a4ed6da4679b10148204f3d81"
-  integrity sha512-R5NE45eo5GgTdM1fxcrsEXOsZcYY3MfrK01EmAqoJZ/e9dtCEzBkfc36unzCgDkXp4kuPcn5SrB+dG6BXjfsIw==
+v-tostini@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/v-tostini/-/v-tostini-1.5.1.tgz#9b3f2e9cb9f2c3052d1a2f0fb4dde8281019c037"
+  integrity sha512-/2skgPs8F56iUM8I2K+dIL/AMZx3WXH98SNznU6Kr9A0qoNEYE19q7/JUYrmYkAE6nMBh1v4q37uuyobQ7vPUQ==
   dependencies:
     vue "^2.6.12"
 

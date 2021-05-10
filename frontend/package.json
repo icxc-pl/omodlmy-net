@@ -39,7 +39,7 @@
     "roddeh-i18n": "^1.2.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.0",
-    "v-tostini": "^1.4.0",
+    "v-tostini": "^1.5.1",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.6",
     "vue-mugen-scroll": "^0.2.6",
