@@ -41,7 +41,7 @@
     "url-loader": "^4.1.0",
     "v-tostini": "^1.5.1",
     "vue": "^2.6.11",
-    "vue-loader": "^15.9.6",
+    "vue-loader": "^15.9.7",
     "vue-mugen-scroll": "^0.2.6",
     "vue-router": "^3.4.9",
     "vue-style-loader": "^4.1.2",
