@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "helmet": "^3.23.3",
-    "mongodb": "^3.6.9",
+    "mongodb": "^3.6.10",
     "morgan": "^1.10.0",
     "svg-captcha": "^1.4.0"
   }
