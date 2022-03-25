@@ -36,7 +36,7 @@
     "lesshint": "^6.3.7",
     "markdown-loader": "^6.0.0",
     "normalize.css": "^8.0.1",
-    "roddeh-i18n": "^1.2.0",
+    "roddeh-i18n": "^1.2.1",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.0",
     "v-tostini": "^1.5.1",

@@ -9051,10 +9051,10 @@ rndm@1.2.0:
   resolved "https://registry.yarnpkg.com/rndm/-/rndm-1.2.0.tgz#f33fe9cfb52bbfd520aa18323bc65db110a1b76c"
   integrity sha1-8z/pz7Urv9UgqhgyO8ZdsRCht2w=
 
-roddeh-i18n@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/roddeh-i18n/-/roddeh-i18n-1.2.0.tgz#c71db4cb77a75b55e5aa5d07724176c1413ac89e"
-  integrity sha512-iD6ToyUFHbkk1XvUqfBhdj8LHiLbVlq7PqRWgyIMVvzy1UlRRBBjKIu4Mo1s5clHmgS3xCpIWICfxlU/bcVeiQ==
+roddeh-i18n@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/roddeh-i18n/-/roddeh-i18n-1.2.1.tgz#924e89aa18bbac6cb5d7fad3c27e0e2ece6d1105"
+  integrity sha512-g2ByMu2JXNWx3VlComQHlf0Mbktx8Vl8MauNauK6x0cH65WgrCUd32SmmxqeOuzkdQHtVgsyeuKDmW6vZOxBHw==
 
 run-parallel@^1.1.9:
   version "1.2.0"
