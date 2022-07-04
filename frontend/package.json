@@ -13,8 +13,8 @@
     "lint": "eslint . && lesshint src/stylesheets"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
     "@bitbar/finka": "^2.1.0",
     "@smartbear/browser-info": "^1.4.1",
     "ajv": "^6.12.6",
